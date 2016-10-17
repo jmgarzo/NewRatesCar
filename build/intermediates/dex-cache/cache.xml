@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_40ad071d39aa482bca6ea58466ba20db26100713.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-runner-0.5_09217ab175407096c6dc408233e5db818119c1dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_0d22ef433c29e1a76f5ad535323cd1d6649428ef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/junit-4.12_320762e8e5867359ca339b8eb436cb83760f5e32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/mnt/sdk/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_cbac50726cc4f2cab2588086b8487281a5e4f41b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_bae20418856fa4e01edadc00b295c260e01540ba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_9e18303958b176106e462483cb7fa9d2c57e52bf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-idling-resource-2.2.2_8db54e44b2d9772b129594d928460f01d141eeac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_d916e7ce9330aabd0215e9ad7e621d0b36d03d8c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_5f84b8938ecefa969a5646c84e605e54cdf5e60a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-exposed-instrumentation-api-publish-0.5_e0e749974f73501034425afcd1dc7a600400ea8b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.3_caecfb7405a97d7d99ca27e31bdf77ffd7eca622.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_972078db39e08223bf1b49ba277ce10595d0ec2e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/jsr305-2.0.1_82d344bfa27ee5d3c2d822c00d5e59c8bb40bc79.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-integration-1.3_0be0108695163f960dd222b427af9f81862dce9b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/javax.annotation-api-1.2_9bbc748a193864b6fa3785e49682cb86dec83ac5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_db8b39dc8d8d35eb31883423233e9b153f52a585.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-core-2.2.2_710a8bfb327c16d8f6a95d8e37003c79a0832f16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-rules-0.5_31aec4ba8826cf936775b5eef86393e8ab987da1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-library-1.3_48dafbafbad98af627608bb370c10363d4198e61.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_9f9f94611d5e9b1e62d6e9b18fd67d733a1e3e5a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_88396ab7f949123a329ca528a6dfb99feb8bfdff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_1a50d62dbe0451a06cdb5378cc0c7bc3e19aec15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/javax.inject-1_de25fb044429c7fb457da4f855876a3ab9ccb267.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_f9cb17a3026df98aa076a62c5534dde0cd38fa15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_a090ca6121485ff971a4dcc731f722eccfd29e3e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_6447d588b3cf338f465e230763802c08d7976f2d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_d28171e80b45acd3236ef58a888573780b9f5d29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_0cb9b509782398671b33943e4be1daa38de0e771.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jmgarzo/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/pre-dexed/androidTest/debug/javawriter-2.1.1_49664c6a4e9b63603fb0e2602b6b177cd9823587.jar" />
+    </item>
+
+</items>
