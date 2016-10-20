@@ -13,6 +13,7 @@ import com.jmgarzo.newratescar.BuildConfig;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
+import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -47,6 +48,14 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + MakeColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + MakeColumns.MAKE_NAME + " TEXT "
             + ", CONSTRAINT unique_name UNIQUE (make_name) ON CONFLICT REPLACE"
+            + " );";
+
+    public static final String SQL_CREATE_TABLE_MENU_ITEM = "CREATE TABLE IF NOT EXISTS "
+            + MenuItemColumns.TABLE_NAME + " ( "
+            + MenuItemColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + MenuItemColumns.MENU_ITEM_NAME + " TEXT, "
+            + MenuItemColumns.MENU_ITEM_IMAGE + " INTEGER "
+            + ", CONSTRAINT unique_name UNIQUE (menu_item_name) ON CONFLICT REPLACE"
             + " );";
 
     public static final String SQL_CREATE_TABLE_VEHICLE = "CREATE TABLE IF NOT EXISTS "
@@ -129,6 +138,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_FUEL_SUBTYPE);
         db.execSQL(SQL_CREATE_TABLE_FUEL_TYPE);
         db.execSQL(SQL_CREATE_TABLE_MAKE);
+        db.execSQL(SQL_CREATE_TABLE_MENU_ITEM);
         db.execSQL(SQL_CREATE_TABLE_VEHICLE);
         db.execSQL(SQL_CREATE_TABLE_VEHICLE_CLASS);
         mOpenHelperCallbacks.onPostCreate(mContext, db);

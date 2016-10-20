@@ -1,13 +1,10 @@
 package com.jmgarzo.newratescar.provider;
 
-import java.util.Arrays;
-
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.jmgarzo.newratescar.BuildConfig;
@@ -15,8 +12,11 @@ import com.jmgarzo.newratescar.provider.base.BaseContentProvider;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
+import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
+
+import java.util.Arrays;
 
 public class AppProvider extends BaseContentProvider {
     private static final String TAG = AppProvider.class.getSimpleName();
@@ -38,11 +38,14 @@ public class AppProvider extends BaseContentProvider {
     private static final int URI_TYPE_MAKE = 4;
     private static final int URI_TYPE_MAKE_ID = 5;
 
-    private static final int URI_TYPE_VEHICLE = 6;
-    private static final int URI_TYPE_VEHICLE_ID = 7;
+    private static final int URI_TYPE_MENU_ITEM = 6;
+    private static final int URI_TYPE_MENU_ITEM_ID = 7;
 
-    private static final int URI_TYPE_VEHICLE_CLASS = 8;
-    private static final int URI_TYPE_VEHICLE_CLASS_ID = 9;
+    private static final int URI_TYPE_VEHICLE = 8;
+    private static final int URI_TYPE_VEHICLE_ID = 9;
+
+    private static final int URI_TYPE_VEHICLE_CLASS = 10;
+    private static final int URI_TYPE_VEHICLE_CLASS_ID = 11;
 
 
 
@@ -55,6 +58,8 @@ public class AppProvider extends BaseContentProvider {
         URI_MATCHER.addURI(AUTHORITY, FuelTypeColumns.TABLE_NAME + "/#", URI_TYPE_FUEL_TYPE_ID);
         URI_MATCHER.addURI(AUTHORITY, MakeColumns.TABLE_NAME, URI_TYPE_MAKE);
         URI_MATCHER.addURI(AUTHORITY, MakeColumns.TABLE_NAME + "/#", URI_TYPE_MAKE_ID);
+        URI_MATCHER.addURI(AUTHORITY, MenuItemColumns.TABLE_NAME, URI_TYPE_MENU_ITEM);
+        URI_MATCHER.addURI(AUTHORITY, MenuItemColumns.TABLE_NAME + "/#", URI_TYPE_MENU_ITEM_ID);
         URI_MATCHER.addURI(AUTHORITY, VehicleColumns.TABLE_NAME, URI_TYPE_VEHICLE);
         URI_MATCHER.addURI(AUTHORITY, VehicleColumns.TABLE_NAME + "/#", URI_TYPE_VEHICLE_ID);
         URI_MATCHER.addURI(AUTHORITY, VehicleClassColumns.TABLE_NAME, URI_TYPE_VEHICLE_CLASS);
@@ -89,6 +94,11 @@ public class AppProvider extends BaseContentProvider {
                 return TYPE_CURSOR_DIR + MakeColumns.TABLE_NAME;
             case URI_TYPE_MAKE_ID:
                 return TYPE_CURSOR_ITEM + MakeColumns.TABLE_NAME;
+
+            case URI_TYPE_MENU_ITEM:
+                return TYPE_CURSOR_DIR + MenuItemColumns.TABLE_NAME;
+            case URI_TYPE_MENU_ITEM_ID:
+                return TYPE_CURSOR_ITEM + MenuItemColumns.TABLE_NAME;
 
             case URI_TYPE_VEHICLE:
                 return TYPE_CURSOR_DIR + VehicleColumns.TABLE_NAME;
@@ -169,6 +179,14 @@ public class AppProvider extends BaseContentProvider {
                 res.orderBy = MakeColumns.DEFAULT_ORDER;
                 break;
 
+            case URI_TYPE_MENU_ITEM:
+            case URI_TYPE_MENU_ITEM_ID:
+                res.table = MenuItemColumns.TABLE_NAME;
+                res.idColumn = MenuItemColumns._ID;
+                res.tablesWithJoins = MenuItemColumns.TABLE_NAME;
+                res.orderBy = MenuItemColumns.DEFAULT_ORDER;
+                break;
+
             case URI_TYPE_VEHICLE:
             case URI_TYPE_VEHICLE_ID:
                 res.table = VehicleColumns.TABLE_NAME;
@@ -205,6 +223,7 @@ public class AppProvider extends BaseContentProvider {
             case URI_TYPE_FUEL_SUBTYPE_ID:
             case URI_TYPE_FUEL_TYPE_ID:
             case URI_TYPE_MAKE_ID:
+            case URI_TYPE_MENU_ITEM_ID:
             case URI_TYPE_VEHICLE_ID:
             case URI_TYPE_VEHICLE_CLASS_ID:
                 id = uri.getLastPathSegment();

@@ -7,11 +7,12 @@ import com.jmgarzo.newratescar.provider.AppProvider;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
+import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
 /**
- * Vehicle
+ * Vehicles
  */
 public class VehicleColumns implements BaseColumns {
     public static final String TABLE_NAME = "vehicle";
@@ -23,7 +24,7 @@ public class VehicleColumns implements BaseColumns {
     public static final String _ID = BaseColumns._ID;
 
     /**
-     * Vehicle name
+     * Vehicles name
      */
     public static final String VEHICLE_NAME = "vehicle_name";
 

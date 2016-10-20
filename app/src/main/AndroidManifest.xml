@@ -19,12 +19,30 @@
             </intent-filter>
         </activity>
 
-
         <provider
             android:name=".provider.AppProvider"
             android:authorities="@string/content_authority"
             android:exported="false"
             android:syncable="true" />
+
+        <activity
+            android:name=".Vehicles"
+            android:label="@string/title_activity_vehicle"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.MainActivity" />
+        </activity>
+        <activity
+            android:name=".VehicleDetail"
+            android:label="@string/title_activity_vehicle_detail"
+            android:parentActivityName=".Vehicles"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.Vehicles" />
+        </activity>
     </application>
 
 </manifest>

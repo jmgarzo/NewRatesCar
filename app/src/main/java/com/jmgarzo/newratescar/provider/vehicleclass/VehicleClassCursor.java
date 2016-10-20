@@ -27,7 +27,7 @@ public class VehicleClassCursor extends AbstractCursor implements VehicleClassMo
     }
 
     /**
-     * Vehicle class name
+     * Vehicles class name
      * Can be {@code null}.
      */
     @Nullable

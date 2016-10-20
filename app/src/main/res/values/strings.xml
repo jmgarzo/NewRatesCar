@@ -2,4 +2,110 @@
     <string name="app_name">NewRatesCar</string>
     <string name="action_settings">Settings</string>
     <string name="content_authority">com.jmgarzo.newratescar.provider</string>
+    <string name="title_activity_vehicle">Vehicle</string>
+
+
+    //Menu item names
+    <string name="vehicle_item_name">Vehicles</string>
+    <string name="refuel_item_name">Refuel</string>
+    <string name="service_item_name">Services</string>
+
+    //Vehicle Class
+    <string name="car_class">Car</string>
+    <string name="van_class">Van</string>
+    <string name="truck_class">Truck</string>
+    <string name="motorcycle_class">MotorCycle</string>
+    <string name="quad_class">Quad</string>
+    <string name="tractor_class">Tractor</string>
+    <string name="bike_class">Bike</string>
+    <string name="bus_class">Bus</string>
+
+    //Vehicle Make
+    <string name="make_alfa_romeo"> ALFA ROMEO </string>
+    <string name="make_acura"> ACURA </string>
+    <string name="make_aston_martin"> ASTON MARTIN </string>
+    <string name="make_audi"> AUDI </string>
+    <string name="make_bentley"> BENTLEY </string>
+    <string name="make_bmw"> BMW </string>
+    <string name="make_bugatti"> BUGATTY </string>
+    <string name="make_buick"> BUICK </string>
+    <string name="make_cadillac"> CADILLAC </string>
+    <string name="make_chery"> CHERY </string>
+    <string name="make_chevrolet"> CHEVROLET </string>
+    <string name="make_chrysler"> CHRYSLER </string>
+    <string name="make_citroen"> CITROËN </string>
+    <string name="make_dacia"> DACIA </string>
+    <string name="make_daewoo"> DAEWOO </string>
+    <string name="make_dodge"> DODGE </string>
+    <string name="make_ebro_logo"> EBRO </string>
+    <string name="make_ferrari"> FERRARI </string>
+    <string name="make_fiat"> FIAT </string>
+    <string name="make_ford"> FORD </string>
+    <string name="make_gaz"> GAZ </string>
+    <string name="make_holden"> HOLDEN </string>
+    <string name="make_honda"> HONDA </string>
+    <string name="make_hyundai"> HYUNDAI </string>
+    <string name="make_infiniti"> INFINITI </string>
+    <string name="make_jaguar"> JAGUAR </string>
+    <string name="make_jeep"> JEEP </string>
+    <string name="make_kia"> KIA </string>
+    <string name="make_lada"> LADA </string>
+    <string name="make_lamborghini"> LAMBORGHINI </string>
+    <string name="make_lancia"> LANCIA </string>
+    <string name="make_land_rover"> LAND ROVER </string>
+    <string name="make_lexus"> LEXUS </string>
+    <string name="make_lotus"> LOTUS </string>
+    <string name="make_maserati"> MASERATI </string>
+    <string name="make_maybach"> MAYBACH </string>
+    <string name="make_mazda"> MAZDA </string>
+    <string name="make_mercedes"> MERCEDES </string>
+    <string name="make_mercury"> MERCURY </string>
+    <string name="make_mini"> MINI </string>
+    <string name="make_mitsubishi"> MITSUBISHI </string>
+    <string name="make_nissan"> NISSAN </string>
+    <string name="make_opel"> OPEL </string>
+    <string name="make_pagani"> PAGANI </string>
+    <string name="make_peugeot"> PEUGEOT </string>
+    <string name="make_piaggio"> PIAGGIO </string>
+    <string name="make_pontiac"> PONTIAC </string>
+    <string name="make_porshe"> PORCHE </string>
+    <string name="make_renault"> RENAULT </string>
+    <string name="make_rolls_royce"> ROLL ROYCE </string>
+    <string name="make_rover"> ROVER </string>
+    <string name="make_saab"> SAAB </string>
+    <string name="make_scion"> SCION </string>
+    <string name="make_seat"> SEAT </string>
+    <string name="make_skoda"> SKODA </string>
+    <string name="make_ssang_yong"> SSANG YONG </string>
+    <string name="make_subaru"> SUBARU </string>
+    <string name="make_suzuki"> SUZUKI </string>
+    <string name="make_toyota"> TOYOTA </string>
+    <string name="make_vauxhall"> VAUXHALL </string>
+    <string name="make_volkswagen"> VOLKSWAGEN </string>
+    <string name="make_volvo"> VOLVO </string>
+
+    //Fuel Type
+    <string name="fuel_type_petrol">Petrol</string>
+    <string name="fuel_type_diesel">Diesel</string>
+    <string name="fuel_type_electric">Electric</string>
+    <string name="fuel_type_hybrid">Hybrid</string>
+
+    //Subfuel Type
+
+    <string name="subfuel_type_regular">Regular</string>
+    <string name="subfuel_type_premium">Premium</string>
+    <string name="title_activity_vehicle_detail">VehicleDetail</string>
+
+
+    //Vehicle Detail
+    <string name="vehicle_name">Number plate or name</string>
+    <string name="vehicle_class">Vehicle class</string>
+    <string name="vehicle_fuel_type">Fuel type</string>
+    <string name="vehicle_make">Make</string>
+    <string name="vehicle_model">Model</string>
+    <string name="vehicle_mileage">Mileage</string>
+    <string name="vehicle_additional_information">Additional information</string>
+
 </resources>
+
+    

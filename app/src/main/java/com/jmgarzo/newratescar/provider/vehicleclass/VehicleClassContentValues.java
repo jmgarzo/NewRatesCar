@@ -40,7 +40,7 @@ public class VehicleClassContentValues extends AbstractContentValues {
     }
 
     /**
-     * Vehicle class name
+     * Vehicles class name
      */
     public VehicleClassContentValues putVehicleClassName(@Nullable String value) {
         mContentValues.put(VehicleClassColumns.VEHICLE_CLASS_NAME, value);

@@ -31,7 +31,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Vehicle name
+     * Vehicles name
      * Can be {@code null}.
      */
     @Nullable
@@ -51,7 +51,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Vehicle class name
+     * Vehicles class name
      * Can be {@code null}.
      */
     @Nullable
