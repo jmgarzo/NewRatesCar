@@ -8,12 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Fuel subtype
+ * Fuel Type
  */
 public interface FuelTypeModel extends BaseModel {
 
     /**
-     * Fuel Subtype Name
+     * Fuel Type Name
      * Can be {@code null}.
      */
     @Nullable
@@ -21,6 +21,8 @@ public interface FuelTypeModel extends BaseModel {
 
     /**
      * Get the {@code fuel_subtype} value.
+     * Can be {@code null}.
      */
-    long getFuelSubtype();
+    @Nullable
+    Long getFuelSubtype();
 }

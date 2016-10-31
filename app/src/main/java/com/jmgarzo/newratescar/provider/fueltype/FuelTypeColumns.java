@@ -12,7 +12,7 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
 /**
- * Fuel subtype
+ * Fuel Type
  */
 public class FuelTypeColumns implements BaseColumns {
     public static final String TABLE_NAME = "fuel_type";
@@ -24,7 +24,7 @@ public class FuelTypeColumns implements BaseColumns {
     public static final String _ID = BaseColumns._ID;
 
     /**
-     * Fuel Subtype Name
+     * Fuel Type Name
      */
     public static final String FUEL_TYPE_NAME = "fuel_type_name";
 

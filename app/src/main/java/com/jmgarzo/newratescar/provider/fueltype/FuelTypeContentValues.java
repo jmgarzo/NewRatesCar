@@ -40,7 +40,7 @@ public class FuelTypeContentValues extends AbstractContentValues {
     }
 
     /**
-     * Fuel Subtype Name
+     * Fuel Type Name
      */
     public FuelTypeContentValues putFuelTypeName(@Nullable String value) {
         mContentValues.put(FuelTypeColumns.FUEL_TYPE_NAME, value);
@@ -52,9 +52,13 @@ public class FuelTypeContentValues extends AbstractContentValues {
         return this;
     }
 
-    public FuelTypeContentValues putFuelSubtype(long value) {
+    public FuelTypeContentValues putFuelSubtype(@Nullable Long value) {
         mContentValues.put(FuelTypeColumns.FUEL_SUBTYPE, value);
         return this;
     }
 
+    public FuelTypeContentValues putFuelSubtypeNull() {
+        mContentValues.putNull(FuelTypeColumns.FUEL_SUBTYPE);
+        return this;
+    }
 }

@@ -98,13 +98,14 @@
 
 
     //Vehicle Detail
-    <string name="vehicle_name">Number plate or name</string>
+    <string name="vehicle_name">Number plate or name*</string>
     <string name="vehicle_class">Vehicle class</string>
     <string name="vehicle_fuel_type">Fuel type</string>
     <string name="vehicle_make">Make</string>
     <string name="vehicle_model">Model</string>
     <string name="vehicle_mileage">Mileage</string>
     <string name="vehicle_additional_information">Additional information</string>
+    <string name="asterisk_label">* indicates required field </string>
 
 </resources>
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.jmgarzo.newratescar.BuildConfig;
 import com.jmgarzo.newratescar.R;
 import com.jmgarzo.newratescar.object.MenuItem;
+import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
@@ -54,6 +55,13 @@ public class AppSQLiteOpenHelperCallbacks {
         fuelTypeList.add(context.getString(R.string.fuel_type_diesel));
         fuelTypeList.add(context.getString(R.string.fuel_type_electric));
         fuelTypeList.add(context.getString(R.string.fuel_type_hybrid));
+
+        for (String fuelType : fuelTypeList){
+            ContentValues values = new ContentValues();
+            values.put(FuelTypeColumns.FUEL_TYPE_NAME,fuelType);
+
+            db.insert(FuelTypeColumns.TABLE_NAME,null,values);
+        }
     }
 
     private void addMakes(SQLiteDatabase db, Context context){

@@ -12,7 +12,7 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
 /**
- * Vehicles
+ * Vehicle
  */
 public class VehicleColumns implements BaseColumns {
     public static final String TABLE_NAME = "vehicle";
@@ -24,7 +24,7 @@ public class VehicleColumns implements BaseColumns {
     public static final String _ID = BaseColumns._ID;
 
     /**
-     * Vehicles name
+     * Vehicle name
      */
     public static final String VEHICLE_NAME = "vehicle_name";
 

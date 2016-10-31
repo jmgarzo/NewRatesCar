@@ -38,7 +38,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + FuelTypeColumns.TABLE_NAME + " ( "
             + FuelTypeColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + FuelTypeColumns.FUEL_TYPE_NAME + " TEXT, "
-            + FuelTypeColumns.FUEL_SUBTYPE + " INTEGER NOT NULL "
+            + FuelTypeColumns.FUEL_SUBTYPE + " INTEGER "
             + ", CONSTRAINT fk_fuel_subtype FOREIGN KEY (" + FuelTypeColumns.FUEL_SUBTYPE + ") REFERENCES fuel_subtype (_id) ON DELETE CASCADE"
             + ", CONSTRAINT unique_name UNIQUE (fuel_type_name) ON CONFLICT REPLACE"
             + " );";

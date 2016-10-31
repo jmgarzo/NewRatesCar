@@ -31,7 +31,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Vehicles name
+     * Vehicle name
      * Can be {@code null}.
      */
     @Nullable
@@ -51,7 +51,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Vehicles class name
+     * Vehicle class name
      * Can be {@code null}.
      */
     @Nullable
@@ -71,7 +71,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Fuel Subtype Name
+     * Fuel Type Name
      * Can be {@code null}.
      */
     @Nullable
@@ -82,11 +82,11 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
 
     /**
      * Get the {@code fuel_subtype} value.
+     * Can be {@code null}.
      */
-    public long getFuelTypeFuelSubtype() {
+    @Nullable
+    public Long getFuelTypeFuelSubtype() {
         Long res = getLongOrNull(FuelTypeColumns.FUEL_SUBTYPE);
-        if (res == null)
-            throw new NullPointerException("The value of 'fuel_subtype' in the database was null, which is not allowed according to the model definition");
         return res;
     }
 

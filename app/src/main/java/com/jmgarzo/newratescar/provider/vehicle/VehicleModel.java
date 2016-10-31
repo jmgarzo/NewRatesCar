@@ -8,12 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Vehicles
+ * Vehicle
  */
 public interface VehicleModel extends BaseModel {
 
     /**
-     * Vehicles name
+     * Vehicle name
      * Can be {@code null}.
      */
     @Nullable

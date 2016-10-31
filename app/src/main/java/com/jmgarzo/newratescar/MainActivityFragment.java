@@ -72,6 +72,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mMenuAdapter.swapCursor(data);
+
     }
 
     @Override

@@ -282,13 +282,13 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection fuelTypeFuelSubtype(long... value) {
-        addEquals(FuelTypeColumns.FUEL_SUBTYPE, toObjectArray(value));
+    public VehicleSelection fuelTypeFuelSubtype(Long... value) {
+        addEquals(FuelTypeColumns.FUEL_SUBTYPE, value);
         return this;
     }
 
-    public VehicleSelection fuelTypeFuelSubtypeNot(long... value) {
-        addNotEquals(FuelTypeColumns.FUEL_SUBTYPE, toObjectArray(value));
+    public VehicleSelection fuelTypeFuelSubtypeNot(Long... value) {
+        addNotEquals(FuelTypeColumns.FUEL_SUBTYPE, value);
         return this;
     }
 
