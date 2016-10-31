@@ -49,7 +49,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent (getActivity(),VehicleDetail.class);
+                Intent intent = new Intent (getActivity(),VehiclesActivity.class);
                 startActivity(intent);
             }
         });

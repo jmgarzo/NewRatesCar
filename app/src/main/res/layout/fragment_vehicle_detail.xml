@@ -61,7 +61,7 @@
                 android:id="@+id/better_spinner_vehicle_make"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/vehicle_fuel_type"
+                android:hint="@string/vehicle_make"
                 app:met_floatingLabel="highlight"
                 app:met_primaryColor="@color/colorAccent"
 
@@ -117,7 +117,6 @@
                 android:text="@string/asterisk_label"
                 android:fontFamily="sans-serif"
                 android:textSize="12sp"/>
-
 
         </LinearLayout>
 

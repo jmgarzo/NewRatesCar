@@ -26,7 +26,7 @@
             android:syncable="true" />
 
         <activity
-            android:name=".Vehicles"
+            android:name=".VehiclesActivity"
             android:label="@string/title_activity_vehicle"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -35,13 +35,13 @@
                 android:value="com.jmgarzo.newratescar.MainActivity" />
         </activity>
         <activity
-            android:name=".VehicleDetail"
+            android:name=".VehicleDetailActivity"
             android:label="@string/title_activity_vehicle_detail"
-            android:parentActivityName=".Vehicles"
+            android:parentActivityName=".VehiclesActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmgarzo.newratescar.Vehicles" />
+                android:value="com.jmgarzo.newratescar.VehiclesActivity" />
         </activity>
     </application>
 
