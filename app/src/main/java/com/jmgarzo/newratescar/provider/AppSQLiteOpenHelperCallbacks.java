@@ -3,6 +3,7 @@ package com.jmgarzo.newratescar.provider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
 import android.util.Log;
 
 import com.jmgarzo.newratescar.BuildConfig;

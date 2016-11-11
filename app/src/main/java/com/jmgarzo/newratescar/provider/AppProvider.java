@@ -1,10 +1,13 @@
 package com.jmgarzo.newratescar.provider;
 
+import java.util.Arrays;
+
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.jmgarzo.newratescar.BuildConfig;
@@ -15,8 +18,6 @@ import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
-
-import java.util.Arrays;
 
 public class AppProvider extends BaseContentProvider {
     private static final String TAG = AppProvider.class.getSimpleName();

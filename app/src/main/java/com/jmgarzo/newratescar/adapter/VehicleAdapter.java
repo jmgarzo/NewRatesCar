@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import com.jmgarzo.newratescar.ProviderUtilities;
 import com.jmgarzo.newratescar.R;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 
@@ -19,9 +20,11 @@ public class VehicleAdapter extends CursorAdapter {
 
      public static class ViewHolder {
          public TextView textName;
+         public TextView textClass;
 
          public ViewHolder(View view) {
-            textName = (TextView) view.findViewById(R.id.vehicle_name_list_item);
+             textName = (TextView) view.findViewById(R.id.vehicle_name_list_item);
+             textClass = (TextView) view.findViewById(R.id.vehicle_class_list_item);
          }
      }
 
@@ -44,6 +47,10 @@ public class VehicleAdapter extends CursorAdapter {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
 
         int index= cursor.getColumnIndex(VehicleColumns.VEHICLE_NAME);
-        viewHolder.textName.setText(cursor.getShort(index));
+        viewHolder.textName.setText(cursor.getString(index));
+
+        int index2 = cursor.getColumnIndex(VehicleColumns.VEHICLE_CLASS);
+        viewHolder.textClass.setText(ProviderUtilities.getVehicleClassName(context,cursor.getLong(index2)));
     }
+
 }

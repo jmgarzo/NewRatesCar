@@ -28,6 +28,8 @@ import static com.jmgarzo.newratescar.R.id.input_vehicle_name;
 public class VehicleDetailFragment extends Fragment {
 
 
+    public static final String VEHICLE_ID = "VEHICLE_ID";
+
     public VehicleDetailFragment() {
     }
 
@@ -35,7 +37,10 @@ public class VehicleDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View view = inflater.inflate(R.layout.fragment_vehicle_detail, container, false);
+
+        getArguments().getString(VEHICLE_ID);
 
 
         EditText inputVehicleName = (EditText) getActivity().findViewById(input_vehicle_name);

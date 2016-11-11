@@ -122,13 +122,13 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection vehicleClass(long... value) {
-        addEquals(VehicleColumns.VEHICLE_CLASS, toObjectArray(value));
+    public VehicleSelection vehicleClass(Long... value) {
+        addEquals(VehicleColumns.VEHICLE_CLASS, value);
         return this;
     }
 
-    public VehicleSelection vehicleClassNot(long... value) {
-        addNotEquals(VehicleColumns.VEHICLE_CLASS, toObjectArray(value));
+    public VehicleSelection vehicleClassNot(Long... value) {
+        addNotEquals(VehicleColumns.VEHICLE_CLASS, value);
         return this;
     }
 
@@ -202,13 +202,13 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection fuelType(long... value) {
-        addEquals(VehicleColumns.FUEL_TYPE, toObjectArray(value));
+    public VehicleSelection fuelType(Long... value) {
+        addEquals(VehicleColumns.FUEL_TYPE, value);
         return this;
     }
 
-    public VehicleSelection fuelTypeNot(long... value) {
-        addNotEquals(VehicleColumns.FUEL_TYPE, toObjectArray(value));
+    public VehicleSelection fuelTypeNot(Long... value) {
+        addNotEquals(VehicleColumns.FUEL_TYPE, value);
         return this;
     }
 
@@ -362,13 +362,13 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection make(long... value) {
-        addEquals(VehicleColumns.MAKE, toObjectArray(value));
+    public VehicleSelection make(Long... value) {
+        addEquals(VehicleColumns.MAKE, value);
         return this;
     }
 
-    public VehicleSelection makeNot(long... value) {
-        addNotEquals(VehicleColumns.MAKE, toObjectArray(value));
+    public VehicleSelection makeNot(Long... value) {
+        addNotEquals(VehicleColumns.MAKE, value);
         return this;
     }
 

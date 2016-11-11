@@ -21,18 +21,24 @@ public interface VehicleModel extends BaseModel {
 
     /**
      * Get the {@code vehicle_class} value.
+     * Can be {@code null}.
      */
-    long getVehicleClass();
+    @Nullable
+    Long getVehicleClass();
 
     /**
      * Get the {@code fuel_type} value.
+     * Can be {@code null}.
      */
-    long getFuelType();
+    @Nullable
+    Long getFuelType();
 
     /**
      * Get the {@code make} value.
+     * Can be {@code null}.
      */
-    long getMake();
+    @Nullable
+    Long getMake();
 
     /**
      * Get the {@code model} value.

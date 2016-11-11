@@ -39,11 +39,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
                 String vehicleFuelType = inputVehicleFuelType.getText().toString();
 
 
-
-
                 VehicleContentValues values = new VehicleContentValues();
                 values.putVehicleName(vehicleName)
                         .putVehicleClass(getVehicleClass(vehicleClass));
+                        //.putFuelType(getVehicleFuelType(vehicleFuelType));
+
                 getContentResolver().insert(values.uri(), values.values());
 
                 Intent intent = new Intent(view.getContext(), VehiclesActivity.class);
@@ -57,38 +57,44 @@ public class VehicleDetailActivity extends AppCompatActivity {
     long getVehicleClass(String vehicleClass) {
         long id = -1;
 
-        VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
-        vehicleClassSelection.vehicleClassName(vehicleClass);
-        VehicleClassCursor cursor = vehicleClassSelection.query(this);
+        if (null != vehicleClass && vehicleClass != "") {
 
-        if (cursor.moveToNext()) {
-            id = cursor.getId();
-        }
-        if (id == -1) {
-            vehicleClassSelection.vehicleClassName(getString(R.string.car_class));
-            VehicleClassCursor cursor2 = vehicleClassSelection.query(this);
-            if (cursor.moveToFirst()){
-                id = cursor2.getId();
+
+            VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
+            vehicleClassSelection.vehicleClassName(vehicleClass);
+            VehicleClassCursor cursor = vehicleClassSelection.query(this);
+
+            if (cursor.moveToNext()) {
+                id = cursor.getId();
             }
+            if (id == -1) {
+                vehicleClassSelection.vehicleClassName(getString(R.string.car_class));
+                VehicleClassCursor cursor2 = vehicleClassSelection.query(this);
+                if (cursor.moveToFirst()) {
+                    id = cursor2.getId();
+                }
+            }
+
         }
         return id;
     }
 
     long getVehicleFuelType(String vehicleFuelType) {
         long id = -1;
+        if (vehicleFuelType != null && vehicleFuelType != "") {
+            FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
+            fuelTypeSelection.fuelTypeName(vehicleFuelType);
+            FuelTypeCursor cursor = fuelTypeSelection.query(this);
 
-        FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
-        fuelTypeSelection.fuelTypeName(vehicleFuelType);
-        FuelTypeCursor cursor = fuelTypeSelection.query(this);
-
-        if (cursor.moveToNext()) {
-            id = cursor.getId();
-        }
-        if (id == -1) {
-            fuelTypeSelection.fuelTypeName(getString(R.string.fuel_type_diesel));
-            FuelTypeCursor cursor2 = fuelTypeSelection.query(this);
-            if (cursor.moveToFirst()){
-                id = cursor2.getId();
+            if (cursor.moveToNext()) {
+                id = cursor.getId();
+            }
+            if (id == -1) {
+                fuelTypeSelection.fuelTypeName(getString(R.string.fuel_type_diesel));
+                FuelTypeCursor cursor2 = fuelTypeSelection.query(this);
+                if (cursor.moveToFirst()) {
+                    id = cursor2.getId();
+                }
             }
         }
         return id;

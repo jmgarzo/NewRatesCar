@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,7 +39,7 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mVehicleAdapter = new VehicleAdapter(getActivity(),null,0);
 
@@ -49,7 +50,10 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent (getActivity(),VehicleDetailActivity.class);
+                Bundle b = new Bundle();
+                b.putLong(VehicleDetailFragment.VEHICLE_ID,id);
+                startActivity(intent);
             }
         });
 
