@@ -8,9 +8,6 @@ import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeContentValues;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeCursor;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeSelection;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
-import com.jmgarzo.newratescar.provider.fueltype.FuelTypeContentValues;
-import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
-import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeContentValues;
 import com.jmgarzo.newratescar.provider.make.MakeCursor;
@@ -154,36 +151,36 @@ public class TestProvider extends AndroidTestCase {
     }
 
 
-    public void testBasicFuelType() {
-
-        FuelSubtypeContentValues subtypeValues = new FuelSubtypeContentValues();
-        subtypeValues.putFuelSubtypeName(TEST_FUEL_SUBTYPE_NAME);
-        getContext().getContentResolver().insert(FuelSubtypeColumns.CONTENT_URI,subtypeValues.values());
-
-        FuelSubtypeSelection whereFuelSubtype = new FuelSubtypeSelection();
-        whereFuelSubtype.fuelSubtypeName(TEST_FUEL_SUBTYPE_NAME);
-        FuelSubtypeCursor fuelSubtypeCursor = whereFuelSubtype.query(getContext().getContentResolver());
-        fuelSubtypeCursor.moveToNext();
-        long fuelSubtypeId = fuelSubtypeCursor.getId();
-
-        //Insert
-
-        FuelTypeContentValues values = new FuelTypeContentValues();
-        values.putFuelTypeName(TEST_FUEL_TYPE_NAME).putFuelSubtype(fuelSubtypeId);
-        getContext().getContentResolver().insert(FuelTypeColumns.CONTENT_URI, values.values());
-
-        FuelTypeSelection whereFuelType = new FuelTypeSelection();
-        whereFuelType.fuelTypeName(TEST_FUEL_TYPE_NAME);
-        FuelTypeCursor fuelTypeCursor = whereFuelType.query(getContext().getContentResolver());
-        fuelTypeCursor.moveToNext();
-        String fuelSubtypeName = fuelTypeCursor.getFuelSubtypeFuelSubtypeName();
-        String fuelTypeName = fuelTypeCursor.getFuelTypeName();
-
-        assertEquals(TEST_FUEL_SUBTYPE_NAME, fuelSubtypeName);
-        assertEquals(TEST_FUEL_TYPE_NAME,fuelTypeName);
-
-
-    }
+//    public void testBasicFuelType() {
+//
+//        FuelSubtypeContentValues subtypeValues = new FuelSubtypeContentValues();
+//        subtypeValues.putFuelSubtypeName(TEST_FUEL_SUBTYPE_NAME);
+//        getContext().getContentResolver().insert(FuelSubtypeColumns.CONTENT_URI,subtypeValues.values());
+//
+//        FuelSubtypeSelection whereFuelSubtype = new FuelSubtypeSelection();
+//        whereFuelSubtype.fuelSubtypeName(TEST_FUEL_SUBTYPE_NAME);
+//        FuelSubtypeCursor fuelSubtypeCursor = whereFuelSubtype.query(getContext().getContentResolver());
+//        fuelSubtypeCursor.moveToNext();
+//        long fuelSubtypeId = fuelSubtypeCursor.getId();
+//
+//        //Insert
+//
+//        FuelTypeContentValues values = new FuelTypeContentValues();
+//        values.putFuelTypeName(TEST_FUEL_TYPE_NAME).putFuelSubtype(fuelSubtypeId);
+//        getContext().getContentResolver().insert(FuelTypeColumns.CONTENT_URI, values.values());
+//
+//        FuelTypeSelection whereFuelType = new FuelTypeSelection();
+//        whereFuelType.fuelTypeName(TEST_FUEL_TYPE_NAME);
+//        FuelTypeCursor fuelTypeCursor = whereFuelType.query(getContext().getContentResolver());
+//        fuelTypeCursor.moveToNext();
+//        String fuelSubtypeName = fuelTypeCursor.getFuelSubtypeFuelSubtypeName();
+//        String fuelTypeName = fuelTypeCursor.getFuelTypeName();
+//
+//        assertEquals(TEST_FUEL_SUBTYPE_NAME, fuelSubtypeName);
+//        assertEquals(TEST_FUEL_TYPE_NAME,fuelTypeName);
+//
+//
+//    }
 
     public void testBasicMake(){
 

@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.jmgarzo.newratescar.provider.base.AbstractCursor;
-import com.jmgarzo.newratescar.provider.fuelsubtype.*;
 
 /**
  * Cursor wrapper for the {@code fuel_type} table.
@@ -34,26 +33,6 @@ public class FuelTypeCursor extends AbstractCursor implements FuelTypeModel {
     @Nullable
     public String getFuelTypeName() {
         String res = getStringOrNull(FuelTypeColumns.FUEL_TYPE_NAME);
-        return res;
-    }
-
-    /**
-     * Get the {@code fuel_subtype} value.
-     * Can be {@code null}.
-     */
-    @Nullable
-    public Long getFuelSubtype() {
-        Long res = getLongOrNull(FuelTypeColumns.FUEL_SUBTYPE);
-        return res;
-    }
-
-    /**
-     * Fuel Subtype
-     * Can be {@code null}.
-     */
-    @Nullable
-    public String getFuelSubtypeFuelSubtypeName() {
-        String res = getStringOrNull(FuelSubtypeColumns.FUEL_SUBTYPE_NAME);
         return res;
     }
 }

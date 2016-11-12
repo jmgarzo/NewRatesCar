@@ -27,7 +27,7 @@ public class FuelSubtypeCursor extends AbstractCursor implements FuelSubtypeMode
     }
 
     /**
-     * Fuel Subtype
+     * Fuel Subtype Name
      * Can be {@code null}.
      */
     @Nullable

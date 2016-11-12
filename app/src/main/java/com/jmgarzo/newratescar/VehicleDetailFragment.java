@@ -2,13 +2,15 @@ package com.jmgarzo.newratescar;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.app.SharedElementCallback;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
@@ -20,12 +22,12 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.util.ArrayList;
 
-import static com.jmgarzo.newratescar.R.id.input_vehicle_name;
+import static com.jmgarzo.newratescar.R.id.input_layout_vehicle_name;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class VehicleDetailFragment extends Fragment {
+public class VehicleDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
     public static final String VEHICLE_ID = "VEHICLE_ID";
@@ -43,7 +45,7 @@ public class VehicleDetailFragment extends Fragment {
         getArguments().getString(VEHICLE_ID);
 
 
-        EditText inputVehicleName = (EditText) getActivity().findViewById(input_vehicle_name);
+        TextInputLayout inputVehicleName = (TextInputLayout) getActivity().findViewById(input_layout_vehicle_name);
 
 
 
@@ -109,5 +111,20 @@ public class VehicleDetailFragment extends Fragment {
     @Override
     public void setEnterSharedElementCallback(SharedElementCallback callback) {
         super.setEnterSharedElementCallback(callback);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }

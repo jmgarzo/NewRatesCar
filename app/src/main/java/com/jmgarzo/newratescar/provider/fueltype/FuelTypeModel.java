@@ -18,11 +18,4 @@ public interface FuelTypeModel extends BaseModel {
      */
     @Nullable
     String getFuelTypeName();
-
-    /**
-     * Get the {@code fuel_subtype} value.
-     * Can be {@code null}.
-     */
-    @Nullable
-    Long getFuelSubtype();
 }

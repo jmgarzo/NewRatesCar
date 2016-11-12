@@ -166,9 +166,6 @@ public class AppProvider extends BaseContentProvider {
                 res.table = FuelTypeColumns.TABLE_NAME;
                 res.idColumn = FuelTypeColumns._ID;
                 res.tablesWithJoins = FuelTypeColumns.TABLE_NAME;
-                if (FuelSubtypeColumns.hasColumns(projection)) {
-                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelSubtypeColumns.TABLE_NAME + " AS " + FuelTypeColumns.PREFIX_FUEL_SUBTYPE + " ON " + FuelTypeColumns.TABLE_NAME + "." + FuelTypeColumns.FUEL_SUBTYPE + "=" + FuelTypeColumns.PREFIX_FUEL_SUBTYPE + "." + FuelSubtypeColumns._ID;
-                }
                 res.orderBy = FuelTypeColumns.DEFAULT_ORDER;
                 break;
 
@@ -196,11 +193,8 @@ public class AppProvider extends BaseContentProvider {
                 if (VehicleClassColumns.hasColumns(projection)) {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleClassColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_VEHICLE_CLASS + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.VEHICLE_CLASS + "=" + VehicleColumns.PREFIX_VEHICLE_CLASS + "." + VehicleClassColumns._ID;
                 }
-                if (FuelTypeColumns.hasColumns(projection) || FuelSubtypeColumns.hasColumns(projection)) {
+                if (FuelTypeColumns.hasColumns(projection)) {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_FUEL_TYPE + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.FUEL_TYPE + "=" + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
-                }
-                if (FuelSubtypeColumns.hasColumns(projection)) {
-                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelSubtypeColumns.TABLE_NAME + " AS " + FuelTypeColumns.PREFIX_FUEL_SUBTYPE + " ON " + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns.FUEL_SUBTYPE + "=" + FuelTypeColumns.PREFIX_FUEL_SUBTYPE + "." + FuelSubtypeColumns._ID;
                 }
                 if (MakeColumns.hasColumns(projection)) {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;

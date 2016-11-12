@@ -51,14 +51,4 @@ public class FuelTypeContentValues extends AbstractContentValues {
         mContentValues.putNull(FuelTypeColumns.FUEL_TYPE_NAME);
         return this;
     }
-
-    public FuelTypeContentValues putFuelSubtype(@Nullable Long value) {
-        mContentValues.put(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeContentValues putFuelSubtypeNull() {
-        mContentValues.putNull(FuelTypeColumns.FUEL_SUBTYPE);
-        return this;
-    }
 }

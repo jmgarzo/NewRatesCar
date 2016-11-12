@@ -24,7 +24,7 @@ public class FuelSubtypeColumns implements BaseColumns {
     public static final String _ID = BaseColumns._ID;
 
     /**
-     * Fuel Subtype
+     * Fuel Subtype Name
      */
     public static final String FUEL_SUBTYPE_NAME = "fuel_subtype_name";
 

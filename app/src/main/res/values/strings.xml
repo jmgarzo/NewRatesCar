@@ -99,6 +99,7 @@
 
     //Vehicle Detail
     <string name="vehicle_name">Number plate or name*</string>
+    <string name="vehicle_name_error">Number plate or name is required</string>
     <string name="vehicle_class">Vehicle class</string>
     <string name="vehicle_fuel_type">Fuel type</string>
     <string name="vehicle_make">Make</string>

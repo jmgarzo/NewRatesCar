@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.jmgarzo.newratescar.provider.base.AbstractSelection;
-import com.jmgarzo.newratescar.provider.fuelsubtype.*;
 
 /**
  * Selection for the {@code fuel_type} table.
@@ -116,86 +115,6 @@ public class FuelTypeSelection extends AbstractSelection<FuelTypeSelection> {
 
     public FuelTypeSelection orderByFuelTypeName() {
         orderBy(FuelTypeColumns.FUEL_TYPE_NAME, false);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtype(Long... value) {
-        addEquals(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeNot(Long... value) {
-        addNotEquals(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeGt(long value) {
-        addGreaterThan(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeGtEq(long value) {
-        addGreaterThanOrEquals(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeLt(long value) {
-        addLessThan(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeLtEq(long value) {
-        addLessThanOrEquals(FuelTypeColumns.FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public FuelTypeSelection orderByFuelSubtype(boolean desc) {
-        orderBy(FuelTypeColumns.FUEL_SUBTYPE, desc);
-        return this;
-    }
-
-    public FuelTypeSelection orderByFuelSubtype() {
-        orderBy(FuelTypeColumns.FUEL_SUBTYPE, false);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeFuelSubtypeName(String... value) {
-        addEquals(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeFuelSubtypeNameNot(String... value) {
-        addNotEquals(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeFuelSubtypeNameLike(String... value) {
-        addLike(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeFuelSubtypeNameContains(String... value) {
-        addContains(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeFuelSubtypeNameStartsWith(String... value) {
-        addStartsWith(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);
-        return this;
-    }
-
-    public FuelTypeSelection fuelSubtypeFuelSubtypeNameEndsWith(String... value) {
-        addEndsWith(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);
-        return this;
-    }
-
-    public FuelTypeSelection orderByFuelSubtypeFuelSubtypeName(boolean desc) {
-        orderBy(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, desc);
-        return this;
-    }
-
-    public FuelTypeSelection orderByFuelSubtypeFuelSubtypeName() {
-        orderBy(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, false);
         return this;
     }
 }

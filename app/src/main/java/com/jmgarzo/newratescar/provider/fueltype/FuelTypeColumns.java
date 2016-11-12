@@ -28,16 +28,13 @@ public class FuelTypeColumns implements BaseColumns {
      */
     public static final String FUEL_TYPE_NAME = "fuel_type_name";
 
-    public static final String FUEL_SUBTYPE = "fuel_subtype";
-
 
     public static final String DEFAULT_ORDER = TABLE_NAME + "." +_ID;
 
     // @formatter:off
     public static final String[] ALL_COLUMNS = new String[] {
             _ID,
-            FUEL_TYPE_NAME,
-            FUEL_SUBTYPE
+            FUEL_TYPE_NAME
     };
     // @formatter:on
 
@@ -45,10 +42,8 @@ public class FuelTypeColumns implements BaseColumns {
         if (projection == null) return true;
         for (String c : projection) {
             if (c.equals(FUEL_TYPE_NAME) || c.contains("." + FUEL_TYPE_NAME)) return true;
-            if (c.equals(FUEL_SUBTYPE) || c.contains("." + FUEL_SUBTYPE)) return true;
         }
         return false;
     }
 
-    public static final String PREFIX_FUEL_SUBTYPE = TABLE_NAME + "__" + FuelSubtypeColumns.TABLE_NAME;
 }
