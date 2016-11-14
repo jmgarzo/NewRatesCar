@@ -69,6 +69,18 @@ public class ProviderUtilities {
         return id;
     }
 
+    public static String getVehicleFuelTypeName(Context context, long id) {
+        String result = "";
+        FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
+        fuelTypeSelection.id(id);
+        FuelTypeCursor cursor = fuelTypeSelection.query(context);
+
+        if (cursor.moveToNext()) {
+            result = cursor.getFuelTypeName();
+        }
+        return result;
+    }
+
     public static Long getVehicleFuelTypeId(Context context, String vehicleFuelType) {
         Long id = null;
 

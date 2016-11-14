@@ -69,19 +69,21 @@ public class VehicleDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        Bundle arguments = new Bundle();
+        if(savedInstanceState == null) {
+            Bundle arguments = new Bundle();
 
-        VehicleDetailFragment fragment = new VehicleDetailFragment();
+            VehicleDetailFragment fragment = new VehicleDetailFragment();
 
-        Long idVehicle = getIntent().getLongExtra(VehicleColumns._ID,-1);
-        arguments.putLong(VehicleColumns._ID, idVehicle);
+            Long idVehicle = getIntent().getLongExtra(VehicleColumns._ID, -1);
+            arguments.putLong(VehicleColumns._ID, idVehicle);
 
-        fragment.setArguments(arguments);
+            fragment.setArguments(arguments);
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_vehicle_detail, fragment)
-                .commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.vehicle_detail_container, fragment)
+                    .commit();
 
+        }
 
         //vehicleId = getIntent().getLongExtra(VehicleDetailFragment.VEHICLE_ID,-1);
 

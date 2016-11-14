@@ -45,6 +45,11 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     private EditText mVehicleMileage;
     private EditText mVehicleAddInformation;
 
+    ArrayList<String> mVehicleClassList;
+    ArrayAdapter<String> mVehicleClassAdapter;
+    ArrayList<String> mFuelTypeList;
+    ArrayAdapter<String> mFuelTypeAdapter;
+
 
     public VehicleDetailFragment() {
     }
@@ -81,35 +86,32 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
         VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
         Cursor c = getActivity().getContentResolver().query(vehicleClassSelection.uri(), null, null, null, null);
-        ArrayList<String> vehicleClassList = new ArrayList<>();
+        mVehicleClassList = new ArrayList<>();
         while (c.moveToNext()) {
             int index = c.getColumnIndex(VehicleClassColumns.VEHICLE_CLASS_NAME);
-            vehicleClassList.add(c.getString(index));
+            mVehicleClassList.add(c.getString(index));
 
         }
 
-
-        ArrayAdapter<String> vehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, vehicleClassList);
-
-        mVehicleClass.setAdapter(vehicleClassAdapter);
+        mVehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, mVehicleClassList);
+        mVehicleClass.setAdapter(mVehicleClassAdapter);
 
 
         //Fuel Type better spinner
 
         FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
         Cursor cursorFuelType = getActivity().getContentResolver().query(fuelTypeSelection.uri(), null, null, null, null);
-        ArrayList<String> fuelTypeList = new ArrayList<>();
+        mFuelTypeList = new ArrayList<>();
         while (cursorFuelType.moveToNext()) {
             int index = cursorFuelType.getColumnIndex(FuelTypeColumns.FUEL_TYPE_NAME);
-            fuelTypeList.add(cursorFuelType.getString(index));
+            mFuelTypeList.add(cursorFuelType.getString(index));
         }
 
 
-        ArrayAdapter<String> fuelTypeAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, fuelTypeList);
-
-        mVehicleFuelType.setAdapter(fuelTypeAdapter);
+        mFuelTypeAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, mFuelTypeList);
+        mVehicleFuelType.setAdapter(mFuelTypeAdapter);
 
         MakeSelection makeSelection = new MakeSelection();
         Cursor cursorMake = getActivity().getContentResolver().query(makeSelection.uri(), null, null, null, null);
@@ -197,6 +199,12 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
                     String name = data.getString(ProviderUtilities.COL_VEHICLE_NAME);
                     mVehicleName.setText(name);
 
+                    fillVehicleClass(data);
+
+                    fillVehicleFuelType(data);
+
+
+
                 }
             }
             case VEHICLE_CLASS_LOADER:{
@@ -215,5 +223,45 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    private void fillVehicleClass(Cursor data){
+        String vehicleClass = ProviderUtilities.getVehicleClassName(getActivity(),
+                data.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
+
+        Integer position = null;
+
+        if(vehicleClass!= null && !vehicleClass.equalsIgnoreCase("")) {
+            for (int i = 0; i < mVehicleClassAdapter.getCount(); i++) {
+                if (vehicleClass.equalsIgnoreCase(mVehicleClassAdapter.getItem(i))) {
+                    position = i;
+                    break;
+                }
+            }
+
+            if (null != position) {
+                mVehicleClass.setText(mVehicleClassAdapter.getItem(position));
+            }
+        }
+    }
+
+    private void fillVehicleFuelType(Cursor data){
+        String vehicleFuelType = ProviderUtilities.getVehicleFuelTypeName(getActivity(),
+                data.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
+
+        Integer position = null;
+
+        if(null!=vehicleFuelType && !vehicleFuelType.equalsIgnoreCase("")){
+            for (int i = 0; i < mFuelTypeAdapter.getCount(); i++) {
+                if (vehicleFuelType.equalsIgnoreCase(mFuelTypeAdapter.getItem(i))) {
+                    position = i;
+                    break;
+                }
+            }
+
+            if (null != position) {
+                mVehicleFuelType.setText(mFuelTypeAdapter.getItem(position));
+            }
+        }
     }
 }
