@@ -2,35 +2,49 @@ package com.jmgarzo.newratescar;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.SharedElementCallback;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeSelection;
+import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.util.ArrayList;
 
-import static com.jmgarzo.newratescar.R.id.input_layout_vehicle_name;
-
 /**
  * A placeholder fragment containing a simple view.
  */
 public class VehicleDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String LOG_TAG = VehicleDetailFragment.class.getSimpleName();
+
+    private static final int VEHICLE_LOADER = 0;
+    private static final int VEHICLE_CLASS_LOADER = 1;
 
     public static final String VEHICLE_ID = "VEHICLE_ID";
+    private Long mVehicleId;
+    private EditText mVehicleName;
+    private MaterialBetterSpinner mVehicleClass;
+    private MaterialBetterSpinner mVehicleFuelType;
+    private MaterialBetterSpinner mVehicleMake;
+    private EditText mVehicleModel;
+    private EditText mVehicleMileage;
+    private EditText mVehicleAddInformation;
+
 
     public VehicleDetailFragment() {
     }
@@ -39,13 +53,26 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        mVehicleId = null;
+
+
+        Bundle argument = getArguments();
+        if (argument != null) {
+            mVehicleId = argument.getLong(VehicleColumns._ID);
+        }
 
         View view = inflater.inflate(R.layout.fragment_vehicle_detail, container, false);
 
-        getArguments().getString(VEHICLE_ID);
+        mVehicleName = (EditText) view.findViewById(R.id.input_vehicle_name);
+        mVehicleClass = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_class);
+        mVehicleFuelType = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_fuel_type);
+        mVehicleMake = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_make);
+        mVehicleModel = (EditText) view.findViewById(R.id.input_vehicle_model);
+        mVehicleMileage = (EditText) view.findViewById(R.id.input_vehicle_mileage);
+        mVehicleAddInformation = (EditText) view.findViewById(R.id.input_vehicle_add_information);
 
 
-        TextInputLayout inputVehicleName = (TextInputLayout) getActivity().findViewById(input_layout_vehicle_name);
+
 
 
 
@@ -61,13 +88,11 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
         }
 
-        MaterialBetterSpinner vehicleClassSpinner = (MaterialBetterSpinner)
-                view.findViewById(R.id.better_spinner_vehicle_class);
 
         ArrayAdapter<String> vehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, vehicleClassList);
 
-        vehicleClassSpinner.setAdapter(vehicleClassAdapter);
+        mVehicleClass.setAdapter(vehicleClassAdapter);
 
 
         //Fuel Type better spinner
@@ -80,28 +105,26 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
             fuelTypeList.add(cursorFuelType.getString(index));
         }
 
-        MaterialBetterSpinner vehicleFuelTypeSpinner = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_fuel_type);
 
         ArrayAdapter<String> fuelTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, fuelTypeList);
 
-        vehicleFuelTypeSpinner.setAdapter(fuelTypeAdapter);
+        mVehicleFuelType.setAdapter(fuelTypeAdapter);
 
         MakeSelection makeSelection = new MakeSelection();
-        Cursor cursorMake = getActivity().getContentResolver().query(makeSelection.uri(),null,null,null,null);
+        Cursor cursorMake = getActivity().getContentResolver().query(makeSelection.uri(), null, null, null, null);
         ArrayList<String> makeList = new ArrayList<>();
-        while (cursorMake.moveToNext()){
+        while (cursorMake.moveToNext()) {
             int index = cursorMake.getColumnIndex(MakeColumns.MAKE_NAME);
             makeList.add(cursorMake.getString(index));
 
         }
 
-        MaterialBetterSpinner vehicleMake= (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_make);
 
         ArrayAdapter<String> makeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, makeList);
 
-        vehicleMake.setAdapter(makeAdapter);
+        mVehicleMake.setAdapter(makeAdapter);
 
         return view;
 
@@ -114,13 +137,79 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(VEHICLE_LOADER, null, this);
+        //getLoaderManager().initLoader(VEHICLE_CLASS_LOADER, null, this);
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch (id){
+            case VEHICLE_LOADER:{
+                if (mVehicleId != null) {
+                    return new CursorLoader(
+                            getActivity(),
+                            VehicleColumns.CONTENT_URI,
+                            VehicleColumns.ALL_COLUMNS,
+                            VehicleColumns._ID + "= ?",
+                            new String[]{mVehicleId.toString()},
+                            null
+                    );
+                }
+            }
+            case VEHICLE_CLASS_LOADER:{
+//                return new CursorLoader(
+//                        getActivity(),
+//                        VehicleClassColumns.CONTENT_URI,
+//                        VehicleClassColumns.ALL_COLUMNS,
+//                        null,
+//                        null,
+//                        null
+//                );
+            }
+
+
+
+        }
         return null;
+
+
+            //Vehicle Class better spinner
+
+//            VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
+//            Cursor c = getActivity().getContentResolver().query(vehicleClassSelection.uri(), null, null, null, null);
+//            ArrayList<String> vehicleClassList = new ArrayList<>();
+//            while (c.moveToNext()) {
+//                int index = c.getColumnIndex(VehicleClassColumns.VEHICLE_CLASS_NAME);
+//                vehicleClassList.add(c.getString(index));
+//
+//            }
+
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        switch (loader.getId()) {
+            case VEHICLE_LOADER: {
+                if (data != null && data.moveToFirst()) {
 
+                    String name = data.getString(ProviderUtilities.COL_VEHICLE_NAME);
+                    mVehicleName.setText(name);
+
+                }
+            }
+            case VEHICLE_CLASS_LOADER:{
+
+//                ArrayList<String> vehicleClassList = new ArrayList<>();
+//                ArrayAdapter<String> vehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
+//                        android.R.layout.simple_dropdown_item_1line, vehicleClassList);
+//
+//                vehicleClassAdapter
+//                mVehicleClass.setAdapter(vehicleClassAdapter);
+
+            }
+        }
     }
 
     @Override

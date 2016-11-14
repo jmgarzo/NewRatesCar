@@ -9,12 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleContentValues;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import static com.jmgarzo.newratescar.R.id.input_layout_vehicle_name;
 
 public class VehicleDetailActivity extends AppCompatActivity {
+
+    private Long vehicleId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,9 @@ public class VehicleDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +67,24 @@ public class VehicleDetailActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        Bundle arguments = new Bundle();
+
+        VehicleDetailFragment fragment = new VehicleDetailFragment();
+
+        Long idVehicle = getIntent().getLongExtra(VehicleColumns._ID,-1);
+        arguments.putLong(VehicleColumns._ID, idVehicle);
+
+        fragment.setArguments(arguments);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_vehicle_detail, fragment)
+                .commit();
+
+
+        //vehicleId = getIntent().getLongExtra(VehicleDetailFragment.VEHICLE_ID,-1);
+
     }
 
 

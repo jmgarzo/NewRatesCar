@@ -26,6 +26,20 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
     private VehicleAdapter mVehicleAdapter;
 
     private ListView mListView;
+    private int mPosition = ListView.INVALID_POSITION;
+
+
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callback {
+        /**
+         * DetailFragmentCallback for when an item has been selected.
+         */
+        public void onItemSelected(Long vehicleId);
+    }
 
 
     public VehiclesFragment() {
@@ -49,10 +63,14 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent (getActivity(),VehicleDetailActivity.class);
-//                Bundle b = new Bundle();
-//                b.putLong(VehicleDetailFragment.VEHICLE_ID,id);
-//                startActivity(intent);
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+                if (cursor != null) {
+                    ((Callback) getActivity())
+                            .onItemSelected(cursor.getLong(ProviderUtilities.COL_VEHICLE_ID)
+                            );
+                }
+                mPosition = position;
+
             }
         });
 

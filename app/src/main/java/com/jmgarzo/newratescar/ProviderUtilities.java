@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
+import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassCursor;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
 
@@ -12,6 +13,30 @@ import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
  */
 
 public class ProviderUtilities {
+
+
+    public static final String[] VEHICLE_ALL_COLUMNS = new String[] {
+            VehicleColumns._ID,
+            VehicleColumns.VEHICLE_NAME,
+            VehicleColumns.VEHICLE_CLASS,
+            VehicleColumns.FUEL_TYPE,
+            VehicleColumns.MAKE,
+            VehicleColumns.MODEL,
+            VehicleColumns.MILEAGE,
+            VehicleColumns.ADDITIONAL_INFORMATION
+    };
+
+    public static final int COL_VEHICLE_ID = 0;
+    public static final int COL_VEHICLE_NAME = 1;
+    public static final int COL_VEHICLE_CLASS = 2;
+    public static final int COL_VEHICLE_FUEL_TYPE = 3;
+    public static final int COL_VEHICLE_MAKE = 4;
+    public static final int COL_VEHICLE_MODEL = 5;
+    public static final int COL_VEHICLE_MILEAGE = 6;
+    public static final int COL_VEHICLE_ADDITIONAL_INFORMATION = 7;
+
+
+
 
     //Vehicle Class
     public static String getVehicleClassName(Context context, long id) {

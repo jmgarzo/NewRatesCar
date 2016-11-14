@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.jmgarzo.newratescar.ProviderUtilities;
 import com.jmgarzo.newratescar.R;
-import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 
 /**
  * Created by jmgarzo on 31/10/16.
@@ -19,6 +18,7 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 public class VehicleAdapter extends CursorAdapter {
 
      public static class ViewHolder {
+         public Long vehicleId;
          public TextView textName;
          public TextView textClass;
 
@@ -46,11 +46,11 @@ public class VehicleAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
 
-        int index= cursor.getColumnIndex(VehicleColumns.VEHICLE_NAME);
-        viewHolder.textName.setText(cursor.getString(index));
+        viewHolder.textName.setText(cursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
 
-        int index2 = cursor.getColumnIndex(VehicleColumns.VEHICLE_CLASS);
-        viewHolder.textClass.setText(ProviderUtilities.getVehicleClassName(context,cursor.getLong(index2)));
+        viewHolder.textClass.setText(ProviderUtilities.getVehicleClassName(context,cursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS)));
+
+        viewHolder.vehicleId = cursor.getLong(ProviderUtilities.COL_VEHICLE_ID);
     }
 
 }

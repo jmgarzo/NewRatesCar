@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class VehiclesActivity extends AppCompatActivity {
+import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
+
+public class VehiclesActivity extends AppCompatActivity implements VehiclesFragment.Callback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,13 @@ public class VehiclesActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onItemSelected(Long vehicleId) {
+        Intent intent = new Intent(this, VehicleDetailActivity.class);
+        intent.putExtra(VehicleColumns._ID,vehicleId);
+        startActivity(intent);
     }
 
 }
