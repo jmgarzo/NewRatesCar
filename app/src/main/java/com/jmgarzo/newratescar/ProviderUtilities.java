@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
+import com.jmgarzo.newratescar.provider.make.MakeCursor;
+import com.jmgarzo.newratescar.provider.make.MakeSelection;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassCursor;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
@@ -44,7 +46,6 @@ public class ProviderUtilities {
         VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
         vehicleClassSelection.id(id);
         VehicleClassCursor cursor = vehicleClassSelection.query(context);
-
         if (cursor.moveToNext()) {
             result = cursor.getVehicleClassName();
         }
@@ -53,10 +54,7 @@ public class ProviderUtilities {
 
     public static Long getVehicleClassId(Context context, String vehicleClass) {
         Long id = null;
-
         if (null != vehicleClass && vehicleClass != "") {
-
-
             VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
             vehicleClassSelection.vehicleClassName(vehicleClass);
             VehicleClassCursor cursor = vehicleClassSelection.query(context);
@@ -64,7 +62,6 @@ public class ProviderUtilities {
             if (cursor.moveToNext()) {
                 id = cursor.getId();
             }
-
         }
         return id;
     }
@@ -74,7 +71,6 @@ public class ProviderUtilities {
         FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
         fuelTypeSelection.id(id);
         FuelTypeCursor cursor = fuelTypeSelection.query(context);
-
         if (cursor.moveToNext()) {
             result = cursor.getFuelTypeName();
         }
@@ -85,15 +81,36 @@ public class ProviderUtilities {
         Long id = null;
 
         if (vehicleFuelType != null && vehicleFuelType != "") {
-
             FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
             fuelTypeSelection.fuelTypeName(vehicleFuelType);
             FuelTypeCursor cursor = fuelTypeSelection.query(context);
-
             if (cursor.moveToNext()) {
                 id = cursor.getId();
             }
+        }
+        return id;
+    }
 
+    public static String getMakeName(Context context, long id) {
+        String result = "";
+        MakeSelection makeSelection = new MakeSelection();
+        makeSelection.id(id);
+        MakeCursor cursor = makeSelection.query(context);
+        if (cursor.moveToNext()) {
+            result = cursor.getMakeName();
+        }
+        return result;
+    }
+
+    public static Long getMakeId(Context context, String make) {
+        Long id = null;
+        if (make != null && make != "") {
+            MakeSelection makeSelection = new MakeSelection();
+            makeSelection.makeName(make);
+            MakeCursor cursor = makeSelection.query(context);
+            if (cursor.moveToNext()) {
+                id = cursor.getId();
+            }
         }
         return id;
     }

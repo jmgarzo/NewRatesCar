@@ -49,6 +49,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     ArrayAdapter<String> mVehicleClassAdapter;
     ArrayList<String> mFuelTypeList;
     ArrayAdapter<String> mFuelTypeAdapter;
+    ArrayAdapter<String> mMakeAdapter;
 
 
     public VehicleDetailFragment() {
@@ -77,13 +78,19 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleAddInformation = (EditText) view.findViewById(R.id.input_vehicle_add_information);
 
 
+        //TODO: Get that values by a Loader
+        initialValuesVehicleClass();
+
+        initialValuesFuelType();
+
+        initialValuesMake();
+
+        return view;
 
 
+    }
 
-
-
-        //Vehicle Class better spinner
-
+    void initialValuesVehicleClass() {
         VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
         Cursor c = getActivity().getContentResolver().query(vehicleClassSelection.uri(), null, null, null, null);
         mVehicleClassList = new ArrayList<>();
@@ -96,10 +103,9 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mVehicleClassList);
         mVehicleClass.setAdapter(mVehicleClassAdapter);
+    }
 
-
-        //Fuel Type better spinner
-
+    void initialValuesFuelType() {
         FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
         Cursor cursorFuelType = getActivity().getContentResolver().query(fuelTypeSelection.uri(), null, null, null, null);
         mFuelTypeList = new ArrayList<>();
@@ -112,7 +118,9 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mFuelTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mFuelTypeList);
         mVehicleFuelType.setAdapter(mFuelTypeAdapter);
+    }
 
+    void initialValuesMake() {
         MakeSelection makeSelection = new MakeSelection();
         Cursor cursorMake = getActivity().getContentResolver().query(makeSelection.uri(), null, null, null, null);
         ArrayList<String> makeList = new ArrayList<>();
@@ -123,15 +131,12 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         }
 
 
-        ArrayAdapter<String> makeAdapter = new ArrayAdapter<String>(getActivity(),
+        mMakeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, makeList);
 
-        mVehicleMake.setAdapter(makeAdapter);
-
-        return view;
-
-
+        mVehicleMake.setAdapter(mMakeAdapter);
     }
+
 
     @Override
     public void setEnterSharedElementCallback(SharedElementCallback callback) {
@@ -147,8 +152,8 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        switch (id){
-            case VEHICLE_LOADER:{
+        switch (id) {
+            case VEHICLE_LOADER: {
                 if (mVehicleId != null) {
                     return new CursorLoader(
                             getActivity(),
@@ -160,7 +165,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
                     );
                 }
             }
-            case VEHICLE_CLASS_LOADER:{
+            case VEHICLE_CLASS_LOADER: {
 //                return new CursorLoader(
 //                        getActivity(),
 //                        VehicleClassColumns.CONTENT_URI,
@@ -172,12 +177,11 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
             }
 
 
-
         }
         return null;
 
 
-            //Vehicle Class better spinner
+        //Vehicle Class better spinner
 
 //            VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
 //            Cursor c = getActivity().getContentResolver().query(vehicleClassSelection.uri(), null, null, null, null);
@@ -195,7 +199,6 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         switch (loader.getId()) {
             case VEHICLE_LOADER: {
                 if (data != null && data.moveToFirst()) {
-
                     String name = data.getString(ProviderUtilities.COL_VEHICLE_NAME);
                     mVehicleName.setText(name);
 
@@ -203,11 +206,14 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
                     fillVehicleFuelType(data);
 
+                    fillVehicleMake(data);
 
-
+                    mVehicleModel.setText(data.getString(ProviderUtilities.COL_VEHICLE_MODEL));
+                    mVehicleMileage.setText(data.getString(ProviderUtilities.COL_VEHICLE_MILEAGE));
+                    mVehicleAddInformation.setText(data.getString(ProviderUtilities.COL_VEHICLE_ADDITIONAL_INFORMATION));
                 }
             }
-            case VEHICLE_CLASS_LOADER:{
+            case VEHICLE_CLASS_LOADER: {
 
 //                ArrayList<String> vehicleClassList = new ArrayList<>();
 //                ArrayAdapter<String> vehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
@@ -225,13 +231,13 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
     }
 
-    private void fillVehicleClass(Cursor data){
+    private void fillVehicleClass(Cursor data) {
         String vehicleClass = ProviderUtilities.getVehicleClassName(getActivity(),
                 data.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
 
         Integer position = null;
 
-        if(vehicleClass!= null && !vehicleClass.equalsIgnoreCase("")) {
+        if (vehicleClass != null && !vehicleClass.equalsIgnoreCase("")) {
             for (int i = 0; i < mVehicleClassAdapter.getCount(); i++) {
                 if (vehicleClass.equalsIgnoreCase(mVehicleClassAdapter.getItem(i))) {
                     position = i;
@@ -245,22 +251,40 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         }
     }
 
-    private void fillVehicleFuelType(Cursor data){
+    private void fillVehicleFuelType(Cursor data) {
         String vehicleFuelType = ProviderUtilities.getVehicleFuelTypeName(getActivity(),
                 data.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
 
         Integer position = null;
 
-        if(null!=vehicleFuelType && !vehicleFuelType.equalsIgnoreCase("")){
+        if (null != vehicleFuelType && !vehicleFuelType.equalsIgnoreCase("")) {
             for (int i = 0; i < mFuelTypeAdapter.getCount(); i++) {
                 if (vehicleFuelType.equalsIgnoreCase(mFuelTypeAdapter.getItem(i))) {
                     position = i;
                     break;
                 }
             }
-
             if (null != position) {
                 mVehicleFuelType.setText(mFuelTypeAdapter.getItem(position));
+            }
+        }
+    }
+
+    private void fillVehicleMake(Cursor data) {
+        String make = ProviderUtilities.getMakeName(getActivity(),
+                data.getLong(ProviderUtilities.COL_VEHICLE_MAKE));
+
+        Integer position = null;
+
+        if (null != make && !make.equalsIgnoreCase("")) {
+            for (int i = 0; i < mMakeAdapter.getCount(); i++) {
+                if (make.equalsIgnoreCase(mMakeAdapter.getItem(i))) {
+                    position = i;
+                    break;
+                }
+            }
+            if (null != position) {
+                mVehicleMake.setText(mMakeAdapter.getItem(position));
             }
         }
     }
