@@ -1,4 +1,4 @@
-package com.jmgarzo.newratescar;
+package com.jmgarzo.newratescar.Utility;
 
 import android.content.Context;
 
