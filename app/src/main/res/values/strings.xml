@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NewRatesCar</string>
     <string name="action_settings">Settings</string>
+    <string name="action_delete">Delete</string>
     <string name="content_authority">com.jmgarzo.newratescar.provider</string>
     <string name="title_activity_vehicle">Vehicle</string>
 
@@ -107,6 +108,14 @@
     <string name="vehicle_mileage">Mileage</string>
     <string name="vehicle_additional_information">Additional information</string>
     <string name="asterisk_label">* indicates required field </string>
+    
+    //Dialog strings
+    <string name="dialog_discard_changes">Discard your changes?</string>
+    <string name="dialog_agree">OK</string>
+    <string name="dialog_disagree">CANCEL</string>
+
+    //toast strings
+    <string name="toast_vehicle_saved">Vehicle saved</string>
 
 </resources>
 

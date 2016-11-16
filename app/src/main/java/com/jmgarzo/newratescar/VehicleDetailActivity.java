@@ -2,26 +2,32 @@ package com.jmgarzo.newratescar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleContentValues;
-import com.jmgarzo.newratescar.provider.vehicle.VehicleCursor;
+import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import static com.jmgarzo.newratescar.R.id.action_delete;
 import static com.jmgarzo.newratescar.R.id.input_layout_vehicle_name;
 
 public class VehicleDetailActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = VehicleDetailActivity.class.getSimpleName();
 
-    private Long vehicleId;
+    private Long idVehicle = null;
+    private boolean isNew;
 
     private TextInputLayout mInputLayoutVehicleName;
     EditText mInputVehicleName;
@@ -32,6 +38,8 @@ public class VehicleDetailActivity extends AppCompatActivity {
     EditText mInputMileage;
     EditText mInputAddInformation;
 
+    private Toast mToast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,68 +48,6 @@ public class VehicleDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                mInputLayoutVehicleName = (TextInputLayout) findViewById(input_layout_vehicle_name);
-                mInputVehicleName = (EditText) findViewById(R.id.input_vehicle_name);
-                mSpinnerVehicleClass = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_class);
-                mSpinnerFuelType = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_fuel_type);
-                mSpinnerMake = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_make);
-                mInputModel = (EditText) findViewById(R.id.input_vehicle_model);
-                mInputMileage = (EditText) findViewById(R.id.input_vehicle_mileage);
-                mInputAddInformation = (EditText) findViewById(R.id.input_vehicle_add_information);
-
-                boolean isCorrect = true;
-
-                String vehicleName = mInputVehicleName.getText().toString();
-                if (vehicleName.equalsIgnoreCase("")) {
-                    mInputLayoutVehicleName.setErrorEnabled(true);
-                    mInputLayoutVehicleName.setError(getString(R.string.vehicle_name_error));
-                    isCorrect = false;
-                }
-
-
-                String vehicleClass = mSpinnerVehicleClass.getText().toString();
-                String vehicleFuelType = mSpinnerFuelType.getText().toString();
-                String vehicleMake = mSpinnerMake.getText().toString();
-                String vehicleModel = mInputModel.getText().toString();
-
-                int vehicleMileage = 0;
-                try {
-                    vehicleMileage = Integer.valueOf(mInputMileage.getText().toString());
-                } catch (NumberFormatException e) {
-                    Log.e(LOG_TAG,"vehicleMileage Integer.valueOf exception");
-                    vehicleMileage = 0;
-                }
-
-                String addInformation = mInputAddInformation.getText().toString();
-
-
-                if (isCorrect) {
-                    VehicleContentValues values = new VehicleContentValues();
-                    values.putVehicleName(vehicleName)
-                            .putVehicleClass(ProviderUtilities.getVehicleClassId(view.getContext(), vehicleClass))
-                            .putFuelType(ProviderUtilities.getVehicleFuelTypeId(view.getContext(), vehicleFuelType))
-                            .putMake(ProviderUtilities.getMakeId(view.getContext(), vehicleMake))
-                            .putModel(vehicleModel)
-                            .putMileage(vehicleMileage)
-                            .putAdditionalInformation(addInformation);
-
-                    getContentResolver().insert(values.uri(), values.values());
-
-                    Intent intent = new Intent(view.getContext(), VehiclesActivity.class);
-                    startActivity(intent);
-                }
-
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -110,15 +56,20 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
             VehicleDetailFragment fragment = new VehicleDetailFragment();
 
-            Long idVehicle = getIntent().getLongExtra(VehicleColumns._ID, -1);
+            idVehicle = getIntent().getLongExtra(VehicleColumns._ID, -1);
             arguments.putLong(VehicleColumns._ID, idVehicle);
+
+            if (idVehicle == -1) {
+                isNew = true;
+            } else {
+                isNew = false;
+            }
 
             fragment.setArguments(arguments);
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.vehicle_detail_container, fragment)
+                    .replace(R.id.vehicle_detail_container, fragment)
                     .commit();
-
 
 
         }
@@ -127,5 +78,176 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_vehicle_detail, menu);
+        if (isNew) {
+            menu.removeItem(action_delete);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+            case R.id.action_done_vehicle:
+                if (saveData()) {
+                    showToast(R.string.toast_vehicle_saved);
+                }
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.action_delete: {
+                if (!isNew) {
+                    delete();
+                    onBackPressed();
+                }
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private boolean saveData() {
+        mInputLayoutVehicleName = (TextInputLayout) findViewById(input_layout_vehicle_name);
+        mInputVehicleName = (EditText) findViewById(R.id.input_vehicle_name);
+        mSpinnerVehicleClass = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_class);
+        mSpinnerFuelType = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_fuel_type);
+        mSpinnerMake = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_make);
+        mInputModel = (EditText) findViewById(R.id.input_vehicle_model);
+        mInputMileage = (EditText) findViewById(R.id.input_vehicle_mileage);
+        mInputAddInformation = (EditText) findViewById(R.id.input_vehicle_add_information);
+
+
+        boolean isCorrect = true;
+
+        String vehicleName = mInputVehicleName.getText().toString();
+        if (vehicleName.equalsIgnoreCase("")) {
+            mInputLayoutVehicleName.setErrorEnabled(true);
+            mInputLayoutVehicleName.setError(getString(R.string.vehicle_name_error));
+            isCorrect = false;
+        }
+
+
+        String vehicleClass = mSpinnerVehicleClass.getText().toString();
+        String vehicleFuelType = mSpinnerFuelType.getText().toString();
+        String vehicleMake = mSpinnerMake.getText().toString();
+        String vehicleModel = mInputModel.getText().toString();
+
+        int vehicleMileage = 0;
+        try {
+            vehicleMileage = Integer.valueOf(mInputMileage.getText().toString());
+        } catch (NumberFormatException e) {
+            Log.e(LOG_TAG, "vehicleMileage Integer.valueOf exception");
+            vehicleMileage = 0;
+        }
+
+        String addInformation = mInputAddInformation.getText().toString();
+
+
+        if (isCorrect) {
+            VehicleContentValues values = new VehicleContentValues();
+            values.putVehicleName(vehicleName)
+                    .putVehicleClass(ProviderUtilities.getVehicleClassId(this, vehicleClass))
+                    .putFuelType(ProviderUtilities.getVehicleFuelTypeId(this, vehicleFuelType))
+                    .putMake(ProviderUtilities.getMakeId(this, vehicleMake))
+                    .putModel(vehicleModel)
+                    .putMileage(vehicleMileage)
+                    .putAdditionalInformation(addInformation);
+
+            if (isNew) {
+                getContentResolver().insert(values.uri(), values.values());
+            } else {
+                getContentResolver().update(values.uri(),
+                        values.values(),
+                        VehicleColumns._ID + "= ?",
+                        new String[]{idVehicle.toString()});
+            }
+
+            Intent intent = new Intent(this, VehiclesActivity.class);
+            startActivity(intent);
+        }
+        return isCorrect;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+
+        MaterialDialog md = new MaterialDialog.Builder(this)
+                .content(R.string.dialog_discard_changes)
+                .positiveText(R.string.dialog_agree)
+                .negativeText(R.string.dialog_disagree)
+                .show();
+
+        //super.onBackPressed();
+
+        md.getBuilder()
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        showToast("Discarded changes");
+                        VehicleDetailActivity.super.onBackPressed();
+                    }
+                })
+
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // TODO
+                        dialog.closeOptionsMenu();
+                    }
+                });
+
+    }
+
+//    boolean isValuesChanged(){
+//        if(isNew){
+//            if(mInputVehicleName.getText().toString().equalsIgnoreCase("")
+//                    && mSpinnerVehicleClass.getText().toString().equalsIgnoreCase("")
+//                    && mSpinnerFuelType.getText().toString().equalsIgnoreCase("")
+//                    && mSpinnerMake.getText().toString().equalsIgnoreCase("")
+//                    && mInputModel.getText().toString().equalsIgnoreCase("")
+//                    && mInputMileage.getText().toString().equalsIgnoreCase("")
+//                    && mInputAddInformation.getText().toString().equalsIgnoreCase("")){
+//                return false;
+//
+//            }
+//
+//        }else{
+//            return true;
+//        }
+//    return true;
+//    }
+
+    private void showToast(int resId) {
+        showToast(getString(resId));
+    }
+
+    private void showToast(String message) {
+        if (mToast != null) {
+            mToast.cancel();
+            mToast = null;
+        }
+        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        mToast.show();
+    }
+
+
+    void delete(){
+        VehicleSelection where = new VehicleSelection();
+        where.id(idVehicle);
+        where.delete(this);
+    }
 
 }

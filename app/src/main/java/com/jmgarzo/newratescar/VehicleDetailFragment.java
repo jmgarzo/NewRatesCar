@@ -288,4 +288,6 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
             }
         }
     }
+
+
 }
