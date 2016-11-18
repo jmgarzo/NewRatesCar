@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jmgarzo.newratescar.ProviderUtilities;
@@ -17,16 +18,20 @@ import com.jmgarzo.newratescar.R;
 
 public class VehicleAdapter extends CursorAdapter {
 
-     public static class ViewHolder {
-         public Long vehicleId;
-         public TextView textName;
-         public TextView textClass;
+    public static class ViewHolder {
+        public Long vehicleId;
+        public ImageView icon;
+        public TextView textName;
+        public TextView textMake;
+        public TextView textModel;
 
-         public ViewHolder(View view) {
-             textName = (TextView) view.findViewById(R.id.vehicle_name_list_item);
-             textClass = (TextView) view.findViewById(R.id.vehicle_class_list_item);
-         }
-     }
+        public ViewHolder(View view) {
+            icon = (ImageView) view.findViewById(R.id.vehicle_icon);
+            textName = (TextView) view.findViewById(R.id.vehicle_name_list_item);
+            textMake = (TextView) view.findViewById(R.id.vehicle_make_list_item);
+            textModel = (TextView) view.findViewById(R.id.vehicle_model_list_item);
+        }
+    }
 
     public VehicleAdapter(Context context, Cursor cursor, int flags) {
         super(context, cursor, flags);
@@ -35,7 +40,7 @@ public class VehicleAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_vehicle,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_vehicle, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         view.setTag(viewHolder);
         return view;
@@ -45,10 +50,21 @@ public class VehicleAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
+        Integer iconResource = ProviderUtilities.getIconClass(context, cursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
+        if (null != iconResource) {
+            viewHolder.icon.setImageResource(iconResource);
+
+        }
 
         viewHolder.textName.setText(cursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
 
-        viewHolder.textClass.setText(ProviderUtilities.getVehicleClassName(context,cursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS)));
+        viewHolder.textMake.setText(ProviderUtilities.getMakeName(context, cursor.getLong(ProviderUtilities.COL_VEHICLE_MAKE)));
+
+        String model = cursor.getString(ProviderUtilities.COL_VEHICLE_MODEL);
+        if (!viewHolder.textMake.getText().toString().equalsIgnoreCase("") && !model.equalsIgnoreCase("")) {
+            model = " - " + model;
+        }
+        viewHolder.textModel.setText(model);
 
         viewHolder.vehicleId = cursor.getLong(ProviderUtilities.COL_VEHICLE_ID);
     }

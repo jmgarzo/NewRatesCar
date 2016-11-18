@@ -8,6 +8,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.SharedElementCallback;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,13 @@ import java.util.ArrayList;
  * A placeholder fragment containing a simple view.
  */
 public class VehicleDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    public interface Callback {
+        /**
+         * DetailFragmentCallback for when an item has been selected.
+         */
+        public void onDataChanged();
+    }
 
     private static final String LOG_TAG = VehicleDetailFragment.class.getSimpleName();
 
@@ -90,6 +99,8 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
     }
 
+
+
     void initialValuesVehicleClass() {
         VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
         Cursor c = getActivity().getContentResolver().query(vehicleClassSelection.uri(), null, null, null, null);
@@ -135,6 +146,9 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
                 android.R.layout.simple_dropdown_item_1line, makeList);
 
         mVehicleMake.setAdapter(mMakeAdapter);
+
+
+
     }
 
 
@@ -211,6 +225,14 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
                     mVehicleModel.setText(data.getString(ProviderUtilities.COL_VEHICLE_MODEL));
                     mVehicleMileage.setText(data.getString(ProviderUtilities.COL_VEHICLE_MILEAGE));
                     mVehicleAddInformation.setText(data.getString(ProviderUtilities.COL_VEHICLE_ADDITIONAL_INFORMATION));
+
+                    mVehicleName.addTextChangedListener(textWatcher);
+                    mVehicleClass.addTextChangedListener(textWatcher);
+                    mVehicleFuelType.addTextChangedListener(textWatcher);
+                    mVehicleMake.addTextChangedListener(textWatcher);
+                    mVehicleModel.addTextChangedListener(textWatcher);
+                    mVehicleMileage.addTextChangedListener(textWatcher);
+                    mVehicleAddInformation.addTextChangedListener(textWatcher);
                 }
             }
             case VEHICLE_CLASS_LOADER: {
@@ -288,6 +310,22 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
             }
         }
     }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+
+        public void afterTextChanged(Editable s) {
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            ((Callback) getActivity())
+                    .onDataChanged();
+
+        }
+    };
 
 
 }

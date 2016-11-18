@@ -10,6 +10,9 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassCursor;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by jmgarzo on 11/11/16.
  */
@@ -17,7 +20,7 @@ import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
 public class ProviderUtilities {
 
 
-    public static final String[] VEHICLE_ALL_COLUMNS = new String[] {
+    public static final String[] VEHICLE_ALL_COLUMNS = new String[]{
             VehicleColumns._ID,
             VehicleColumns.VEHICLE_NAME,
             VehicleColumns.VEHICLE_CLASS,
@@ -36,8 +39,6 @@ public class ProviderUtilities {
     public static final int COL_VEHICLE_MODEL = 5;
     public static final int COL_VEHICLE_MILEAGE = 6;
     public static final int COL_VEHICLE_ADDITIONAL_INFORMATION = 7;
-
-
 
 
     //Vehicle Class
@@ -114,4 +115,31 @@ public class ProviderUtilities {
         }
         return id;
     }
+
+    public static Integer getIconClass(Context context, Long idClass) {
+
+        if (idClass != null) {
+            String className = getVehicleClassName(context, idClass);
+            if (null == className || className.equalsIgnoreCase("")) {
+                return R.drawable.ic_directions_car_black_48dp;
+            } else {
+                Map<String, Integer> vehicleClassMap = new HashMap<String, Integer>();
+                vehicleClassMap.put(context.getString(R.string.car_class), R.drawable.ic_directions_car_black_48dp);
+                vehicleClassMap.put(context.getString(R.string.bike_class), R.drawable.ic_directions_bike_black_48dp);
+                vehicleClassMap.put(context.getString(R.string.bus_class), R.drawable.ic_directions_bus_black_48dp);
+                vehicleClassMap.put(context.getString(R.string.quad_class), R.drawable.ic_quad_100);
+                vehicleClassMap.put(context.getString(R.string.motorcycle_class), R.drawable.ic_motorcycle_black_48dp);
+                vehicleClassMap.put(context.getString(R.string.tractor_class), R.drawable.ic_tractor_104);
+                vehicleClassMap.put(context.getString(R.string.truck_class), R.drawable.ic_truck_100);
+                vehicleClassMap.put(context.getString(R.string.van_class), R.drawable.ic_local_shipping_black_48dp);
+
+                return vehicleClassMap.get(className);
+            }
+        } else {
+            return R.drawable.ic_directions_car_black_48dp;
+        }
+
+    }
+
+
 }

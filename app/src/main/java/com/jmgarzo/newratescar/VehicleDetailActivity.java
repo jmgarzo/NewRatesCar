@@ -22,12 +22,13 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 import static com.jmgarzo.newratescar.R.id.action_delete;
 import static com.jmgarzo.newratescar.R.id.input_layout_vehicle_name;
 
-public class VehicleDetailActivity extends AppCompatActivity {
+public class VehicleDetailActivity extends AppCompatActivity implements VehicleDetailFragment.Callback {
 
     private static final String LOG_TAG = VehicleDetailActivity.class.getSimpleName();
 
     private Long idVehicle = null;
     private boolean isNew;
+    private boolean isDataChanged;
 
     private TextInputLayout mInputLayoutVehicleName;
     EditText mInputVehicleName;
@@ -38,6 +39,8 @@ public class VehicleDetailActivity extends AppCompatActivity {
     EditText mInputMileage;
     EditText mInputAddInformation;
 
+    MaterialDialog md;
+
     private Toast mToast;
 
 
@@ -47,6 +50,8 @@ public class VehicleDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vehicle_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        isDataChanged=false;
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -74,8 +79,24 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
         }
 
-        //vehicleId = getIntent().getLongExtra(VehicleDetailFragment.VEHICLE_ID,-1);
-
+        md = new MaterialDialog.Builder(this)
+                .content(R.string.dialog_discard_changes)
+                .positiveText(R.string.dialog_agree)
+                .negativeText(R.string.dialog_disagree).build();
+        md.getBuilder()
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        showToast("Discarded changes");
+                        VehicleDetailActivity.super.onBackPressed();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.closeOptionsMenu();
+                    }
+                });
     }
 
     @Override
@@ -110,6 +131,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
                     delete();
                     onBackPressed();
                 }
+                return true;
             }
         }
 
@@ -117,7 +139,9 @@ public class VehicleDetailActivity extends AppCompatActivity {
     }
 
     private boolean saveData() {
+
         mInputLayoutVehicleName = (TextInputLayout) findViewById(input_layout_vehicle_name);
+
         mInputVehicleName = (EditText) findViewById(R.id.input_vehicle_name);
         mSpinnerVehicleClass = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_class);
         mSpinnerFuelType = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_fuel_type);
@@ -182,32 +206,12 @@ public class VehicleDetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        super.onBackPressed();
+        if(isDataChanged) {
+            md.show();
+        }else{
+            super.onBackPressed();
+        }
 
-        MaterialDialog md = new MaterialDialog.Builder(this)
-                .content(R.string.dialog_discard_changes)
-                .positiveText(R.string.dialog_agree)
-                .negativeText(R.string.dialog_disagree)
-                .show();
-
-        //super.onBackPressed();
-
-        md.getBuilder()
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        showToast("Discarded changes");
-                        VehicleDetailActivity.super.onBackPressed();
-                    }
-                })
-
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        // TODO
-                        dialog.closeOptionsMenu();
-                    }
-                });
 
     }
 
@@ -250,4 +254,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
         where.delete(this);
     }
 
+
+
+
+    @Override
+    public void onDataChanged() {
+        isDataChanged=true;
+    }
 }

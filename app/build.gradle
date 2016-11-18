@@ -43,3 +43,12 @@ android {
 dependencies {
 
 }
+android {
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+dependencies {
+    compile 'com.android.support:support-v4:24.+'
+    compile 'com.android.support:support-vector-drawable:24.+'
+}
