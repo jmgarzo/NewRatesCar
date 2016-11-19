@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,8 +34,8 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
     private TextInputLayout mInputLayoutVehicleName;
     EditText mInputVehicleName;
     MaterialBetterSpinner mSpinnerVehicleClass;
-    MaterialBetterSpinner mSpinnerFuelType;
-    MaterialBetterSpinner mSpinnerMake;
+    AutoCompleteTextView mFuelType;
+    AutoCompleteTextView mMake;
     EditText mInputModel;
     EditText mInputMileage;
     EditText mInputAddInformation;
@@ -144,8 +145,8 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
 
         mInputVehicleName = (EditText) findViewById(R.id.input_vehicle_name);
         mSpinnerVehicleClass = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_class);
-        mSpinnerFuelType = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_fuel_type);
-        mSpinnerMake = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_make);
+        mFuelType = (AutoCompleteTextView) findViewById(R.id.autocompleteView_vehicle_fuel_type);
+        mMake = (AutoCompleteTextView) findViewById(R.id.autocompleteView_vehicle_make);
         mInputModel = (EditText) findViewById(R.id.input_vehicle_model);
         mInputMileage = (EditText) findViewById(R.id.input_vehicle_mileage);
         mInputAddInformation = (EditText) findViewById(R.id.input_vehicle_add_information);
@@ -162,8 +163,8 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
 
 
         String vehicleClass = mSpinnerVehicleClass.getText().toString();
-        String vehicleFuelType = mSpinnerFuelType.getText().toString();
-        String vehicleMake = mSpinnerMake.getText().toString();
+        String vehicleFuelType = mFuelType.getText().toString();
+        String vehicleMake = mMake.getText().toString();
         String vehicleModel = mInputModel.getText().toString();
 
         int vehicleMileage = 0;
@@ -198,6 +199,8 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
 
             Intent intent = new Intent(this, VehiclesActivity.class);
             startActivity(intent);
+        }else{
+            mInputVehicleName.requestFocus();
         }
         return isCorrect;
     }

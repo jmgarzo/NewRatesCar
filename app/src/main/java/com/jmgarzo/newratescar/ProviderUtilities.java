@@ -1,9 +1,12 @@
 package com.jmgarzo.newratescar;
 
 import android.content.Context;
+import android.net.Uri;
 
+import com.jmgarzo.newratescar.provider.fueltype.FuelTypeContentValues;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
+import com.jmgarzo.newratescar.provider.make.MakeContentValues;
 import com.jmgarzo.newratescar.provider.make.MakeCursor;
 import com.jmgarzo.newratescar.provider.make.MakeSelection;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
@@ -87,9 +90,20 @@ public class ProviderUtilities {
             FuelTypeCursor cursor = fuelTypeSelection.query(context);
             if (cursor.moveToNext()) {
                 id = cursor.getId();
+            }else{
+                 id = addNewFuelType(context,vehicleFuelType);
             }
         }
         return id;
+    }
+
+    public static Long addNewFuelType(Context context, String fuelType){
+        FuelTypeContentValues contentValues = new FuelTypeContentValues();
+        contentValues.putFuelTypeName(fuelType);
+        Uri uri  = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
+
+        return Long.parseLong(uri.getLastPathSegment());
+
     }
 
     public static String getMakeName(Context context, long id) {
@@ -111,9 +125,20 @@ public class ProviderUtilities {
             MakeCursor cursor = makeSelection.query(context);
             if (cursor.moveToNext()) {
                 id = cursor.getId();
+            }else{
+                id = addNewMake(context,make);
             }
         }
         return id;
+    }
+
+    public static Long addNewMake(Context context, String make){
+        MakeContentValues contentValues = new MakeContentValues();
+        contentValues.putMakeName(make);
+        Uri uri  = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
+
+        return Long.parseLong(uri.getLastPathSegment());
+
     }
 
     public static Integer getIconClass(Context context, Long idClass) {

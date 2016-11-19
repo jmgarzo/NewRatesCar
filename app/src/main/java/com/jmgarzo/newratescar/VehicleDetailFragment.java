@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
@@ -48,8 +49,9 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     private Long mVehicleId;
     private EditText mVehicleName;
     private MaterialBetterSpinner mVehicleClass;
-    private MaterialBetterSpinner mVehicleFuelType;
-    private MaterialBetterSpinner mVehicleMake;
+    //private MaterialBetterSpinner mVehicleFuelType;
+    private AutoCompleteTextView mVehicleFuelType;
+    private AutoCompleteTextView mVehicleMake;
     private EditText mVehicleModel;
     private EditText mVehicleMileage;
     private EditText mVehicleAddInformation;
@@ -80,8 +82,8 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
         mVehicleName = (EditText) view.findViewById(R.id.input_vehicle_name);
         mVehicleClass = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_class);
-        mVehicleFuelType = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_fuel_type);
-        mVehicleMake = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_make);
+        mVehicleFuelType = (AutoCompleteTextView) view.findViewById(R.id.autocompleteView_vehicle_fuel_type);
+        mVehicleMake = (AutoCompleteTextView) view.findViewById(R.id.autocompleteView_vehicle_make);
         mVehicleModel = (EditText) view.findViewById(R.id.input_vehicle_model);
         mVehicleMileage = (EditText) view.findViewById(R.id.input_vehicle_mileage);
         mVehicleAddInformation = (EditText) view.findViewById(R.id.input_vehicle_add_information);
@@ -114,6 +116,8 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleClassAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mVehicleClassList);
         mVehicleClass.setAdapter(mVehicleClassAdapter);
+
+
     }
 
     void initialValuesFuelType() {
@@ -129,6 +133,9 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mFuelTypeAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mFuelTypeList);
         mVehicleFuelType.setAdapter(mFuelTypeAdapter);
+
+
+
     }
 
     void initialValuesMake() {
@@ -275,7 +282,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
     private void fillVehicleFuelType(Cursor data) {
         String vehicleFuelType = ProviderUtilities.getVehicleFuelTypeName(getActivity(),
-                data.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
+                data.getLong(ProviderUtilities.COL_VEHICLE_FUEL_TYPE));
 
         Integer position = null;
 
