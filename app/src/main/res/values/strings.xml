@@ -108,6 +108,7 @@
     <string name="vehicle_mileage">Mileage</string>
     <string name="vehicle_additional_information">Additional information</string>
     <string name="asterisk_label">* indicates required field </string>
+    <string name ="empty_vehicles_list">No Vehicles Information Available</string>
 
     //Dialog strings
     <string name="dialog_discard_changes">Discard your changes?</string>

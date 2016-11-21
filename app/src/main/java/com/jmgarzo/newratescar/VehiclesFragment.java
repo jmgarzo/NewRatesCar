@@ -7,11 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.jmgarzo.newratescar.adapter.VehicleAdapter;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
@@ -25,8 +25,8 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
 
     private VehicleAdapter mVehicleAdapter;
 
-    private ListView mListView;
-    private int mPosition = ListView.INVALID_POSITION;
+    private RecyclerView mRecyclerView;
+    private int mPosition = mRecyclerView.NO_POSITION;
 
 
     /**
@@ -54,25 +54,38 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mVehicleAdapter = new VehicleAdapter(getActivity(),null,0);
+
+
 
         View rootView =  inflater.inflate(R.layout.fragment_vehicle, container, false);
+        View emptyView = rootView.findViewById(R.id.recyclerview_vehicles_empty);
 
-        mListView = (ListView) rootView.findViewById(R.id.listview_vehicles);
-        mListView.setAdapter(mVehicleAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        mVehicleAdapter = new VehicleAdapter(getActivity(),new VehicleAdapter.VehicleAdapterOnClickHandler(){
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
-                if (cursor != null) {
-                    ((Callback) getActivity())
-                            .onItemSelected(cursor.getLong(ProviderUtilities.COL_VEHICLE_ID)
-                            );
+            public void onClick(Long idVehicle, VehicleAdapter.VehicleViewHolder vh) {
+                ((Callback) getActivity()).onItemSelected(idVehicle);
+                mPosition = vh.getAdapterPosition();
                 }
-                mPosition = position;
+        },emptyView );
 
-            }
-        });
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_vehicles);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mRecyclerView.setAdapter(mVehicleAdapter);
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+//                if (cursor != null) {
+//                    ((Callback) getActivity())
+//                            .onItemSelected(cursor.getLong(ProviderUtilities.COL_VEHICLE_ID)
+//                            );
+//                }
+//                mPosition = position;
+//
+//            }
+//        });
 
         return rootView;
     }
@@ -90,6 +103,10 @@ public class VehiclesFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mVehicleAdapter.swapCursor(data);
+        if (mPosition != RecyclerView.NO_POSITION) {
+            mRecyclerView.smoothScrollToPosition(mPosition);
+        }
+        //Todo: updateEmptyView(); 6.16
 
     }
 
