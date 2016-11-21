@@ -143,14 +143,14 @@ public class AppSQLiteOpenHelperCallbacks {
     private void addVehicleClass(SQLiteDatabase db,Context context){
         ArrayList<String> vehicleClassList = new ArrayList<String>();
 
-        vehicleClassList.add(context.getString(R.string.car_class));
-        vehicleClassList.add(context.getString(R.string.van_class));
-        vehicleClassList.add(context.getString(R.string.truck_class));
-        vehicleClassList.add(context.getString(R.string.motorcycle_class));
-        vehicleClassList.add(context.getString(R.string.quad_class));
-        vehicleClassList.add(context.getString(R.string.tractor_class));
-        vehicleClassList.add(context.getString(R.string.bike_class));
-        vehicleClassList.add(context.getString(R.string.bus_class));
+        vehicleClassList.add(context.getString(R.string.car_class_db));
+        vehicleClassList.add(context.getString(R.string.van_class_db));
+        vehicleClassList.add(context.getString(R.string.truck_class_db));
+        vehicleClassList.add(context.getString(R.string.motorcycle_class_db));
+        vehicleClassList.add(context.getString(R.string.quad_class_db));
+        vehicleClassList.add(context.getString(R.string.tractor_class_db));
+        vehicleClassList.add(context.getString(R.string.bike_class_db));
+        vehicleClassList.add(context.getString(R.string.bus_class_db));
 
         for (String vehicleClass : vehicleClassList){
             ContentValues values = new ContentValues();

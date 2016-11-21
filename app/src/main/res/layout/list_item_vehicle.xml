@@ -16,35 +16,33 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeight"
-        android:orientation="horizontal"
-        android:paddingEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp">
+        android:orientation="vertical">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/vehicle_icon"-->
-        <!--android:layout_width="48dp"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="16dp"-->
-        <!--android:paddingStart="16dp" />-->
+        <ImageView
+            android:id="@+id/image_header_cardview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp">
 
             <TextView
-                android:id="@+id/vehicle_name_list_item"
+                android:id="@+id/vehicle_name_cardview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
-                android:textAppearance="@style/MyCardViewTitle"
-                 />
+                android:textAppearance="@style/MyCardViewTitle" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -52,18 +50,57 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/vehicle_make_list_item"
+                    android:id="@+id/vehicle_make_cardview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAppearance="@style/MyCardViewSubtitle" />
 
                 <TextView
-                    android:id="@+id/vehicle_model_list_item"
+                    android:id="@+id/vehicle_model_cardview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAppearance="@style/MyCardViewSubtitle" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/label_vehicle_fuel_type_cardview"
+                    android:text="@string/vehicle_fuel_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/vehicle_fuel_type_cardview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/label_vehicle_mileage_cardview"
+                    android:text="@string/vehicle_mileage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/vehicle_mileage_cardview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
 

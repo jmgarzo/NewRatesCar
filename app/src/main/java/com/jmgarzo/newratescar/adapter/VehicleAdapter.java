@@ -6,10 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jmgarzo.newratescar.ProviderUtilities;
+import com.bumptech.glide.Glide;
 import com.jmgarzo.newratescar.R;
+import com.jmgarzo.newratescar.Utility.ProviderUtilities;
+import com.jmgarzo.newratescar.Utility.Utility;
 
 /**
  * Created by jmgarzo on 31/10/16.
@@ -24,17 +27,26 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
     public class VehicleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public Long vehicleId;
-//        public ImageView icon;
+        public ImageView imageHeader;
         public TextView textName;
         public TextView textMake;
         public TextView textModel;
+        public TextView textFuelType;
+        public TextView lbFuelType;
+        public TextView lbMileage;
+        public TextView textMileage;
+
 
         public VehicleViewHolder(View view) {
             super(view);
-            //icon = (ImageView) view.findViewById(R.id.vehicle_icon);
-            textName = (TextView) view.findViewById(R.id.vehicle_name_list_item);
-            textMake = (TextView) view.findViewById(R.id.vehicle_make_list_item);
-            textModel = (TextView) view.findViewById(R.id.vehicle_model_list_item);
+            imageHeader = (ImageView) view.findViewById(R.id.image_header_cardview);
+            textName = (TextView) view.findViewById(R.id.vehicle_name_cardview);
+            textMake = (TextView) view.findViewById(R.id.vehicle_make_cardview);
+            textModel = (TextView) view.findViewById(R.id.vehicle_model_cardview);
+            lbFuelType = (TextView) view.findViewById(R.id.label_vehicle_fuel_type_cardview);
+            textFuelType = (TextView) view.findViewById(R.id.vehicle_fuel_type_cardview);
+            lbMileage = (TextView) view.findViewById(R.id.label_vehicle_mileage_cardview);
+            textMileage = (TextView) view.findViewById(R.id.vehicle_mileage_cardview);
             view.setOnClickListener(this);
         }
 
@@ -80,11 +92,16 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
     public void onBindViewHolder(VehicleViewHolder holder, int position) {
         mCursor.moveToPosition(position);
 
-                Integer iconResource = ProviderUtilities.getIconClass(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
+//                Integer iconResource = ProviderUtilities.getIconClass(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
 //        if (null != iconResource) {
 //            holder.icon.setImageResource(iconResource);
 //
 //        }
+
+        Glide.with(mContext)
+                .load(Utility.getImagefromIdClass(mContext,mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS)))
+                .crossFade()
+                .into(holder.imageHeader);
 
         holder.textName.setText(mCursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
 
@@ -97,6 +114,25 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
         holder.textModel.setText(model);
 
         holder.vehicleId = mCursor.getLong(ProviderUtilities.COL_VEHICLE_ID);
+
+
+        String fuelType = ProviderUtilities.getVehicleFuelTypeName(mContext,mCursor.getLong(ProviderUtilities.COL_VEHICLE_FUEL_TYPE));
+        if(null!=fuelType && fuelType.equalsIgnoreCase("")){
+            holder.textFuelType.setText(" " + fuelType);
+        }else{
+            holder.lbFuelType.setVisibility(View.GONE);
+            holder.textFuelType.setVisibility(View.GONE);
+        }
+
+
+        Integer mileage = mCursor.getInt(ProviderUtilities.COL_VEHICLE_MILEAGE);
+        if(mileage!=0){
+            holder.textMileage.setText(" " + mileage.toString());
+
+        }else{
+            holder.lbMileage.setVisibility(View.GONE);
+            holder.textMileage.setVisibility(View.GONE);
+        }
 
     }
 

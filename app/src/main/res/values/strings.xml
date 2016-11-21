@@ -12,6 +12,16 @@
     <string name="service_item_name">Services</string>
 
     //Vehicle Class
+
+    <string name="car_class_db" translatable="false">Car</string>
+    <string name="van_class.db" translatable="false">Van</string>
+    <string name="truck_class.db" translatable="false">Truck</string>
+    <string name="motorcycle_class.db" translatable="false">MotorCycle</string>
+    <string name="quad_class.db" translatable="false">Quad</string>
+    <string name="tractor_class.db" translatable="false">Tractor</string>
+    <string name="bike_class.db" translatable="false">Bike</string>
+    <string name="bus_class.db" translatable="false">Bus</string>
+
     <string name="car_class">Car</string>
     <string name="van_class">Van</string>
     <string name="truck_class">Truck</string>
