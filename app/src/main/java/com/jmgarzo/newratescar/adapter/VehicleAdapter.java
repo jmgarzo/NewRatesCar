@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jmgarzo.newratescar.ProviderUtilities;
@@ -25,14 +24,14 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
     public class VehicleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public Long vehicleId;
-        public ImageView icon;
+//        public ImageView icon;
         public TextView textName;
         public TextView textMake;
         public TextView textModel;
 
         public VehicleViewHolder(View view) {
             super(view);
-            icon = (ImageView) view.findViewById(R.id.vehicle_icon);
+            //icon = (ImageView) view.findViewById(R.id.vehicle_icon);
             textName = (TextView) view.findViewById(R.id.vehicle_name_list_item);
             textMake = (TextView) view.findViewById(R.id.vehicle_make_list_item);
             textModel = (TextView) view.findViewById(R.id.vehicle_model_list_item);
@@ -82,10 +81,10 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
         mCursor.moveToPosition(position);
 
                 Integer iconResource = ProviderUtilities.getIconClass(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
-        if (null != iconResource) {
-            holder.icon.setImageResource(iconResource);
-
-        }
+//        if (null != iconResource) {
+//            holder.icon.setImageResource(iconResource);
+//
+//        }
 
         holder.textName.setText(mCursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
 
