@@ -8,6 +8,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.SharedElementCallback;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -88,6 +89,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleModel = (EditText) view.findViewById(R.id.input_vehicle_model);
         mVehicleMileage = (EditText) view.findViewById(R.id.input_vehicle_mileage);
         mVehicleAddInformation = (EditText) view.findViewById(R.id.input_vehicle_add_information);
+
 
 
         //TODO: Get that values by a Loader

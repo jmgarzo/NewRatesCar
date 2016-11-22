@@ -45,5 +45,16 @@
         <item name="android:paddingBottom">16dp</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="MyCardViewLabel" >
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="MyCardViewText" >
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>

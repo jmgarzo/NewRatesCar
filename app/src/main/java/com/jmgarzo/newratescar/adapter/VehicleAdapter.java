@@ -32,9 +32,8 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
         public TextView textMake;
         public TextView textModel;
         public TextView textFuelType;
-        public TextView lbFuelType;
-        public TextView lbMileage;
         public TextView textMileage;
+        public TextView textAddInformation;
 
 
         public VehicleViewHolder(View view) {
@@ -43,10 +42,9 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             textName = (TextView) view.findViewById(R.id.vehicle_name_cardview);
             textMake = (TextView) view.findViewById(R.id.vehicle_make_cardview);
             textModel = (TextView) view.findViewById(R.id.vehicle_model_cardview);
-            lbFuelType = (TextView) view.findViewById(R.id.label_vehicle_fuel_type_cardview);
             textFuelType = (TextView) view.findViewById(R.id.vehicle_fuel_type_cardview);
-            lbMileage = (TextView) view.findViewById(R.id.label_vehicle_mileage_cardview);
             textMileage = (TextView) view.findViewById(R.id.vehicle_mileage_cardview);
+            textAddInformation = (TextView) view.findViewById(R.id.vehicle_additional_information_carview);
             view.setOnClickListener(this);
         }
 
@@ -117,23 +115,28 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
 
         String fuelType = ProviderUtilities.getVehicleFuelTypeName(mContext,mCursor.getLong(ProviderUtilities.COL_VEHICLE_FUEL_TYPE));
-        if(null!=fuelType && fuelType.equalsIgnoreCase("")){
-            holder.textFuelType.setText(" " + fuelType);
+        if(null!=fuelType && !fuelType.equalsIgnoreCase("")){
+
+            holder.textFuelType.setText("· ".concat(fuelType));
         }else{
-            holder.lbFuelType.setVisibility(View.GONE);
             holder.textFuelType.setVisibility(View.GONE);
         }
 
 
         Integer mileage = mCursor.getInt(ProviderUtilities.COL_VEHICLE_MILEAGE);
         if(mileage!=0){
-            holder.textMileage.setText(" " + mileage.toString());
+            holder.textMileage.setText("· ".concat(mileage.toString()));
 
         }else{
-            holder.lbMileage.setVisibility(View.GONE);
             holder.textMileage.setVisibility(View.GONE);
         }
 
+        String addInformation = mCursor.getString(ProviderUtilities.COL_VEHICLE_ADDITIONAL_INFORMATION);
+        if(null!=addInformation && !addInformation.equalsIgnoreCase("")){
+            holder.textAddInformation.setText(addInformation);
+        }else{
+            holder.textAddInformation.setVisibility(View.GONE);
+        }
     }
 
     @Override

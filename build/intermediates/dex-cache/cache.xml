@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="566bbf83186b69b3d486443e4b5f7277437bb7df">
+        sha1="9ce70956ad63eeadfb0a036fb69fdf45625708d3">
         <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_d54b2c425fdb4cfe5079d6e6ff9071540cd48171/classes.dex" />
     </item>
     <item
@@ -250,7 +250,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="bd650950b016d290dc74672f6ecd1a07b06e0260">
+        sha1="a03c1a3e0b0e2841f95f02604671d3ca3065dbe6">
         <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_bf9279a3bf1deebb20fb3c97805f84e1b39ca712/classes.dex" />
     </item>
 
