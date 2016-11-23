@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+          dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <PreferenceCategory
+        android:key="pref_key_storage_settings"
+        android:title="@string/pref_category_units_title">
+        <ListPreference
+            android:defaultValue="@string/pref_currency_default_value"
+            android:entries="@array/list_currency_entries"
+            android:entryValues="@array/list_currency_entry_values"
+            android:key="@string/pref_currency_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_currency_title" />
+
+        <ListPreference
+            android:defaultValue="@string/pref_distance_default_value"
+            android:entries="@array/list_distance_entries"
+            android:entryValues="@array/list_distance_entry_values"
+            android:key="@string/pref_distance_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_distance_key" />
+
+        <ListPreference
+            android:defaultValue="@string/pref_amount_default_value"
+            android:entries="@array/list_amount_entries"
+            android:entryValues="@array/list_amount_entry_values"
+            android:key="@string/pref_amount_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_amount_key" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

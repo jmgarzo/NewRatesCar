@@ -6,12 +6,12 @@
     <string name="title_activity_vehicle">Vehicle</string>
 
 
-    //Menu item names
+    <!--Menu item names-->
     <string name="vehicle_item_name">Vehicles</string>
     <string name="refuel_item_name">Refuel</string>
     <string name="service_item_name">Services</string>
 
-    //Vehicle Class
+    <!--Vehicle Class-->
 
     <string name="car_class_db" translatable="false">Car</string>
     <string name="van_class.db" translatable="false">Van</string>
@@ -31,7 +31,7 @@
     <string name="bike_class">Bike</string>
     <string name="bus_class">Bus</string>
 
-    //Vehicle Make
+    <!--Vehicle Make-->
     <string name="make_alfa_romeo"> ALFA ROMEO </string>
     <string name="make_acura"> ACURA </string>
     <string name="make_aston_martin"> ASTON MARTIN </string>
@@ -95,20 +95,20 @@
     <string name="make_volkswagen"> VOLKSWAGEN </string>
     <string name="make_volvo"> VOLVO </string>
 
-    //Fuel Type
+    <!--Fuel Type-->
     <string name="fuel_type_petrol">Petrol</string>
     <string name="fuel_type_diesel">Diesel</string>
     <string name="fuel_type_electric">Electric</string>
     <string name="fuel_type_hybrid">Hybrid</string>
 
-    //Subfuel Type
+    <!--Subfuel Type-->
 
     <string name="subfuel_type_regular">Regular</string>
     <string name="subfuel_type_premium">Premium</string>
     <string name="title_activity_vehicle_detail">VehicleDetail</string>
 
 
-    //Vehicle Detail
+    <!--Vehicle Detail-->
     <string name="vehicle_name">Number plate or name*</string>
     <string name="vehicle_name_error">Number plate or name is required</string>
     <string name="vehicle_class">Vehicle class</string>
@@ -120,17 +120,20 @@
     <string name="asterisk_label">* indicates required field </string>
     <string name ="empty_vehicles_list">No Vehicles Information Available</string>
 
-    //Dialog strings
+    <!--Dialog strings-->
     <string name="dialog_discard_changes">Discard your changes?</string>
     <string name="dialog_agree">OK</string>
     <string name="dialog_disagree">CANCEL</string>
 
-    //toast strings
+    <!--toast strings-->
     <string name="toast_vehicle_saved">Vehicle saved</string>
 
-    //Activity titles
+    <!--Activity titles-->
     <string name="vehicles_activity_title">My vehicles </string>
     <string name="title_activity_settings">Settings</string>
+
+    <!--Settings-->
+    <string name="pref_header_units">Units</string>
 
     <!-- Strings related to Settings -->
 
@@ -203,6 +206,32 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+
+
+
+    <!--MySettings-->
+
+    <string name="pref_category_units_title">Units</string>
+    <!--Settings Currency-->
+    <string name="pref_currency_key" translatable="false">Units</string>
+    <string name="pref_currency_default_value" translatable="false">EUR</string>
+    <string name="pref_currency_title">Currency</string>
+    <!--Settings amount of fuel-->
+    <string name="pref_amount_key" translatable="false">Amount</string>
+    <string name="pref_amount_default_value" translatable="false">litres</string>
+    <string name="pref_amount_label_litres">Litres</string>
+    <string name="pref_amount_label_gallon_imp">Gallon Imp</string>
+    <string name="pref_amount_label_gallon_us">Gallon US</string>
+    <string name="pref_amount_title">Amount of fuel</string>
+
+    <!--Setting distance-->
+    <string name = "pref_distance_key" translatable="false">Distance</string>
+    <string name="pref_distance_default_value" translatable="false">km</string>
+    <string name="pref_distance_label_kilometre">Kilometre</string>
+    <string name="pref_distance_label_mile">Mile</string>
+    <string name="pref_distance_title">Distance</string>
+
 
 </resources>
 

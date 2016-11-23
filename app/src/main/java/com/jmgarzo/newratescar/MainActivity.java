@@ -1,7 +1,9 @@
 package com.jmgarzo.newratescar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -16,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String defaultValue = this.getResources().getString(R.string.pref_currency_default_value);
+        String result = sharedPref.getString(this.getString(R.string.pref_currency_key), defaultValue);
+
 
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
