@@ -121,13 +121,13 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection vehicleClass(Long... value) {
-        addEquals(VehicleColumns.VEHICLE_CLASS, value);
+    public VehicleSelection vehicleClass(long... value) {
+        addEquals(VehicleColumns.VEHICLE_CLASS, toObjectArray(value));
         return this;
     }
 
-    public VehicleSelection vehicleClassNot(Long... value) {
-        addNotEquals(VehicleColumns.VEHICLE_CLASS, value);
+    public VehicleSelection vehicleClassNot(long... value) {
+        addNotEquals(VehicleColumns.VEHICLE_CLASS, toObjectArray(value));
         return this;
     }
 
@@ -201,43 +201,43 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection fuelType(Long... value) {
-        addEquals(VehicleColumns.FUEL_TYPE, value);
+    public VehicleSelection vehicleFuelType(long... value) {
+        addEquals(VehicleColumns.VEHICLE_FUEL_TYPE, toObjectArray(value));
         return this;
     }
 
-    public VehicleSelection fuelTypeNot(Long... value) {
-        addNotEquals(VehicleColumns.FUEL_TYPE, value);
+    public VehicleSelection vehicleFuelTypeNot(long... value) {
+        addNotEquals(VehicleColumns.VEHICLE_FUEL_TYPE, toObjectArray(value));
         return this;
     }
 
-    public VehicleSelection fuelTypeGt(long value) {
-        addGreaterThan(VehicleColumns.FUEL_TYPE, value);
+    public VehicleSelection vehicleFuelTypeGt(long value) {
+        addGreaterThan(VehicleColumns.VEHICLE_FUEL_TYPE, value);
         return this;
     }
 
-    public VehicleSelection fuelTypeGtEq(long value) {
-        addGreaterThanOrEquals(VehicleColumns.FUEL_TYPE, value);
+    public VehicleSelection vehicleFuelTypeGtEq(long value) {
+        addGreaterThanOrEquals(VehicleColumns.VEHICLE_FUEL_TYPE, value);
         return this;
     }
 
-    public VehicleSelection fuelTypeLt(long value) {
-        addLessThan(VehicleColumns.FUEL_TYPE, value);
+    public VehicleSelection vehicleFuelTypeLt(long value) {
+        addLessThan(VehicleColumns.VEHICLE_FUEL_TYPE, value);
         return this;
     }
 
-    public VehicleSelection fuelTypeLtEq(long value) {
-        addLessThanOrEquals(VehicleColumns.FUEL_TYPE, value);
+    public VehicleSelection vehicleFuelTypeLtEq(long value) {
+        addLessThanOrEquals(VehicleColumns.VEHICLE_FUEL_TYPE, value);
         return this;
     }
 
-    public VehicleSelection orderByFuelType(boolean desc) {
-        orderBy(VehicleColumns.FUEL_TYPE, desc);
+    public VehicleSelection orderByVehicleFuelType(boolean desc) {
+        orderBy(VehicleColumns.VEHICLE_FUEL_TYPE, desc);
         return this;
     }
 
-    public VehicleSelection orderByFuelType() {
-        orderBy(VehicleColumns.FUEL_TYPE, false);
+    public VehicleSelection orderByVehicleFuelType() {
+        orderBy(VehicleColumns.VEHICLE_FUEL_TYPE, false);
         return this;
     }
 
@@ -281,13 +281,13 @@ public class VehicleSelection extends AbstractSelection<VehicleSelection> {
         return this;
     }
 
-    public VehicleSelection make(Long... value) {
-        addEquals(VehicleColumns.MAKE, value);
+    public VehicleSelection make(long... value) {
+        addEquals(VehicleColumns.MAKE, toObjectArray(value));
         return this;
     }
 
-    public VehicleSelection makeNot(Long... value) {
-        addNotEquals(VehicleColumns.MAKE, value);
+    public VehicleSelection makeNot(long... value) {
+        addNotEquals(VehicleColumns.MAKE, toObjectArray(value));
         return this;
     }
 

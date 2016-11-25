@@ -40,7 +40,7 @@ public class FuelTypeContentValues extends AbstractContentValues {
     }
 
     /**
-     * Fuel Type Name
+     * Fuel Type
      */
     public FuelTypeContentValues putFuelTypeName(@Nullable String value) {
         mContentValues.put(FuelTypeColumns.FUEL_TYPE_NAME, value);

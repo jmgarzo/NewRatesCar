@@ -8,6 +8,7 @@ import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
+import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -30,7 +31,7 @@ public class VehicleColumns implements BaseColumns {
 
     public static final String VEHICLE_CLASS = "vehicle_class";
 
-    public static final String FUEL_TYPE = "fuel_type";
+    public static final String VEHICLE_FUEL_TYPE = "vehicle_fuel_type";
 
     public static final String MAKE = "make";
 
@@ -48,7 +49,7 @@ public class VehicleColumns implements BaseColumns {
             _ID,
             VEHICLE_NAME,
             VEHICLE_CLASS,
-            FUEL_TYPE,
+            VEHICLE_FUEL_TYPE,
             MAKE,
             MODEL,
             MILEAGE,
@@ -61,7 +62,7 @@ public class VehicleColumns implements BaseColumns {
         for (String c : projection) {
             if (c.equals(VEHICLE_NAME) || c.contains("." + VEHICLE_NAME)) return true;
             if (c.equals(VEHICLE_CLASS) || c.contains("." + VEHICLE_CLASS)) return true;
-            if (c.equals(FUEL_TYPE) || c.contains("." + FUEL_TYPE)) return true;
+            if (c.equals(VEHICLE_FUEL_TYPE) || c.contains("." + VEHICLE_FUEL_TYPE)) return true;
             if (c.equals(MAKE) || c.contains("." + MAKE)) return true;
             if (c.equals(MODEL) || c.contains("." + MODEL)) return true;
             if (c.equals(MILEAGE) || c.contains("." + MILEAGE)) return true;

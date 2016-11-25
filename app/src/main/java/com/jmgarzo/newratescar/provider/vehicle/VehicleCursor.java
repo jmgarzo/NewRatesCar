@@ -41,11 +41,11 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
 
     /**
      * Get the {@code vehicle_class} value.
-     * Can be {@code null}.
      */
-    @Nullable
-    public Long getVehicleClass() {
+    public long getVehicleClass() {
         Long res = getLongOrNull(VehicleColumns.VEHICLE_CLASS);
+        if (res == null)
+            throw new NullPointerException("The value of 'vehicle_class' in the database was null, which is not allowed according to the model definition");
         return res;
     }
 
@@ -60,17 +60,17 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Get the {@code fuel_type} value.
-     * Can be {@code null}.
+     * Get the {@code vehicle_fuel_type} value.
      */
-    @Nullable
-    public Long getFuelType() {
-        Long res = getLongOrNull(VehicleColumns.FUEL_TYPE);
+    public long getVehicleFuelType() {
+        Long res = getLongOrNull(VehicleColumns.VEHICLE_FUEL_TYPE);
+        if (res == null)
+            throw new NullPointerException("The value of 'vehicle_fuel_type' in the database was null, which is not allowed according to the model definition");
         return res;
     }
 
     /**
-     * Fuel Type Name
+     * Fuel Type
      * Can be {@code null}.
      */
     @Nullable
@@ -81,11 +81,11 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
 
     /**
      * Get the {@code make} value.
-     * Can be {@code null}.
      */
-    @Nullable
-    public Long getMake() {
+    public long getMake() {
         Long res = getLongOrNull(VehicleColumns.MAKE);
+        if (res == null)
+            throw new NullPointerException("The value of 'make' in the database was null, which is not allowed according to the model definition");
         return res;
     }
 

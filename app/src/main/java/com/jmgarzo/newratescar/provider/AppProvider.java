@@ -16,6 +16,7 @@ import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
+import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -42,11 +43,14 @@ public class AppProvider extends BaseContentProvider {
     private static final int URI_TYPE_MENU_ITEM = 6;
     private static final int URI_TYPE_MENU_ITEM_ID = 7;
 
-    private static final int URI_TYPE_VEHICLE = 8;
-    private static final int URI_TYPE_VEHICLE_ID = 9;
+    private static final int URI_TYPE_REFUEL = 8;
+    private static final int URI_TYPE_REFUEL_ID = 9;
 
-    private static final int URI_TYPE_VEHICLE_CLASS = 10;
-    private static final int URI_TYPE_VEHICLE_CLASS_ID = 11;
+    private static final int URI_TYPE_VEHICLE = 10;
+    private static final int URI_TYPE_VEHICLE_ID = 11;
+
+    private static final int URI_TYPE_VEHICLE_CLASS = 12;
+    private static final int URI_TYPE_VEHICLE_CLASS_ID = 13;
 
 
 
@@ -61,6 +65,8 @@ public class AppProvider extends BaseContentProvider {
         URI_MATCHER.addURI(AUTHORITY, MakeColumns.TABLE_NAME + "/#", URI_TYPE_MAKE_ID);
         URI_MATCHER.addURI(AUTHORITY, MenuItemColumns.TABLE_NAME, URI_TYPE_MENU_ITEM);
         URI_MATCHER.addURI(AUTHORITY, MenuItemColumns.TABLE_NAME + "/#", URI_TYPE_MENU_ITEM_ID);
+        URI_MATCHER.addURI(AUTHORITY, RefuelColumns.TABLE_NAME, URI_TYPE_REFUEL);
+        URI_MATCHER.addURI(AUTHORITY, RefuelColumns.TABLE_NAME + "/#", URI_TYPE_REFUEL_ID);
         URI_MATCHER.addURI(AUTHORITY, VehicleColumns.TABLE_NAME, URI_TYPE_VEHICLE);
         URI_MATCHER.addURI(AUTHORITY, VehicleColumns.TABLE_NAME + "/#", URI_TYPE_VEHICLE_ID);
         URI_MATCHER.addURI(AUTHORITY, VehicleClassColumns.TABLE_NAME, URI_TYPE_VEHICLE_CLASS);
@@ -100,6 +106,11 @@ public class AppProvider extends BaseContentProvider {
                 return TYPE_CURSOR_DIR + MenuItemColumns.TABLE_NAME;
             case URI_TYPE_MENU_ITEM_ID:
                 return TYPE_CURSOR_ITEM + MenuItemColumns.TABLE_NAME;
+
+            case URI_TYPE_REFUEL:
+                return TYPE_CURSOR_DIR + RefuelColumns.TABLE_NAME;
+            case URI_TYPE_REFUEL_ID:
+                return TYPE_CURSOR_ITEM + RefuelColumns.TABLE_NAME;
 
             case URI_TYPE_VEHICLE:
                 return TYPE_CURSOR_DIR + VehicleColumns.TABLE_NAME;
@@ -185,6 +196,32 @@ public class AppProvider extends BaseContentProvider {
                 res.orderBy = MenuItemColumns.DEFAULT_ORDER;
                 break;
 
+            case URI_TYPE_REFUEL:
+            case URI_TYPE_REFUEL_ID:
+                res.table = RefuelColumns.TABLE_NAME;
+                res.idColumn = RefuelColumns._ID;
+                res.tablesWithJoins = RefuelColumns.TABLE_NAME;
+                if (VehicleColumns.hasColumns(projection) || VehicleClassColumns.hasColumns(projection) || FuelTypeColumns.hasColumns(projection) || MakeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleColumns.TABLE_NAME + " AS " + RefuelColumns.PREFIX_VEHICLE + " ON " + RefuelColumns.TABLE_NAME + "." + RefuelColumns.VEHICLE_ID + "=" + RefuelColumns.PREFIX_VEHICLE + "." + VehicleColumns._ID;
+                }
+                if (VehicleClassColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleClassColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_VEHICLE_CLASS + " ON " + RefuelColumns.PREFIX_VEHICLE + "." + VehicleColumns.VEHICLE_CLASS + "=" + VehicleColumns.PREFIX_VEHICLE_CLASS + "." + VehicleClassColumns._ID;
+                }
+                if (FuelTypeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_FUEL_TYPE + " ON " + RefuelColumns.PREFIX_VEHICLE + "." + VehicleColumns.VEHICLE_FUEL_TYPE + "=" + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
+                }
+                if (MakeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + RefuelColumns.PREFIX_VEHICLE + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;
+                }
+                if (FuelTypeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + RefuelColumns.PREFIX_FUEL_TYPE + " ON " + RefuelColumns.TABLE_NAME + "." + RefuelColumns.REFUEL_FUEL_TYPE + "=" + RefuelColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
+                }
+                if (FuelSubtypeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelSubtypeColumns.TABLE_NAME + " AS " + RefuelColumns.PREFIX_FUEL_SUBTYPE + " ON " + RefuelColumns.TABLE_NAME + "." + RefuelColumns.REFUEL_FUEL_SUBTYPE + "=" + RefuelColumns.PREFIX_FUEL_SUBTYPE + "." + FuelSubtypeColumns._ID;
+                }
+                res.orderBy = RefuelColumns.DEFAULT_ORDER;
+                break;
+
             case URI_TYPE_VEHICLE:
             case URI_TYPE_VEHICLE_ID:
                 res.table = VehicleColumns.TABLE_NAME;
@@ -194,7 +231,7 @@ public class AppProvider extends BaseContentProvider {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleClassColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_VEHICLE_CLASS + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.VEHICLE_CLASS + "=" + VehicleColumns.PREFIX_VEHICLE_CLASS + "." + VehicleClassColumns._ID;
                 }
                 if (FuelTypeColumns.hasColumns(projection)) {
-                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_FUEL_TYPE + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.FUEL_TYPE + "=" + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_FUEL_TYPE + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.VEHICLE_FUEL_TYPE + "=" + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
                 }
                 if (MakeColumns.hasColumns(projection)) {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + VehicleColumns.TABLE_NAME + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;
@@ -219,6 +256,7 @@ public class AppProvider extends BaseContentProvider {
             case URI_TYPE_FUEL_TYPE_ID:
             case URI_TYPE_MAKE_ID:
             case URI_TYPE_MENU_ITEM_ID:
+            case URI_TYPE_REFUEL_ID:
             case URI_TYPE_VEHICLE_ID:
             case URI_TYPE_VEHICLE_CLASS_ID:
                 id = uri.getLastPathSegment();

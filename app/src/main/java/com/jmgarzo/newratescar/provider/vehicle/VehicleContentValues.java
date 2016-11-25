@@ -52,35 +52,23 @@ public class VehicleContentValues extends AbstractContentValues {
         return this;
     }
 
-    public VehicleContentValues putVehicleClass(@Nullable Long value) {
+    public VehicleContentValues putVehicleClass(long value) {
         mContentValues.put(VehicleColumns.VEHICLE_CLASS, value);
         return this;
     }
 
-    public VehicleContentValues putVehicleClassNull() {
-        mContentValues.putNull(VehicleColumns.VEHICLE_CLASS);
+
+    public VehicleContentValues putVehicleFuelType(long value) {
+        mContentValues.put(VehicleColumns.VEHICLE_FUEL_TYPE, value);
         return this;
     }
 
-    public VehicleContentValues putFuelType(@Nullable Long value) {
-        mContentValues.put(VehicleColumns.FUEL_TYPE, value);
-        return this;
-    }
 
-    public VehicleContentValues putFuelTypeNull() {
-        mContentValues.putNull(VehicleColumns.FUEL_TYPE);
-        return this;
-    }
-
-    public VehicleContentValues putMake(@Nullable Long value) {
+    public VehicleContentValues putMake(long value) {
         mContentValues.put(VehicleColumns.MAKE, value);
         return this;
     }
 
-    public VehicleContentValues putMakeNull() {
-        mContentValues.putNull(VehicleColumns.MAKE);
-        return this;
-    }
 
     public VehicleContentValues putModel(@Nullable String value) {
         mContentValues.put(VehicleColumns.MODEL, value);

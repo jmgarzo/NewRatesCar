@@ -7,7 +7,7 @@
         android:id="@+id/action_done_vehicle"
         android:icon="@drawable/ic_done_white_24dp"
         android:orderInCategory="1"
-        android:title="@string/action_settings"
+        android:title="@string/action_save"
         app:showAsAction="ifRoom" />
 
     <item

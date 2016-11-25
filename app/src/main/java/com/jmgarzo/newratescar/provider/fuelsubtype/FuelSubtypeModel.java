@@ -13,7 +13,7 @@ import android.support.annotation.Nullable;
 public interface FuelSubtypeModel extends BaseModel {
 
     /**
-     * Fuel Subtype Name
+     * Fuel Subtype
      * Can be {@code null}.
      */
     @Nullable

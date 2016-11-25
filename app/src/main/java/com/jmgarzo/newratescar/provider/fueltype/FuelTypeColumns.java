@@ -8,6 +8,7 @@ import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
+import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -24,9 +25,9 @@ public class FuelTypeColumns implements BaseColumns {
     public static final String _ID = BaseColumns._ID;
 
     /**
-     * Fuel Type Name
+     * Fuel Type
      */
-    public static final String FUEL_TYPE_NAME = "fuel_type_name";
+    public static final String FUEL_TYPE_NAME = "fuel_type__fuel_type_name";
 
 
     public static final String DEFAULT_ORDER = TABLE_NAME + "." +_ID;

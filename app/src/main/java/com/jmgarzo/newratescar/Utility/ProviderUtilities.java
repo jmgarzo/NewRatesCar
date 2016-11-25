@@ -10,7 +10,10 @@ import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
 import com.jmgarzo.newratescar.provider.make.MakeContentValues;
 import com.jmgarzo.newratescar.provider.make.MakeCursor;
 import com.jmgarzo.newratescar.provider.make.MakeSelection;
+import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
+import com.jmgarzo.newratescar.provider.vehicle.VehicleCursor;
+import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassCursor;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
 
@@ -24,17 +27,7 @@ import java.util.Map;
 public class ProviderUtilities {
 
 
-    public static final String[] VEHICLE_ALL_COLUMNS = new String[]{
-            VehicleColumns._ID,
-            VehicleColumns.VEHICLE_NAME,
-            VehicleColumns.VEHICLE_CLASS,
-            VehicleColumns.FUEL_TYPE,
-            VehicleColumns.MAKE,
-            VehicleColumns.MODEL,
-            VehicleColumns.MILEAGE,
-            VehicleColumns.ADDITIONAL_INFORMATION
-    };
-
+    public static final String[] VEHICLE_ALL_COLUMNS = VehicleColumns.ALL_COLUMNS;
     public static final int COL_VEHICLE_ID = 0;
     public static final int COL_VEHICLE_NAME = 1;
     public static final int COL_VEHICLE_CLASS = 2;
@@ -43,6 +36,29 @@ public class ProviderUtilities {
     public static final int COL_VEHICLE_MODEL = 5;
     public static final int COL_VEHICLE_MILEAGE = 6;
     public static final int COL_VEHICLE_ADDITIONAL_INFORMATION = 7;
+
+
+    public static final String[] REFUEL_ALL_COLUMNS = RefuelColumns.ALL_COLUMNS;
+    public static final int COL_REFUEL_ID = 0;
+    public static final int COL_REFUEL_VEHICLE_ID = 1;
+    public static final int COL_DATE = 2;
+    public static final int COL_REFUEL_FUEL_TYPE = 3;
+    public static final int COL_REFUEL_FUEL_SUBTYPE = 4;
+    public static final int COL_REFUEL_MILEAGE = 5;
+    public static final int COL_REFUEL_TRIP_ODOMETER = 6;
+    public static final int COL_REFUEL_LITRES = 7;
+    public static final int COL_REFUEL_GAS_PRICE = 8;
+    public static final int COL_REFUEL_TOTAL_PRICE = 9;
+    public static final int COL_REFUEL_IS_FULL = 10;
+    public static final int COL_REFUEL_IS_TRAILER = 11;
+    public static final int COL_REFUEL_IS_ROOF_RACK = 12;
+    public static final int COL_REFUEL_ROUTE_TYPE = 13;
+    public static final int COL_REFUEL_DRIVING_STYLE = 14;
+    public static final int COL_REFUEL_AVERAGE_SPEED = 15;
+    public static final int COL_REFUEL_AVERAGE_CONSUMPTION = 16;
+    public static final int COL_REFUEL_PAYMENT_TYPE = 17;
+    public static final int COL_REFUEL_GAS_STATION = 18;
+    public static final int COL_REFUEL_ADDITIONAL_INFORMATION = 19;
 
 
     //Vehicle Class
@@ -59,7 +75,7 @@ public class ProviderUtilities {
 
     public static Long getVehicleClassId(Context context, String vehicleClass) {
         Long id = null;
-        if (null != vehicleClass && vehicleClass != "") {
+        if (null != vehicleClass && !vehicleClass.equalsIgnoreCase("")) {
             VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
             vehicleClassSelection.vehicleClassName(vehicleClass);
             VehicleClassCursor cursor = vehicleClassSelection.query(context);
@@ -91,17 +107,17 @@ public class ProviderUtilities {
             FuelTypeCursor cursor = fuelTypeSelection.query(context);
             if (cursor.moveToNext()) {
                 id = cursor.getId();
-            }else{
-                 id = addNewFuelType(context,vehicleFuelType);
+            } else {
+                id = addNewFuelType(context, vehicleFuelType);
             }
         }
         return id;
     }
 
-    public static Long addNewFuelType(Context context, String fuelType){
+    public static Long addNewFuelType(Context context, String fuelType) {
         FuelTypeContentValues contentValues = new FuelTypeContentValues();
         contentValues.putFuelTypeName(fuelType);
-        Uri uri  = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
+        Uri uri = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
 
         return Long.parseLong(uri.getLastPathSegment());
 
@@ -126,17 +142,17 @@ public class ProviderUtilities {
             MakeCursor cursor = makeSelection.query(context);
             if (cursor.moveToNext()) {
                 id = cursor.getId();
-            }else{
-                id = addNewMake(context,make);
+            } else {
+                id = addNewMake(context, make);
             }
         }
         return id;
     }
 
-    public static Long addNewMake(Context context, String make){
+    public static Long addNewMake(Context context, String make) {
         MakeContentValues contentValues = new MakeContentValues();
         contentValues.putMakeName(make);
-        Uri uri  = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
+        Uri uri = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
 
         return Long.parseLong(uri.getLastPathSegment());
 
@@ -165,6 +181,33 @@ public class ProviderUtilities {
             return R.drawable.ic_directions_car_black_48dp;
         }
 
+    }
+
+
+    public static String getVehicleName(Context context, long id) {
+        String result = "";
+        VehicleSelection vehicleSelection = new VehicleSelection();
+        vehicleSelection.id(id);
+        VehicleCursor cursor = vehicleSelection.query(context);
+        if (cursor.moveToNext()) {
+            result = cursor.getVehicleName();
+        }
+        return result;
+    }
+
+    public static Long getVehicleId(Context context, String name) {
+        Long id = null;
+        if (name != null && name != "") {
+            VehicleSelection vehicleSelection = new VehicleSelection();
+            vehicleSelection.vehicleName(name);
+            VehicleCursor cursor = vehicleSelection.query(context);
+            if (cursor.moveToNext()) {
+                id = cursor.getId();
+            } else {
+                id = null;
+            }
+        }
+        return id;
     }
 
 

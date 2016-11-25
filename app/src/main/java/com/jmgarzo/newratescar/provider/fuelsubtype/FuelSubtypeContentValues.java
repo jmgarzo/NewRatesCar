@@ -40,7 +40,7 @@ public class FuelSubtypeContentValues extends AbstractContentValues {
     }
 
     /**
-     * Fuel Subtype Name
+     * Fuel Subtype
      */
     public FuelSubtypeContentValues putFuelSubtypeName(@Nullable String value) {
         mContentValues.put(FuelSubtypeColumns.FUEL_SUBTYPE_NAME, value);

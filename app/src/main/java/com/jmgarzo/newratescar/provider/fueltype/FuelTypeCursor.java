@@ -27,7 +27,7 @@ public class FuelTypeCursor extends AbstractCursor implements FuelTypeModel {
     }
 
     /**
-     * Fuel Type Name
+     * Fuel Type
      * Can be {@code null}.
      */
     @Nullable
