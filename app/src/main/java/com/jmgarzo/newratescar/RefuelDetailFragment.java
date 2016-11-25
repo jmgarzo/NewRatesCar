@@ -1,5 +1,10 @@
 package com.jmgarzo.newratescar;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
@@ -18,7 +25,11 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -38,6 +49,8 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
 
     private Long mRefuelId;
     private MaterialBetterSpinner mVehicleName;
+    private EditText mRefuelDate;
+
 
     ArrayList<String> mVehicleNameList;
     ArrayAdapter<String> mVehicleNameAdapter;
@@ -58,6 +71,20 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         }
 
         mVehicleName = (MaterialBetterSpinner) view.findViewById(R.id.better_spinner_vehicle_name);
+        mRefuelDate = (EditText) view.findViewById(R.id.input_refuel_date);
+        mRefuelDate.setFocusable(false);
+        mRefuelDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(mRefuelDate);
+            }
+        });
+
+        Calendar cal = new GregorianCalendar();
+        java.util.Date currentDate = cal.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        String formatteDate = df.format(currentDate);
+        mRefuelDate.setText(formatteDate);
 
         initialValuesVehicleName();
 
@@ -144,5 +171,50 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    public void showDatePickerDialog(EditText v) {
+        DatePickerFragment newFragment = new DatePickerFragment(getActivity(), v);
+        newFragment.show(getActivity().getFragmentManager(), "datePicker");
+
+    }
+
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        private Context context;
+        private EditText editText;
+
+        public DatePickerFragment() {
+            super();
+        }
+
+        @SuppressLint("ValidFragment")
+        public DatePickerFragment(Context context, EditText editText) {
+            super();
+            this.context = context;
+            this.editText = editText;
+
+        }
+
+        @Override
+
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            if (null != editText && null != Integer.valueOf(year) && null != Integer.valueOf(monthOfYear) && null != Integer.valueOf(dayOfMonth)) {
+                editText.setText(Integer.valueOf(dayOfMonth).toString().concat("/").concat(Integer.valueOf(monthOfYear + 1).toString().concat("/").concat(Integer.valueOf(year).toString())));
+            }
+        }
     }
 }

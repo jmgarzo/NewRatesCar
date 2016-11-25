@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.menuitem;
 
+// @formatter:off
 import java.util.Date;
 
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractCursor;
 /**
  * Cursor wrapper for the {@code menu_item} table.
  */
+@SuppressWarnings({"WeakerAccess", "unused", "UnnecessaryLocalVariable"})
 public class MenuItemCursor extends AbstractCursor implements MenuItemModel {
     public MenuItemCursor(Cursor cursor) {
         super(cursor);
@@ -19,6 +21,7 @@ public class MenuItemCursor extends AbstractCursor implements MenuItemModel {
     /**
      * Primary key.
      */
+    @Override
     public long getId() {
         Long res = getLongOrNull(MenuItemColumns._ID);
         if (res == null)
@@ -31,6 +34,7 @@ public class MenuItemCursor extends AbstractCursor implements MenuItemModel {
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public String getMenuItemName() {
         String res = getStringOrNull(MenuItemColumns.MENU_ITEM_NAME);
         return res;
@@ -41,6 +45,7 @@ public class MenuItemCursor extends AbstractCursor implements MenuItemModel {
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public Integer getMenuItemImage() {
         Integer res = getIntegerOrNull(MenuItemColumns.MENU_ITEM_IMAGE);
         return res;

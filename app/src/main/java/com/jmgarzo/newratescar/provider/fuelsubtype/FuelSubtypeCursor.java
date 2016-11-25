@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.fuelsubtype;
 
+// @formatter:off
 import java.util.Date;
 
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractCursor;
 /**
  * Cursor wrapper for the {@code fuel_subtype} table.
  */
+@SuppressWarnings({"WeakerAccess", "unused", "UnnecessaryLocalVariable"})
 public class FuelSubtypeCursor extends AbstractCursor implements FuelSubtypeModel {
     public FuelSubtypeCursor(Cursor cursor) {
         super(cursor);
@@ -19,6 +21,7 @@ public class FuelSubtypeCursor extends AbstractCursor implements FuelSubtypeMode
     /**
      * Primary key.
      */
+    @Override
     public long getId() {
         Long res = getLongOrNull(FuelSubtypeColumns._ID);
         if (res == null)
@@ -27,10 +30,11 @@ public class FuelSubtypeCursor extends AbstractCursor implements FuelSubtypeMode
     }
 
     /**
-     * Fuel Subtype
+     * Fuel Subtype Name
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public String getFuelSubtypeName() {
         String res = getStringOrNull(FuelSubtypeColumns.FUEL_SUBTYPE_NAME);
         return res;

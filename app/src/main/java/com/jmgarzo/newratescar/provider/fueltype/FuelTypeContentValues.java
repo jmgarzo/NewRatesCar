@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.fueltype;
 
+// @formatter:off
 import java.util.Date;
 
 import android.content.Context;
@@ -13,6 +14,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractContentValues;
 /**
  * Content values wrapper for the {@code fuel_type} table.
  */
+@SuppressWarnings({"ConstantConditions", "unused"})
 public class FuelTypeContentValues extends AbstractContentValues {
     @Override
     public Uri uri() {
@@ -32,7 +34,7 @@ public class FuelTypeContentValues extends AbstractContentValues {
     /**
      * Update row(s) using the values stored by this object and the given selection.
      *
-     * @param contentResolver The content resolver to use.
+     * @param context The context to use.
      * @param where The selection to use (can be {@code null}).
      */
     public int update(Context context, @Nullable FuelTypeSelection where) {
@@ -40,7 +42,7 @@ public class FuelTypeContentValues extends AbstractContentValues {
     }
 
     /**
-     * Fuel Type
+     * Fuel Type Name
      */
     public FuelTypeContentValues putFuelTypeName(@Nullable String value) {
         mContentValues.put(FuelTypeColumns.FUEL_TYPE_NAME, value);

@@ -35,6 +35,7 @@ public class TestProvider extends AndroidTestCase {
 
 
     public void deleteAllRecordsFromProvider() {
+
         mContext.getContentResolver().delete(
                 FuelSubtypeColumns.CONTENT_URI,
                 null,
@@ -211,6 +212,25 @@ public class TestProvider extends AndroidTestCase {
 
         assertEquals(TEST_VEHICLE_CLASS_NAME,vehicleClassName);
     }
+
+
+//    public void testBasicVehicle(){
+//
+//        String vehicle_name = "Le9811W";
+//
+//        VehicleContentValues values = new VehicleContentValues();
+//        values.putVehicleName(vehicle_name)
+//        .putVehicleClass();
+//        getContext().getContentResolver().insert(VehicleClassColumns.CONTENT_URI,values.values());
+//
+//        VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
+//        vehicleClassSelection.vehicleClassName(TEST_VEHICLE_CLASS_NAME);
+//        VehicleClassCursor cursor = vehicleClassSelection.query(getContext().getContentResolver());
+//        cursor.moveToNext();
+//        String vehicleClassName = cursor.getVehicleClassName();
+//
+//        assertEquals(TEST_VEHICLE_CLASS_NAME,vehicleClassName);
+//    }
 
 
 }

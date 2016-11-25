@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.vehicle;
 
+// @formatter:off
 import java.util.Date;
 
 import android.content.Context;
@@ -15,6 +16,7 @@ import com.jmgarzo.newratescar.provider.make.*;
 /**
  * Selection for the {@code vehicle} table.
  */
+@SuppressWarnings({"unused", "WeakerAccess", "Recycle"})
 public class VehicleSelection extends AbstractSelection<VehicleSelection> {
     @Override
     protected Uri baseUri() {

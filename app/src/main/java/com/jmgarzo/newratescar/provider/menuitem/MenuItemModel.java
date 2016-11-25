@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.menuitem;
 
+// @formatter:off
 import com.jmgarzo.newratescar.provider.base.BaseModel;
 
 import java.util.Date;
@@ -10,7 +11,13 @@ import android.support.annotation.Nullable;
 /**
  * Menu Item
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public interface MenuItemModel extends BaseModel {
+
+    /**
+     * Primary key.
+     */
+    long getId();
 
     /**
      * Menu Item Name

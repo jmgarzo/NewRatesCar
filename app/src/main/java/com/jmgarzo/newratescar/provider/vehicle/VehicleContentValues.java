@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.vehicle;
 
+// @formatter:off
 import java.util.Date;
 
 import android.content.Context;
@@ -13,6 +14,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractContentValues;
 /**
  * Content values wrapper for the {@code vehicle} table.
  */
+@SuppressWarnings({"ConstantConditions", "unused"})
 public class VehicleContentValues extends AbstractContentValues {
     @Override
     public Uri uri() {
@@ -32,7 +34,7 @@ public class VehicleContentValues extends AbstractContentValues {
     /**
      * Update row(s) using the values stored by this object and the given selection.
      *
-     * @param contentResolver The content resolver to use.
+     * @param context The context to use.
      * @param where The selection to use (can be {@code null}).
      */
     public int update(Context context, @Nullable VehicleSelection where) {

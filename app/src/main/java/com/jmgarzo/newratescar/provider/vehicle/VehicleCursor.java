@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.vehicle;
 
+// @formatter:off
 import java.util.Date;
 
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import com.jmgarzo.newratescar.provider.make.*;
 /**
  * Cursor wrapper for the {@code vehicle} table.
  */
+@SuppressWarnings({"WeakerAccess", "unused", "UnnecessaryLocalVariable"})
 public class VehicleCursor extends AbstractCursor implements VehicleModel {
     public VehicleCursor(Cursor cursor) {
         super(cursor);
@@ -22,6 +24,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     /**
      * Primary key.
      */
+    @Override
     public long getId() {
         Long res = getLongOrNull(VehicleColumns._ID);
         if (res == null)
@@ -34,6 +37,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public String getVehicleName() {
         String res = getStringOrNull(VehicleColumns.VEHICLE_NAME);
         return res;
@@ -42,6 +46,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     /**
      * Get the {@code vehicle_class} value.
      */
+    @Override
     public long getVehicleClass() {
         Long res = getLongOrNull(VehicleColumns.VEHICLE_CLASS);
         if (res == null)
@@ -62,6 +67,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     /**
      * Get the {@code vehicle_fuel_type} value.
      */
+    @Override
     public long getVehicleFuelType() {
         Long res = getLongOrNull(VehicleColumns.VEHICLE_FUEL_TYPE);
         if (res == null)
@@ -70,7 +76,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     }
 
     /**
-     * Fuel Type
+     * Fuel Type Name
      * Can be {@code null}.
      */
     @Nullable
@@ -82,6 +88,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
     /**
      * Get the {@code make} value.
      */
+    @Override
     public long getMake() {
         Long res = getLongOrNull(VehicleColumns.MAKE);
         if (res == null)
@@ -104,6 +111,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public String getModel() {
         String res = getStringOrNull(VehicleColumns.MODEL);
         return res;
@@ -114,6 +122,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public Integer getMileage() {
         Integer res = getIntegerOrNull(VehicleColumns.MILEAGE);
         return res;
@@ -124,6 +133,7 @@ public class VehicleCursor extends AbstractCursor implements VehicleModel {
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public String getAdditionalInformation() {
         String res = getStringOrNull(VehicleColumns.ADDITIONAL_INFORMATION);
         return res;

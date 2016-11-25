@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
@@ -15,7 +16,10 @@ import com.jmgarzo.newratescar.provider.refuel.RefuelSelection;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static com.jmgarzo.newratescar.R.id.action_delete;
 
@@ -29,6 +33,8 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
 
 
     MaterialBetterSpinner mSpinnerVehicleName;
+    EditText mRefuelDate;
+
 
 
     @Override
@@ -122,7 +128,7 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
         //mInputLayoutVehicleName = (TextInputLayout) findViewById(input_layout_vehicle_name);
 
         mSpinnerVehicleName = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_name);
-
+        mRefuelDate = (EditText) findViewById(R.id.input_refuel_date);
 
 
         boolean isCorrect = true;
@@ -138,26 +144,36 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
         String vehicleName = mSpinnerVehicleName.getText().toString();
 
 
+        String sfecha = mRefuelDate.getText().toString();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        GregorianCalendar cal = new GregorianCalendar();
+        try {
+            cal.setTime(format.parse(sfecha));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Date refuelDate =cal.getGregorianChange();
+        // calendarFecha.getTimeInMillis();
+
+
         if (isCorrect) {
             RefuelContentValues values = new RefuelContentValues();
             values.putVehicleId(ProviderUtilities.getVehicleId(this,vehicleName))
-                    .putRefuelDate(new Date().getTime())
-                    .putRefuelFuelSubtype(1l)
+                    .putRefuelDate(refuelDate)
+                    .putRefuelFuelSubtype(ProviderUtilities.getVehicleFuelSubtypeId(this,"carisimo"))
                     .putRefuelMileage(12)
                     .putRefuelTripOdometer(14)
-                    .putRefuelLitres(new Float(2))
-                    .putRefuelGasPrice(new Float(1.2))
-                    .putRefuelTotalPrice(new Float(26))
+                    .putRefuelLitres(20f)
+                    .putRefuelGasPrice(1f)
+                    .putRefuelTotalPrice(26f)
                     .putIsFull(false)
                     .putIsTrailer(false)
                     .putIsRoofRack(false)
                     .putRouteType(50)
                     .putDrivingStyle(50)
-                    .putAverageSpeed(Float.valueOf(189))
-                    .putAverageConsumption(5.5f)
-                    .putPaymentType("Card")
-                    .putGasStation("Carrefour")
-                    .putRefuelAdditionalInformation("Additional");
+                    .putAverageConsumption(5.5f);
 
 
 

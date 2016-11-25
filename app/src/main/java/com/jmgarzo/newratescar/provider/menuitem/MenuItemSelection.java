@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.menuitem;
 
+// @formatter:off
 import java.util.Date;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractSelection;
 /**
  * Selection for the {@code menu_item} table.
  */
+@SuppressWarnings({"unused", "WeakerAccess", "Recycle"})
 public class MenuItemSelection extends AbstractSelection<MenuItemSelection> {
     @Override
     protected Uri baseUri() {

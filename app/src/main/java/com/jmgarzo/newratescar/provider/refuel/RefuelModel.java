@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.refuel;
 
+// @formatter:off
 import com.jmgarzo.newratescar.provider.base.BaseModel;
 
 import java.util.Date;
@@ -10,7 +11,13 @@ import android.support.annotation.Nullable;
 /**
  * refuel
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public interface RefuelModel extends BaseModel {
+
+    /**
+     * Primary key.
+     */
+    long getId();
 
     /**
      * Get the {@code vehicle_id} value.
@@ -25,16 +32,9 @@ public interface RefuelModel extends BaseModel {
     Date getRefuelDate();
 
     /**
-     * Get the {@code refuel_fuel_type} value.
-     */
-    long getRefuelFuelType();
-
-    /**
      * Get the {@code refuel_fuel_subtype} value.
-     * Can be {@code null}.
      */
-    @Nullable
-    Long getRefuelFuelSubtype();
+    long getRefuelFuelSubtype();
 
     /**
      * Get the {@code refuel_mileage} value.

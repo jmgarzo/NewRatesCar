@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.jmgarzo.newratescar.R;
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
-import com.jmgarzo.newratescar.Utility.Utility;
 
 /**
  * Created by jmgarzo on 31/10/16.
@@ -29,7 +27,7 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
         public Long refuelId;
         public ImageView imageHeader;
         public TextView textVehicleName;
-        public TextView textDate;
+//        public TextView textDate;
 //
 
 
@@ -37,7 +35,7 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
             super(view);
             imageHeader = (ImageView) view.findViewById(R.id.image_header_cardview);
             textVehicleName = (TextView) view.findViewById(R.id.refuel_vehicle_name);
-            textDate = (TextView) view.findViewById(R.id.refuel_date);
+//            textDate = (TextView) view.findViewById(R.id.refuel_date);
 
             view.setOnClickListener(this);
         }
@@ -95,9 +93,10 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
 //                .crossFade()
 //                .into(holder.imageHeader);
 
-        holder.textVehicleName.setText(mCursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
+        Long idVehicle = Long.parseLong(mCursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
+        holder.textVehicleName.setText(ProviderUtilities.getVehicleName(mContext,idVehicle));
 
-        holder.textDate.setText(ProviderUtilities.getMakeName(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_MAKE)));
+//        holder.textDate.setText(ProviderUtilities.getMakeName(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_MAKE)));
 
 
     }

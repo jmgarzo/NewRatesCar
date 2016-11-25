@@ -1,9 +1,13 @@
 package com.jmgarzo.newratescar.Utility;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 
 import com.jmgarzo.newratescar.R;
+import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeContentValues;
+import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeCursor;
+import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeSelection;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeContentValues;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
@@ -101,7 +105,7 @@ public class ProviderUtilities {
     public static Long getVehicleFuelTypeId(Context context, String vehicleFuelType) {
         Long id = null;
 
-        if (vehicleFuelType != null && vehicleFuelType != "") {
+        if (vehicleFuelType != null && !vehicleFuelType.equalsIgnoreCase("")) {
             FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
             fuelTypeSelection.fuelTypeName(vehicleFuelType);
             FuelTypeCursor cursor = fuelTypeSelection.query(context);
@@ -123,6 +127,32 @@ public class ProviderUtilities {
 
     }
 
+    public static Long getVehicleFuelSubtypeId(Context context, String vehicleFuelSubtype) {
+        Long id = null;
+
+        if (vehicleFuelSubtype != null && !vehicleFuelSubtype.equalsIgnoreCase("")) {
+            FuelSubtypeSelection fuelSubtypeSelection = new FuelSubtypeSelection();
+            fuelSubtypeSelection.fuelSubtypeName(vehicleFuelSubtype);
+            FuelSubtypeCursor cursor = fuelSubtypeSelection.query(context);
+            if (cursor.moveToNext()) {
+                id = cursor.getId();
+            } else {
+                id = addNewFuelSubtype(context, vehicleFuelSubtype);
+            }
+        }
+        return id;
+    }
+
+    public static Long addNewFuelSubtype(Context context, String fuelSubtype) {
+        FuelSubtypeContentValues contentValues = new FuelSubtypeContentValues();
+        contentValues.putFuelSubtypeName(fuelSubtype);
+        Uri uri = context.getContentResolver().insert(contentValues.uri(), contentValues.values());
+
+
+        return Long.parseLong(uri.getLastPathSegment());
+
+    }
+
     public static String getMakeName(Context context, long id) {
         String result = "";
         MakeSelection makeSelection = new MakeSelection();
@@ -136,7 +166,7 @@ public class ProviderUtilities {
 
     public static Long getMakeId(Context context, String make) {
         Long id = null;
-        if (make != null && make != "") {
+        if (make != null && !make.equalsIgnoreCase("")) {
             MakeSelection makeSelection = new MakeSelection();
             makeSelection.makeName(make);
             MakeCursor cursor = makeSelection.query(context);
@@ -195,20 +225,41 @@ public class ProviderUtilities {
         return result;
     }
 
+//    public static Long getVehicleId(Context context, String name) {
+//        Long id = null;
+//        if (name != null && !name.equalsIgnoreCase("")) {
+//            VehicleSelection vehicleSelection = new VehicleSelection();
+//            vehicleSelection.vehicleName(name);
+//            VehicleCursor cursor = vehicleSelection.query(context);
+//            if (cursor.moveToNext()) {
+//                cursor.getId();
+//
+//                id = cursor.getId();
+//            } else {
+//                id = null;
+//            }
+//        }
+//        return id;
+//    }
+
     public static Long getVehicleId(Context context, String name) {
         Long id = null;
-        if (name != null && name != "") {
-            VehicleSelection vehicleSelection = new VehicleSelection();
-            vehicleSelection.vehicleName(name);
-            VehicleCursor cursor = vehicleSelection.query(context);
+        if (name != null && !name.equalsIgnoreCase("")) {
+            VehicleSelection where = new VehicleSelection();
+            where.vehicleName(name);
+            Cursor cursor = context.getContentResolver().query(where.uri(), new String[]{VehicleColumns._ID},
+                    where.sel(), where.args(), null);
             if (cursor.moveToNext()) {
-                id = cursor.getId();
+                id = cursor.getLong(0);
+
+
             } else {
                 id = null;
             }
         }
         return id;
     }
+
 
 
 }

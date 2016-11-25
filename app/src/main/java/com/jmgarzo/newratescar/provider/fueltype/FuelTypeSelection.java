@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.fueltype;
 
+// @formatter:off
 import java.util.Date;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractSelection;
 /**
  * Selection for the {@code fuel_type} table.
  */
+@SuppressWarnings({"unused", "WeakerAccess", "Recycle"})
 public class FuelTypeSelection extends AbstractSelection<FuelTypeSelection> {
     @Override
     protected Uri baseUri() {

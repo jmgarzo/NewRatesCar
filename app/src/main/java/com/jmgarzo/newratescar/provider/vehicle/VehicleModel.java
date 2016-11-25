@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.vehicle;
 
+// @formatter:off
 import com.jmgarzo.newratescar.provider.base.BaseModel;
 
 import java.util.Date;
@@ -10,7 +11,13 @@ import android.support.annotation.Nullable;
 /**
  * Vehicle
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public interface VehicleModel extends BaseModel {
+
+    /**
+     * Primary key.
+     */
+    long getId();
 
     /**
      * Vehicle name

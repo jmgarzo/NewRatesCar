@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.refuel;
 
+// @formatter:off
 import java.util.Date;
 
 import android.content.Context;
@@ -12,12 +13,12 @@ import com.jmgarzo.newratescar.provider.vehicle.*;
 import com.jmgarzo.newratescar.provider.vehicleclass.*;
 import com.jmgarzo.newratescar.provider.fueltype.*;
 import com.jmgarzo.newratescar.provider.make.*;
-import com.jmgarzo.newratescar.provider.fueltype.*;
 import com.jmgarzo.newratescar.provider.fuelsubtype.*;
 
 /**
  * Selection for the {@code refuel} table.
  */
+@SuppressWarnings({"unused", "WeakerAccess", "Recycle"})
 public class RefuelSelection extends AbstractSelection<RefuelSelection> {
     @Override
     protected Uri baseUri() {
@@ -569,93 +570,13 @@ public class RefuelSelection extends AbstractSelection<RefuelSelection> {
         return this;
     }
 
-    public RefuelSelection refuelFuelType(long... value) {
-        addEquals(RefuelColumns.REFUEL_FUEL_TYPE, toObjectArray(value));
+    public RefuelSelection refuelFuelSubtype(long... value) {
+        addEquals(RefuelColumns.REFUEL_FUEL_SUBTYPE, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelFuelTypeNot(long... value) {
-        addNotEquals(RefuelColumns.REFUEL_FUEL_TYPE, toObjectArray(value));
-        return this;
-    }
-
-    public RefuelSelection refuelFuelTypeGt(long value) {
-        addGreaterThan(RefuelColumns.REFUEL_FUEL_TYPE, value);
-        return this;
-    }
-
-    public RefuelSelection refuelFuelTypeGtEq(long value) {
-        addGreaterThanOrEquals(RefuelColumns.REFUEL_FUEL_TYPE, value);
-        return this;
-    }
-
-    public RefuelSelection refuelFuelTypeLt(long value) {
-        addLessThan(RefuelColumns.REFUEL_FUEL_TYPE, value);
-        return this;
-    }
-
-    public RefuelSelection refuelFuelTypeLtEq(long value) {
-        addLessThanOrEquals(RefuelColumns.REFUEL_FUEL_TYPE, value);
-        return this;
-    }
-
-    public RefuelSelection orderByRefuelFuelType(boolean desc) {
-        orderBy(RefuelColumns.REFUEL_FUEL_TYPE, desc);
-        return this;
-    }
-
-    public RefuelSelection orderByRefuelFuelType() {
-        orderBy(RefuelColumns.REFUEL_FUEL_TYPE, false);
-        return this;
-    }
-
-    public RefuelSelection fuelTypeFuelTypeName(String... value) {
-        addEquals(FuelTypeColumns.FUEL_TYPE_NAME, value);
-        return this;
-    }
-
-    public RefuelSelection fuelTypeFuelTypeNameNot(String... value) {
-        addNotEquals(FuelTypeColumns.FUEL_TYPE_NAME, value);
-        return this;
-    }
-
-    public RefuelSelection fuelTypeFuelTypeNameLike(String... value) {
-        addLike(FuelTypeColumns.FUEL_TYPE_NAME, value);
-        return this;
-    }
-
-    public RefuelSelection fuelTypeFuelTypeNameContains(String... value) {
-        addContains(FuelTypeColumns.FUEL_TYPE_NAME, value);
-        return this;
-    }
-
-    public RefuelSelection fuelTypeFuelTypeNameStartsWith(String... value) {
-        addStartsWith(FuelTypeColumns.FUEL_TYPE_NAME, value);
-        return this;
-    }
-
-    public RefuelSelection fuelTypeFuelTypeNameEndsWith(String... value) {
-        addEndsWith(FuelTypeColumns.FUEL_TYPE_NAME, value);
-        return this;
-    }
-
-    public RefuelSelection orderByFuelTypeFuelTypeName(boolean desc) {
-        orderBy(FuelTypeColumns.FUEL_TYPE_NAME, desc);
-        return this;
-    }
-
-    public RefuelSelection orderByFuelTypeFuelTypeName() {
-        orderBy(FuelTypeColumns.FUEL_TYPE_NAME, false);
-        return this;
-    }
-
-    public RefuelSelection refuelFuelSubtype(Long... value) {
-        addEquals(RefuelColumns.REFUEL_FUEL_SUBTYPE, value);
-        return this;
-    }
-
-    public RefuelSelection refuelFuelSubtypeNot(Long... value) {
-        addNotEquals(RefuelColumns.REFUEL_FUEL_SUBTYPE, value);
+    public RefuelSelection refuelFuelSubtypeNot(long... value) {
+        addNotEquals(RefuelColumns.REFUEL_FUEL_SUBTYPE, toObjectArray(value));
         return this;
     }
 

@@ -1,5 +1,6 @@
 package com.jmgarzo.newratescar.provider.vehicleclass;
 
+// @formatter:off
 import java.util.Date;
 
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import com.jmgarzo.newratescar.provider.base.AbstractCursor;
 /**
  * Cursor wrapper for the {@code vehicle_class} table.
  */
+@SuppressWarnings({"WeakerAccess", "unused", "UnnecessaryLocalVariable"})
 public class VehicleClassCursor extends AbstractCursor implements VehicleClassModel {
     public VehicleClassCursor(Cursor cursor) {
         super(cursor);
@@ -19,6 +21,7 @@ public class VehicleClassCursor extends AbstractCursor implements VehicleClassMo
     /**
      * Primary key.
      */
+    @Override
     public long getId() {
         Long res = getLongOrNull(VehicleClassColumns._ID);
         if (res == null)
@@ -31,6 +34,7 @@ public class VehicleClassCursor extends AbstractCursor implements VehicleClassMo
      * Can be {@code null}.
      */
     @Nullable
+    @Override
     public String getVehicleClassName() {
         String res = getStringOrNull(VehicleClassColumns.VEHICLE_CLASS_NAME);
         return res;

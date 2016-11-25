@@ -123,6 +123,8 @@
 
     <!--refuel Detail-->
     <string name="vehicle_name_hint">Select a vehicle</string>
+    <string name="vehicle_date">Refuel Date</string>
+
 
     <!--Dialog strings-->
     <string name="dialog_discard_changes">Discard your changes?</string>

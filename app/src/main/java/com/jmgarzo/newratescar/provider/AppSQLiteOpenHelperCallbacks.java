@@ -9,6 +9,7 @@ import android.util.Log;
 import com.jmgarzo.newratescar.BuildConfig;
 import com.jmgarzo.newratescar.R;
 import com.jmgarzo.newratescar.object.MenuItem;
+import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
@@ -41,6 +42,7 @@ public class AppSQLiteOpenHelperCallbacks {
         addVehicleClass(db,context);
         addMakes(db,context);
         addFuelType(db,context);
+        addFuelSubType(db,context);
 
 
     }
@@ -52,6 +54,7 @@ public class AppSQLiteOpenHelperCallbacks {
 
     private void addFuelType(SQLiteDatabase db, Context context){
         ArrayList<String> fuelTypeList = new ArrayList<String>();
+        fuelTypeList.add("");
         fuelTypeList.add(context.getString(R.string.fuel_type_petrol));
         fuelTypeList.add(context.getString(R.string.fuel_type_diesel));
         fuelTypeList.add(context.getString(R.string.fuel_type_electric));
@@ -65,9 +68,23 @@ public class AppSQLiteOpenHelperCallbacks {
         }
     }
 
+    private void addFuelSubType(SQLiteDatabase db, Context context){
+        ArrayList<String> fuelSubtypeList = new ArrayList<String>();
+        fuelSubtypeList.add("");
+        fuelSubtypeList.add(context.getString(R.string.subfuel_type_regular));
+        fuelSubtypeList.add(context.getString(R.string.subfuel_type_premium));
+
+        for (String fuelSubtype : fuelSubtypeList){
+            ContentValues values = new ContentValues();
+            values.put(FuelSubtypeColumns.FUEL_SUBTYPE_NAME,fuelSubtype);
+
+            db.insert(FuelSubtypeColumns.TABLE_NAME,null,values);
+        }
+    }
+
     private void addMakes(SQLiteDatabase db, Context context){
         ArrayList<String> makeList = new ArrayList<String>();
-
+        makeList.add("");
         makeList.add(context.getString(R.string.make_alfa_romeo));
         makeList.add(context.getString(R.string.make_acura));
         makeList.add(context.getString(R.string.make_aston_martin));

@@ -2,6 +2,7 @@ package com.jmgarzo.newratescar;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -65,6 +66,12 @@ public class RefuelsFragment extends Fragment implements LoaderManager.LoaderCal
         mRecyclerView.setAdapter(mRefuelAdapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(REFUEL_LOADER_ID, null, this);
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override

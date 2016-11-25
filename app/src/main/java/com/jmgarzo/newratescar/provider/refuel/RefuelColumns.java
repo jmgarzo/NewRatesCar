@@ -1,9 +1,11 @@
 package com.jmgarzo.newratescar.provider.refuel;
 
+// @formatter:off
 import android.net.Uri;
 import android.provider.BaseColumns;
 
 import com.jmgarzo.newratescar.provider.AppProvider;
+import com.jmgarzo.newratescar.provider.base.AbstractSelection;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
@@ -15,6 +17,7 @@ import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 /**
  * refuel
  */
+@SuppressWarnings("unused")
 public class RefuelColumns implements BaseColumns {
     public static final String TABLE_NAME = "refuel";
     public static final Uri CONTENT_URI = Uri.parse(AppProvider.CONTENT_URI_BASE + "/" + TABLE_NAME);
@@ -27,8 +30,6 @@ public class RefuelColumns implements BaseColumns {
     public static final String VEHICLE_ID = "vehicle_id";
 
     public static final String REFUEL_DATE = "refuel_date";
-
-    public static final String REFUEL_FUEL_TYPE = "refuel_fuel_type";
 
     public static final String REFUEL_FUEL_SUBTYPE = "refuel_fuel_subtype";
 
@@ -63,14 +64,12 @@ public class RefuelColumns implements BaseColumns {
     public static final String REFUEL_ADDITIONAL_INFORMATION = "refuel_additional_information";
 
 
-    public static final String DEFAULT_ORDER = TABLE_NAME + "." +_ID;
+    public static final String DEFAULT_ORDER = null;
 
-    // @formatter:off
     public static final String[] ALL_COLUMNS = new String[] {
             _ID,
             VEHICLE_ID,
             REFUEL_DATE,
-            REFUEL_FUEL_TYPE,
             REFUEL_FUEL_SUBTYPE,
             REFUEL_MILEAGE,
             REFUEL_TRIP_ODOMETER,
@@ -88,14 +87,12 @@ public class RefuelColumns implements BaseColumns {
             GAS_STATION,
             REFUEL_ADDITIONAL_INFORMATION
     };
-    // @formatter:on
 
     public static boolean hasColumns(String[] projection) {
         if (projection == null) return true;
         for (String c : projection) {
             if (c.equals(VEHICLE_ID) || c.contains("." + VEHICLE_ID)) return true;
             if (c.equals(REFUEL_DATE) || c.contains("." + REFUEL_DATE)) return true;
-            if (c.equals(REFUEL_FUEL_TYPE) || c.contains("." + REFUEL_FUEL_TYPE)) return true;
             if (c.equals(REFUEL_FUEL_SUBTYPE) || c.contains("." + REFUEL_FUEL_SUBTYPE)) return true;
             if (c.equals(REFUEL_MILEAGE) || c.contains("." + REFUEL_MILEAGE)) return true;
             if (c.equals(REFUEL_TRIP_ODOMETER) || c.contains("." + REFUEL_TRIP_ODOMETER)) return true;
@@ -117,6 +114,5 @@ public class RefuelColumns implements BaseColumns {
     }
 
     public static final String PREFIX_VEHICLE = TABLE_NAME + "__" + VehicleColumns.TABLE_NAME;
-    public static final String PREFIX_FUEL_TYPE = TABLE_NAME + "__" + FuelTypeColumns.TABLE_NAME;
     public static final String PREFIX_FUEL_SUBTYPE = TABLE_NAME + "__" + FuelSubtypeColumns.TABLE_NAME;
 }
