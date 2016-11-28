@@ -286,5 +286,27 @@ public class ProviderUtilities {
         return result;
     }
 
+    public static Integer getVehicleMileage(Context context, String vehicleName){
+        Integer result = 0;
+        VehicleSelection vehicleSelection = new VehicleSelection();
+        vehicleSelection.vehicleName(vehicleName);
+        VehicleCursor cursor = vehicleSelection.query(context);
+        if(cursor.moveToNext()){
+            result = cursor.getMileage();
+        }
+        return result;
+    }
+
+    public static Integer getVehicleM(Context context, String vehicleName){
+        Integer result = 0;
+        VehicleSelection vehicleSelection = new VehicleSelection();
+        vehicleSelection.vehicleName(vehicleName);
+        VehicleCursor cursor = vehicleSelection.query(context);
+        if(cursor.moveToNext()){
+            result = cursor.getMileage();
+        }
+        return result;
+    }
+
 
 }

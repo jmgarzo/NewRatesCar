@@ -122,14 +122,14 @@
     <string name="empty_vehicles_list">No Vehicles Information Available</string>
 
     <!--refuel Detail-->
-    <string name="vehicle_name_hint">Select a vehicle</string>
-    <string name="vehicle_date">Refuel Date</string>
-    <string name="refuel_fuel_type">Fuel type</string>
+    <string name="vehicle_name_hint">Select a vehicle*</string>
+    <string name="vehicle_date">Refuel Date*</string>
+    <string name="refuel_fuel_type">Fuel type*</string>
     <string name="refuel_fuel_subtype">Fuel sort</string>
-    <string name="refuel_mileage">Odometer</string>
-    <string name="refuel_litres">Quantity</string>
-    <string name="refuel_gas_price">Fuel Price</string>
-    <string name="refuel_total_price">Total Price</string>
+    <string name="refuel_mileage">Odometer*</string>
+    <string name="refuel_litres">Quantity*</string>
+    <string name="refuel_gas_price">Fuel Price*</string>
+    <string name="refuel_total_price">Total Price*</string>
     <string name="refuel_is_full">Fully charged fuel tank</string>
     <string name="refuel_is_roof_rack">Roof rack </string>
     <string name="refuel_is_trailer">Trailer </string>

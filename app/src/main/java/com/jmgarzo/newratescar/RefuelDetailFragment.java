@@ -14,10 +14,11 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.SwitchCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
@@ -34,6 +35,7 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,8 +70,11 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     private EditText mMileage;
     private EditText mMileageUnits;
     private EditText mLitres;
+    private EditText mLitresUnits;
     private EditText mGasPrice;
+    private EditText mGasPriceUnits;
     private EditText mTotalPrice;
+    private EditText mTotalPriceUnits;
     private SwitchCompat mIsRoofRack;
     private SwitchCompat mIsTrailer;
     private AppCompatSeekBar mSeekBarRouteType;
@@ -133,8 +138,11 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mMileage = (EditText) view.findViewById(R.id.input_refuel_mileage);
         mMileageUnits = (EditText) view.findViewById(R.id.input_refuel_mileage_unit);
         mLitres = (EditText) view.findViewById(R.id.input_refuel_litres);
+        mLitresUnits = (EditText) view.findViewById(R.id.input_refuel_quantity_unit);
         mGasPrice = (EditText) view.findViewById(R.id.input_refuel_gas_price);
+        mGasPriceUnits = (EditText) view.findViewById(R.id.input_refuel_currency_per_quantity_unit);
         mTotalPrice = (EditText) view.findViewById(R.id.input_refuel_total_price);
+        mTotalPriceUnits = (EditText) view.findViewById(R.id.input_refuel_currency_unit);
         mIsRoofRack = (SwitchCompat) view.findViewById(R.id.switch_is_roof_rack);
         mIsTrailer = (SwitchCompat) view.findViewById(R.id.switch_is_trailer);
         mSeekBarRouteType = (AppCompatSeekBar) view.findViewById(R.id.seekbar_route_type);
@@ -146,10 +154,111 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mAdditionalInf = (EditText) view.findViewById(R.id.input_refuel_additional_information);
 
         mMileageUnits.setText(Utility.getPreferredMileageUnit(getContext()));
+        String quantity = Utility.getPreferredQuantityUnit(getContext());
+        mLitresUnits.setText(quantity);
+        String currency = Utility.getPreferredCurrencyUnit(getContext());
+        mGasPriceUnits.setText(currency.concat("/").concat(quantity));
+        mTotalPriceUnits.setText(currency);
 
         initialValuesVehicleName();
         initialValuesFuelType();
         initialValuesFuelSubtype();
+
+
+
+        mGasPrice.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (!mGasPrice.getText().toString().isEmpty()) {
+                    if (!mTotalPrice.getText().toString().isEmpty()) {
+                        BigDecimal dPrecio, dCoste, resultado;
+                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
+                        dCoste = new BigDecimal(mTotalPrice.getText().toString());
+                        if (dPrecio.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
+                            resultado = dCoste.divide(dPrecio, 5, BigDecimal.ROUND_HALF_UP);
+                        } else {
+                            resultado = BigDecimal.ZERO;
+                        }
+                        mLitres.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    } else if (!mLitres.getText().toString().isEmpty()) {
+                        BigDecimal dPrecio, dLitros, resultado;
+                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
+                        dLitros = new BigDecimal(mLitres.getText().toString());
+                        resultado = dLitros.multiply(dPrecio);
+                        mTotalPrice.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+                    }
+                }
+
+            }
+        });
+
+        mTotalPrice.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!mTotalPrice.getText().toString().isEmpty()) {
+                    if (!mGasPrice.getText().toString().isEmpty()) {
+                        BigDecimal dPrecio, dCoste, resultado;
+                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
+                        dCoste = new BigDecimal(mTotalPrice.getText().toString());
+                        if (dPrecio.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
+                            resultado = dCoste.divide(dPrecio, 15, BigDecimal.ROUND_HALF_UP);
+                        } else {
+                            resultado = BigDecimal.ZERO;
+                        }
+
+                        mLitres.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    } else if (!mLitres.getText().toString().isEmpty()) {
+                        BigDecimal dLitros, dCoste, resultado;
+                        dLitros = new BigDecimal(mLitres.getText().toString());
+                        dCoste = new BigDecimal(mTotalPrice.getText().toString());
+                        if (dLitros.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
+                            resultado = dCoste.divide(dLitros, 5, BigDecimal.ROUND_HALF_UP);
+                        } else {
+                            resultado = BigDecimal.ZERO;
+                        }
+                        mGasPrice.setText(resultado.setScale(3, BigDecimal.ROUND_HALF_UP).toString());
+                    }
+
+                }
+
+            }
+        });
+
+        mLitres.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!mLitres.getText().toString().isEmpty()) {
+                    if (!mGasPrice.getText().toString().isEmpty()) {
+                        BigDecimal dLitros, dPrecio, resultado;
+                        dLitros = new BigDecimal(mLitres.getText().toString());
+                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
+                        resultado = dPrecio.multiply(dLitros);
+                        if (mTotalPrice.getText().toString().isEmpty()) {
+                            mTotalPrice.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                        }
+                    } else if (!mTotalPrice.getText().toString().trim().isEmpty()
+                            && mTotalPrice.getText().toString().trim().equalsIgnoreCase("0")) {
+                        BigDecimal dLitros, dCoste, resultado;
+                        dLitros = new BigDecimal(mLitres.getText().toString());
+                        dCoste = new BigDecimal(mTotalPrice.getText().toString());
+                        if (dLitros.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
+                            resultado = dCoste.divide(dLitros, 5, BigDecimal.ROUND_HALF_UP);
+                        } else {
+                            resultado = BigDecimal.ZERO;
+                        }
+                        mGasPrice.setText(resultado.setScale(3, BigDecimal.ROUND_HALF_UP).toString());
+                    }
+                }
+            }
+        });
+
+
+
 
         return view;
     }
@@ -254,35 +363,18 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     }
 
     void initialValuesVehicleName() {
+        mVehicleName.addTextChangedListener(textWatcher);
         VehicleSelection vehicleSelection = new VehicleSelection();
         Cursor c = getActivity().getContentResolver().query(vehicleSelection.uri(), null, null, null, null);
         mVehicleNameList = new ArrayList<>();
         while (c.moveToNext()) {
             int index = c.getColumnIndex(VehicleColumns.VEHICLE_NAME);
             mVehicleNameList.add(c.getString(index));
-
         }
 
         mVehicleNameAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mVehicleNameList);
         mVehicleName.setAdapter(mVehicleNameAdapter);
-
-
-
-        mVehicleName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(isNew){
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
 
 
     }
@@ -300,11 +392,12 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                 android.R.layout.simple_dropdown_item_1line, mFuelTypeList);
         mRefuelFuelType.setAdapter(mFuelTypeAdapter);
 
-        if(!isNew){
+        if (!isNew) {
 
-            if(!Utility.isEmptyOrNull(mVehicleName.getText().toString())){
-                String fuelType = ProviderUtilities.getVehicleFuelTypeByVehicleName(getActivity(),mVehicleName.getText().toString());
-                mRefuelFuelType.setText(fuelType);            }
+            if (!Utility.isEmptyOrNull(mVehicleName.getText().toString())) {
+                String fuelType = ProviderUtilities.getVehicleFuelTypeByVehicleName(getActivity(), mVehicleName.getText().toString());
+                mRefuelFuelType.setText(fuelType);
+            }
 
         }
     }
@@ -360,4 +453,28 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
             }
         }
     }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+
+        public void afterTextChanged(Editable s) {
+            if (isNew) {
+                String vehicleName = mVehicleName.getText().toString();
+                if (!Utility.isEmptyOrNull(vehicleName)) {
+                    mMileage.setText(ProviderUtilities.getVehicleMileage(getContext(), vehicleName).toString());
+                    mRefuelFuelType.setText(ProviderUtilities.getVehicleFuelTypeByVehicleName(getContext(), vehicleName));
+                }
+
+
+            }
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+
+
+        }
+    };
 }

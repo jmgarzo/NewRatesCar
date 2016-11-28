@@ -221,7 +221,7 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
                     .putAverageConsumption(0);
 
 
-            SaveRefuel saveRefuel = new SaveRefuel(this, mRefuelId);
+            SaveRefuel saveRefuel = new SaveRefuel(this, mRefuelId,mSpinnerVehicleName.getText().toString(), Integer.parseInt(mMileage.getText().toString()));
             saveRefuel.execute(values);
 
             Intent intent = new Intent(this, RefuelsActivity.class);

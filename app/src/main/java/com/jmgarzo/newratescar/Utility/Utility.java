@@ -75,7 +75,28 @@ public class Utility {
             return context.getString(R.string.pref_distance_label_mile);
         }
         return defaultValue;
+    }
 
+    public static String getPreferredQuantityUnit(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String defaultValue = context.getResources().getString(R.string.pref_amount_default_value);
+        String selectedKey = sharedPref.getString(context.getString(R.string.pref_amount_key), defaultValue);
+        if(selectedKey.equalsIgnoreCase(context.getString(R.string.pref_amount_value_litres))){
+            return context.getString(R.string.pref_amount_label_litres);
+        }else if(selectedKey.equalsIgnoreCase(context.getString(R.string.pref_amount_value_gallon_imp))){
+            return context.getString(R.string.pref_amount_label_gallon_imp);
+        }else if(selectedKey.equalsIgnoreCase(context.getString(R.string.pref_amount_value_gallon_us))){
+            return context.getString(R.string.pref_amount_label_gallon_us);
+        }
+        return defaultValue;
+    }
+
+    public static String getPreferredCurrencyUnit(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String defaultValue = context.getResources().getString(R.string.pref_currency_default_value);
+        String selectedKey = sharedPref.getString(context.getString(R.string.pref_currency_key), defaultValue);
+
+        return selectedKey;
     }
 
     public static BigDecimal kmToMiles(BigDecimal km) {
