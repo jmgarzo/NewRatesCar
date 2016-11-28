@@ -65,6 +65,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     private AutoCompleteTextView mRefuelFuelType;
     private AutoCompleteTextView mRefuelFuelSubtype;
     private EditText mMileage;
+    private EditText mMileageUnits;
     private EditText mLitres;
     private EditText mGasPrice;
     private EditText mTotalPrice;
@@ -128,6 +129,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mRefuelFuelType = (AutoCompleteTextView) view.findViewById(R.id.autocomplete_refuel_fuel_type);
         mRefuelFuelSubtype = (AutoCompleteTextView) view.findViewById(R.id.autocomplete_refuel_fuel_subtype);
         mMileage = (EditText) view.findViewById(R.id.input_refuel_mileage);
+        mMileageUnits = (EditText) view.findViewById(R.id.input_refuel_mileage_unit);
         mLitres = (EditText) view.findViewById(R.id.input_refuel_litres);
         mGasPrice = (EditText) view.findViewById(R.id.input_refuel_gas_price);
         mTotalPrice = (EditText) view.findViewById(R.id.input_refuel_total_price);
@@ -141,6 +143,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mGasStation = (EditText) view.findViewById(R.id.input_refuel_gas_station);
         mAdditionalInf = (EditText) view.findViewById(R.id.input_refuel_additional_information);
 
+        mMileageUnits.setText(Utility.getPreferredMileageUnit(getContext()));
 
         initialValuesVehicleName();
         initialValuesFuelType();
