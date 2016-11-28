@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.jmgarzo.newratescar.R;
 
-import static java.lang.Float.parseFloat;
+import java.math.BigDecimal;
 
 
 /**
@@ -14,6 +14,11 @@ import static java.lang.Float.parseFloat;
  */
 
 public class Utility {
+
+    private final static BigDecimal KM_PER_MILE = new BigDecimal(1.609344d);
+    private final static BigDecimal LITRES_PER_UK_GALLON =  new BigDecimal(4.5460902819948d);
+    private final static BigDecimal LITRES_PER_US_GALLON = new BigDecimal(3.785411784d);
+
     public static int getImagefromIdClass(Context context, Long idClass) {
         String vehicleClassName = ProviderUtilities.getVehicleClassName(context, idClass);
         if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.car_class_db))) {
@@ -38,11 +43,11 @@ public class Utility {
         }
     }
 
-    public static Float getFloatNoNull (String sValue){
+    public static Double getDoubleNoNull (String sValue){
         if(null == sValue || sValue.equalsIgnoreCase("")){
             sValue = "0";
         }
-        return parseFloat(sValue);
+        return Double.valueOf(sValue);
     }
 
     public static Integer getIntegerNoNull (String sValue){
@@ -72,4 +77,88 @@ public class Utility {
         return defaultValue;
 
     }
+
+    public static BigDecimal kmToMiles(BigDecimal km) {
+        return km.divide(KM_PER_MILE, 15, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal milesToKm(BigDecimal millas) {
+        return (millas.multiply(KM_PER_MILE)).setScale(15, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal litresToUSGallons(BigDecimal litres) {
+        return litres.divide(LITRES_PER_US_GALLON, 15, BigDecimal.ROUND_HALF_UP).setScale(15, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal USGallonsToLitrs(BigDecimal galonesUS) {
+        return (galonesUS.multiply(LITRES_PER_US_GALLON)).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal litresToUKGallons(BigDecimal litros) {
+        return litros.divide(LITRES_PER_UK_GALLON, 15, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal UKGallonsToLitres(BigDecimal galonesUK) {
+        return (galonesUK.multiply(LITRES_PER_UK_GALLON)).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal precioPorLitroToPrecioPorGalonUS(BigDecimal precioPorLitro) {
+        return (precioPorLitro.multiply(LITRES_PER_US_GALLON)).setScale(3, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal precioPorGalonUSToPrecioPorLitro(BigDecimal precioPorGalonUS) {
+        return (precioPorGalonUS.divide(LITRES_PER_US_GALLON, 15, BigDecimal.ROUND_HALF_UP)).setScale(3, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal precioPorLitroToPrecioPorGalonUK(BigDecimal precioPorLitro) {
+        return (precioPorLitro.multiply(LITRES_PER_UK_GALLON)).setScale(3, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal precioPorGalonUKToPrecioPorLitro(BigDecimal precioPorGalonUK) {
+        return (precioPorGalonUK.divide(LITRES_PER_UK_GALLON, 15, BigDecimal.ROUND_HALF_UP).setScale(3, BigDecimal.ROUND_HALF_UP));
+    }
+
+    public static BigDecimal litros100ToMpgUS(BigDecimal litrosALos100) {
+        BigDecimal resultado = BigDecimal.ZERO;
+        if (null != litrosALos100 && (litrosALos100.compareTo(BigDecimal.ZERO) != 0)) {
+            resultado = new BigDecimal(235.215).divide(litrosALos100, 15, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+        }
+        return resultado;
+
+    }
+
+    public static BigDecimal mpgUSToLitros100(BigDecimal mpgUS) {
+        BigDecimal resultado = BigDecimal.ZERO;
+        if (null != mpgUS && (mpgUS.compareTo(BigDecimal.ZERO) != 0)) {
+            resultado = new BigDecimal(235.215).divide(mpgUS, 15, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+        }
+        return resultado;
+    }
+
+    public static BigDecimal litros100ToMpgImp(BigDecimal litrosALos100) {
+        BigDecimal resultado = BigDecimal.ZERO;
+        if (null != litrosALos100 && (litrosALos100.compareTo(BigDecimal.ZERO) != 0)) {
+            resultado = new BigDecimal(282.481).divide(litrosALos100, 15, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+        }
+        return resultado;
+    }
+
+    public static BigDecimal mpgImpToLitros100(BigDecimal mpgImp) {
+        BigDecimal resultado = BigDecimal.ZERO;
+        if (null != mpgImp && (mpgImp.compareTo(BigDecimal.ZERO) != 0)) {
+            resultado = new BigDecimal(282.481).divide(mpgImp, 15, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+        }
+        return resultado;
+    }
+
+
+    public static BigDecimal RedondearSinDecimales(BigDecimal valor) {
+        return valor.setScale(0, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static BigDecimal RedondearDecimales(BigDecimal valor, int decimales) {
+        return valor.setScale(decimales, BigDecimal.ROUND_HALF_UP);
+    }
+
+
 }

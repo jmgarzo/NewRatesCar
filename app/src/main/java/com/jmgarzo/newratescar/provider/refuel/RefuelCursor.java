@@ -227,8 +227,8 @@ public class RefuelCursor extends AbstractCursor implements RefuelModel {
      * Get the {@code refuel_litres} value.
      */
     @Override
-    public float getRefuelLitres() {
-        Float res = getFloatOrNull(RefuelColumns.REFUEL_LITRES);
+    public double getRefuelLitres() {
+        Double res = getDoubleOrNull(RefuelColumns.REFUEL_LITRES);
         if (res == null)
             throw new NullPointerException("The value of 'refuel_litres' in the database was null, which is not allowed according to the model definition");
         return res;
@@ -238,8 +238,8 @@ public class RefuelCursor extends AbstractCursor implements RefuelModel {
      * Get the {@code refuel_gas_price} value.
      */
     @Override
-    public float getRefuelGasPrice() {
-        Float res = getFloatOrNull(RefuelColumns.REFUEL_GAS_PRICE);
+    public double getRefuelGasPrice() {
+        Double res = getDoubleOrNull(RefuelColumns.REFUEL_GAS_PRICE);
         if (res == null)
             throw new NullPointerException("The value of 'refuel_gas_price' in the database was null, which is not allowed according to the model definition");
         return res;
@@ -249,8 +249,8 @@ public class RefuelCursor extends AbstractCursor implements RefuelModel {
      * Get the {@code refuel_total_price} value.
      */
     @Override
-    public float getRefuelTotalPrice() {
-        Float res = getFloatOrNull(RefuelColumns.REFUEL_TOTAL_PRICE);
+    public double getRefuelTotalPrice() {
+        Double res = getDoubleOrNull(RefuelColumns.REFUEL_TOTAL_PRICE);
         if (res == null)
             throw new NullPointerException("The value of 'refuel_total_price' in the database was null, which is not allowed according to the model definition");
         return res;
@@ -317,8 +317,8 @@ public class RefuelCursor extends AbstractCursor implements RefuelModel {
      */
     @Nullable
     @Override
-    public Float getAverageSpeed() {
-        Float res = getFloatOrNull(RefuelColumns.AVERAGE_SPEED);
+    public Double getAverageSpeed() {
+        Double res = getDoubleOrNull(RefuelColumns.AVERAGE_SPEED);
         return res;
     }
 
@@ -326,8 +326,8 @@ public class RefuelCursor extends AbstractCursor implements RefuelModel {
      * Get the {@code average_consumption} value.
      */
     @Override
-    public float getAverageConsumption() {
-        Float res = getFloatOrNull(RefuelColumns.AVERAGE_CONSUMPTION);
+    public double getAverageConsumption() {
+        Double res = getDoubleOrNull(RefuelColumns.AVERAGE_CONSUMPTION);
         if (res == null)
             throw new NullPointerException("The value of 'average_consumption' in the database was null, which is not allowed according to the model definition");
         return res;

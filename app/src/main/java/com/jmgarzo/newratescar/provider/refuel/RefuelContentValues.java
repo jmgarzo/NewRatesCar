@@ -1,15 +1,15 @@
 package com.jmgarzo.newratescar.provider.refuel;
 
 // @formatter:off
-import java.util.Date;
-
-import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.jmgarzo.newratescar.provider.base.AbstractContentValues;
+
+import java.util.Date;
 
 /**
  * Content values wrapper for the {@code refuel} table.
@@ -83,19 +83,19 @@ public class RefuelContentValues extends AbstractContentValues {
     }
 
 
-    public RefuelContentValues putRefuelLitres(float value) {
+    public RefuelContentValues putRefuelLitres(double value) {
         mContentValues.put(RefuelColumns.REFUEL_LITRES, value);
         return this;
     }
 
 
-    public RefuelContentValues putRefuelGasPrice(float value) {
+    public RefuelContentValues putRefuelGasPrice(double value) {
         mContentValues.put(RefuelColumns.REFUEL_GAS_PRICE, value);
         return this;
     }
 
 
-    public RefuelContentValues putRefuelTotalPrice(float value) {
+    public RefuelContentValues putRefuelTotalPrice(double value) {
         mContentValues.put(RefuelColumns.REFUEL_TOTAL_PRICE, value);
         return this;
     }
@@ -131,7 +131,7 @@ public class RefuelContentValues extends AbstractContentValues {
     }
 
 
-    public RefuelContentValues putAverageSpeed(@Nullable Float value) {
+    public RefuelContentValues putAverageSpeed(@Nullable Double value) {
         mContentValues.put(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
@@ -141,7 +141,7 @@ public class RefuelContentValues extends AbstractContentValues {
         return this;
     }
 
-    public RefuelContentValues putAverageConsumption(float value) {
+    public RefuelContentValues putAverageConsumption(double value) {
         mContentValues.put(RefuelColumns.AVERAGE_CONSUMPTION, value);
         return this;
     }

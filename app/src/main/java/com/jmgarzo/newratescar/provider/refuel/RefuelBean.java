@@ -20,16 +20,16 @@ public class RefuelBean implements RefuelModel {
     private long mRefuelFuelSubtype;
     private int mRefuelMileage;
     private int mRefuelTripOdometer;
-    private float mRefuelLitres;
-    private float mRefuelGasPrice;
-    private float mRefuelTotalPrice;
+    private double mRefuelLitres;
+    private double mRefuelGasPrice;
+    private double mRefuelTotalPrice;
     private boolean mIsFull;
     private boolean mIsTrailer;
     private boolean mIsRoofRack;
     private int mRouteType;
     private int mDrivingStyle;
-    private Float mAverageSpeed;
-    private float mAverageConsumption;
+    private Double mAverageSpeed;
+    private double mAverageConsumption;
     private String mPaymentType;
     private String mGasStation;
     private String mRefuelAdditionalInformation;
@@ -147,14 +147,14 @@ public class RefuelBean implements RefuelModel {
      * Get the {@code refuel_litres} value.
      */
     @Override
-    public float getRefuelLitres() {
+    public double getRefuelLitres() {
         return mRefuelLitres;
     }
 
     /**
      * Set the {@code refuel_litres} value.
      */
-    public void setRefuelLitres(float refuelLitres) {
+    public void setRefuelLitres(double refuelLitres) {
         mRefuelLitres = refuelLitres;
     }
 
@@ -162,14 +162,14 @@ public class RefuelBean implements RefuelModel {
      * Get the {@code refuel_gas_price} value.
      */
     @Override
-    public float getRefuelGasPrice() {
+    public double getRefuelGasPrice() {
         return mRefuelGasPrice;
     }
 
     /**
      * Set the {@code refuel_gas_price} value.
      */
-    public void setRefuelGasPrice(float refuelGasPrice) {
+    public void setRefuelGasPrice(double refuelGasPrice) {
         mRefuelGasPrice = refuelGasPrice;
     }
 
@@ -177,14 +177,14 @@ public class RefuelBean implements RefuelModel {
      * Get the {@code refuel_total_price} value.
      */
     @Override
-    public float getRefuelTotalPrice() {
+    public double getRefuelTotalPrice() {
         return mRefuelTotalPrice;
     }
 
     /**
      * Set the {@code refuel_total_price} value.
      */
-    public void setRefuelTotalPrice(float refuelTotalPrice) {
+    public void setRefuelTotalPrice(double refuelTotalPrice) {
         mRefuelTotalPrice = refuelTotalPrice;
     }
 
@@ -269,7 +269,7 @@ public class RefuelBean implements RefuelModel {
      */
     @Nullable
     @Override
-    public Float getAverageSpeed() {
+    public Double getAverageSpeed() {
         return mAverageSpeed;
     }
 
@@ -277,7 +277,7 @@ public class RefuelBean implements RefuelModel {
      * Set the {@code average_speed} value.
      * Can be {@code null}.
      */
-    public void setAverageSpeed(@Nullable Float averageSpeed) {
+    public void setAverageSpeed(@Nullable Double averageSpeed) {
         mAverageSpeed = averageSpeed;
     }
 
@@ -285,14 +285,14 @@ public class RefuelBean implements RefuelModel {
      * Get the {@code average_consumption} value.
      */
     @Override
-    public float getAverageConsumption() {
+    public double getAverageConsumption() {
         return mAverageConsumption;
     }
 
     /**
      * Set the {@code average_consumption} value.
      */
-    public void setAverageConsumption(float averageConsumption) {
+    public void setAverageConsumption(double averageConsumption) {
         mAverageConsumption = averageConsumption;
     }
 
@@ -367,7 +367,7 @@ public class RefuelBean implements RefuelModel {
      * Instantiate a new RefuelBean with specified values.
      */
     @NonNull
-    public static RefuelBean newInstance(long id, long vehicleId, @NonNull Date refuelDate, long refuelFuelType, long refuelFuelSubtype, int refuelMileage, int refuelTripOdometer, float refuelLitres, float refuelGasPrice, float refuelTotalPrice, boolean isFull, boolean isTrailer, boolean isRoofRack, int routeType, int drivingStyle, @Nullable Float averageSpeed, float averageConsumption, @Nullable String paymentType, @Nullable String gasStation, @Nullable String refuelAdditionalInformation) {
+    public static RefuelBean newInstance(long id, long vehicleId, @NonNull Date refuelDate, long refuelFuelType, long refuelFuelSubtype, int refuelMileage, int refuelTripOdometer, double refuelLitres, double refuelGasPrice, double refuelTotalPrice, boolean isFull, boolean isTrailer, boolean isRoofRack, int routeType, int drivingStyle, @Nullable Double averageSpeed, double averageConsumption, @Nullable String paymentType, @Nullable String gasStation, @Nullable String refuelAdditionalInformation) {
         if (refuelDate == null) throw new IllegalArgumentException("refuelDate must not be null");
         RefuelBean res = new RefuelBean();
         res.mId = id;
@@ -486,7 +486,7 @@ public class RefuelBean implements RefuelModel {
         /**
          * Set the {@code refuel_litres} value.
          */
-        public Builder refuelLitres(float refuelLitres) {
+        public Builder refuelLitres(double refuelLitres) {
             mRes.mRefuelLitres = refuelLitres;
             return this;
         }
@@ -494,7 +494,7 @@ public class RefuelBean implements RefuelModel {
         /**
          * Set the {@code refuel_gas_price} value.
          */
-        public Builder refuelGasPrice(float refuelGasPrice) {
+        public Builder refuelGasPrice(double refuelGasPrice) {
             mRes.mRefuelGasPrice = refuelGasPrice;
             return this;
         }
@@ -502,7 +502,7 @@ public class RefuelBean implements RefuelModel {
         /**
          * Set the {@code refuel_total_price} value.
          */
-        public Builder refuelTotalPrice(float refuelTotalPrice) {
+        public Builder refuelTotalPrice(double refuelTotalPrice) {
             mRes.mRefuelTotalPrice = refuelTotalPrice;
             return this;
         }
@@ -551,7 +551,7 @@ public class RefuelBean implements RefuelModel {
          * Set the {@code average_speed} value.
          * Can be {@code null}.
          */
-        public Builder averageSpeed(@Nullable Float averageSpeed) {
+        public Builder averageSpeed(@Nullable Double averageSpeed) {
             mRes.mAverageSpeed = averageSpeed;
             return this;
         }
@@ -559,7 +559,7 @@ public class RefuelBean implements RefuelModel {
         /**
          * Set the {@code average_consumption} value.
          */
-        public Builder averageConsumption(float averageConsumption) {
+        public Builder averageConsumption(double averageConsumption) {
             mRes.mAverageConsumption = averageConsumption;
             return this;
         }

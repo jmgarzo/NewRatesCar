@@ -54,17 +54,17 @@ public interface RefuelModel extends BaseModel {
     /**
      * Get the {@code refuel_litres} value.
      */
-    float getRefuelLitres();
+    double getRefuelLitres();
 
     /**
      * Get the {@code refuel_gas_price} value.
      */
-    float getRefuelGasPrice();
+    double getRefuelGasPrice();
 
     /**
      * Get the {@code refuel_total_price} value.
      */
-    float getRefuelTotalPrice();
+    double getRefuelTotalPrice();
 
     /**
      * Get the {@code is_full} value.
@@ -96,12 +96,12 @@ public interface RefuelModel extends BaseModel {
      * Can be {@code null}.
      */
     @Nullable
-    Float getAverageSpeed();
+    Double getAverageSpeed();
 
     /**
      * Get the {@code average_consumption} value.
      */
-    float getAverageConsumption();
+    double getAverageConsumption();
 
     /**
      * Get the {@code payment_type} value.

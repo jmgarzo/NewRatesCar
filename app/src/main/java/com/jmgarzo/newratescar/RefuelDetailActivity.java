@@ -209,9 +209,9 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
                     .putRefuelMileage(Utility.getIntegerNoNull(mMileage.getText().toString()))
                     //Todo: Calculate trip odometer
                     .putRefuelTripOdometer(0)
-                    .putRefuelLitres(Utility.getFloatNoNull(mLitres.getText().toString()))
-                    .putRefuelGasPrice(Utility.getFloatNoNull(mGasPrice.getText().toString()))
-                    .putRefuelTotalPrice(Utility.getFloatNoNull(mTotalPrice.getText().toString()))
+                    .putRefuelLitres(Utility.getDoubleNoNull(mLitres.getText().toString()))
+                    .putRefuelGasPrice(Utility.getDoubleNoNull(mGasPrice.getText().toString()))
+                    .putRefuelTotalPrice(Utility.getDoubleNoNull(mTotalPrice.getText().toString()))
                     .putIsFull(mRefuelFullTank.isChecked())
                     .putIsTrailer(mIsTrailer.isChecked())
                     .putIsRoofRack(mIsRoofRack.isChecked())

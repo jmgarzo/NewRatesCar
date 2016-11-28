@@ -17,6 +17,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
@@ -104,6 +105,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         Bundle argument = getArguments();
         if (argument != null) {
             mRefuelId = argument.getLong(RefuelColumns._ID);
+
             if (mRefuelId != -1) {
                 isNew = false;
             }
@@ -191,19 +193,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                         String name = ProviderUtilities.getVehicleName(getActivity(), data.getLong(ProviderUtilities.COL_REFUEL_VEHICLE_ID));
                         mVehicleName.setText(name);
 
-//                    Date date = new Date();
-//                    String sDate = data.getString(ProviderUtilities.COL_REFUEL_DATE);
-//                    DateFormat iso8601Format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-//                    try {
-//
-//                        date = iso8601Format.parse(sDate);
-//                    } catch (ParseException e) {
-//                        Log.e("ParseDate", "Parsing ISO8601 datetime failed", e);
-//                    }
 
-
-//                    String date =
-//
                         Calendar cal = new GregorianCalendar();
                         java.util.Date refuelDate = new Date(
                                 data.getLong(ProviderUtilities.COL_REFUEL_DATE));
@@ -220,9 +210,9 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                         mRefuelFuelType.setText(ProviderUtilities.getVehicleFuelTypeName(getActivity(), data.getLong(ProviderUtilities.COL_REFUEL_FUEL_TYPE)));
                         mRefuelFuelSubtype.setText(ProviderUtilities.getVehicleFuelSubtypeName(getActivity(), data.getLong(ProviderUtilities.COL_REFUEL_FUEL_SUBTYPE)));
                         mMileage.setText(data.getString(ProviderUtilities.COL_REFUEL_MILEAGE));
-                        mLitres.setText(Float.toString(data.getFloat(ProviderUtilities.COL_REFUEL_LITRES)));
-                        mGasPrice.setText(Float.toString(data.getFloat(ProviderUtilities.COL_REFUEL_GAS_PRICE)));
-                        mTotalPrice.setText(Float.toString(data.getFloat(ProviderUtilities.COL_REFUEL_TOTAL_PRICE)));
+                        mLitres.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_LITRES)));
+                        mGasPrice.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_GAS_PRICE)));
+                        mTotalPrice.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_TOTAL_PRICE)));
                         boolean isRoofRack = false;
                         if (data.getInt(ProviderUtilities.COL_REFUEL_IS_ROOF_RACK) == 1) {
                             isRoofRack = true;
@@ -237,8 +227,8 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
 
                         mSeekBarRouteType.setProgress(data.getInt(ProviderUtilities.COL_REFUEL_ROUTE_TYPE));
                         mSeekBarDrivingStyle.setProgress(data.getInt(ProviderUtilities.COL_REFUEL_DRIVING_STYLE));
-                        mAverageSpeed.setText(Float.toString(data.getFloat(ProviderUtilities.COL_REFUEL_AVERAGE_SPEED)));
-                        mAverageConsumption.setText(Float.toString(data.getFloat(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION)));
+                        mAverageSpeed.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_AVERAGE_SPEED)));
+                        mAverageConsumption.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION)));
                         mPaymentType.setText(data.getString(ProviderUtilities.COL_REFUEL_PAYMENT_TYPE));
                         mGasStation.setText(data.getString(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION));
                         mAdditionalInf.setText(data.getString(ProviderUtilities.COL_REFUEL_ADDITIONAL_INFORMATION));
@@ -276,10 +266,23 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mVehicleNameAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mVehicleNameList);
         mVehicleName.setAdapter(mVehicleNameAdapter);
-        mVehicleName.setText(mVehicleNameAdapter.getItem(1));
 
 
-        mVehicleName.setAdapter(mVehicleNameAdapter);
+
+        mVehicleName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(isNew){
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
 
     }

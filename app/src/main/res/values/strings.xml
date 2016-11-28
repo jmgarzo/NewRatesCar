@@ -276,8 +276,8 @@
     <string name="pref_distance_value_kilometre">km</string>
     <string name="pref_distance_value_mile">mile</string>
     <string name="pref_distance_title">Distance</string>
-    <string name="title_activity_refuels">RefuelsActivity</string>
-    <string name="title_activity_refuel_detail">RefuelDetailActivity</string>
+    <string name="title_activity_refuels">Refuels</string>
+    <string name="title_activity_refuel_detail">Refuel</string>
 
 
 </resources>

@@ -811,32 +811,32 @@ public class RefuelSelection extends AbstractSelection<RefuelSelection> {
         return this;
     }
 
-    public RefuelSelection refuelLitres(float... value) {
+    public RefuelSelection refuelLitres(double... value) {
         addEquals(RefuelColumns.REFUEL_LITRES, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelLitresNot(float... value) {
+    public RefuelSelection refuelLitresNot(double... value) {
         addNotEquals(RefuelColumns.REFUEL_LITRES, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelLitresGt(float value) {
+    public RefuelSelection refuelLitresGt(double value) {
         addGreaterThan(RefuelColumns.REFUEL_LITRES, value);
         return this;
     }
 
-    public RefuelSelection refuelLitresGtEq(float value) {
+    public RefuelSelection refuelLitresGtEq(double value) {
         addGreaterThanOrEquals(RefuelColumns.REFUEL_LITRES, value);
         return this;
     }
 
-    public RefuelSelection refuelLitresLt(float value) {
+    public RefuelSelection refuelLitresLt(double value) {
         addLessThan(RefuelColumns.REFUEL_LITRES, value);
         return this;
     }
 
-    public RefuelSelection refuelLitresLtEq(float value) {
+    public RefuelSelection refuelLitresLtEq(double value) {
         addLessThanOrEquals(RefuelColumns.REFUEL_LITRES, value);
         return this;
     }
@@ -851,32 +851,32 @@ public class RefuelSelection extends AbstractSelection<RefuelSelection> {
         return this;
     }
 
-    public RefuelSelection refuelGasPrice(float... value) {
+    public RefuelSelection refuelGasPrice(double... value) {
         addEquals(RefuelColumns.REFUEL_GAS_PRICE, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelGasPriceNot(float... value) {
+    public RefuelSelection refuelGasPriceNot(double... value) {
         addNotEquals(RefuelColumns.REFUEL_GAS_PRICE, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelGasPriceGt(float value) {
+    public RefuelSelection refuelGasPriceGt(double value) {
         addGreaterThan(RefuelColumns.REFUEL_GAS_PRICE, value);
         return this;
     }
 
-    public RefuelSelection refuelGasPriceGtEq(float value) {
+    public RefuelSelection refuelGasPriceGtEq(double value) {
         addGreaterThanOrEquals(RefuelColumns.REFUEL_GAS_PRICE, value);
         return this;
     }
 
-    public RefuelSelection refuelGasPriceLt(float value) {
+    public RefuelSelection refuelGasPriceLt(double value) {
         addLessThan(RefuelColumns.REFUEL_GAS_PRICE, value);
         return this;
     }
 
-    public RefuelSelection refuelGasPriceLtEq(float value) {
+    public RefuelSelection refuelGasPriceLtEq(double value) {
         addLessThanOrEquals(RefuelColumns.REFUEL_GAS_PRICE, value);
         return this;
     }
@@ -891,32 +891,32 @@ public class RefuelSelection extends AbstractSelection<RefuelSelection> {
         return this;
     }
 
-    public RefuelSelection refuelTotalPrice(float... value) {
+    public RefuelSelection refuelTotalPrice(double... value) {
         addEquals(RefuelColumns.REFUEL_TOTAL_PRICE, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelTotalPriceNot(float... value) {
+    public RefuelSelection refuelTotalPriceNot(double... value) {
         addNotEquals(RefuelColumns.REFUEL_TOTAL_PRICE, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection refuelTotalPriceGt(float value) {
+    public RefuelSelection refuelTotalPriceGt(double value) {
         addGreaterThan(RefuelColumns.REFUEL_TOTAL_PRICE, value);
         return this;
     }
 
-    public RefuelSelection refuelTotalPriceGtEq(float value) {
+    public RefuelSelection refuelTotalPriceGtEq(double value) {
         addGreaterThanOrEquals(RefuelColumns.REFUEL_TOTAL_PRICE, value);
         return this;
     }
 
-    public RefuelSelection refuelTotalPriceLt(float value) {
+    public RefuelSelection refuelTotalPriceLt(double value) {
         addLessThan(RefuelColumns.REFUEL_TOTAL_PRICE, value);
         return this;
     }
 
-    public RefuelSelection refuelTotalPriceLtEq(float value) {
+    public RefuelSelection refuelTotalPriceLtEq(double value) {
         addLessThanOrEquals(RefuelColumns.REFUEL_TOTAL_PRICE, value);
         return this;
     }
@@ -1056,32 +1056,32 @@ public class RefuelSelection extends AbstractSelection<RefuelSelection> {
         return this;
     }
 
-    public RefuelSelection averageSpeed(Float... value) {
+    public RefuelSelection averageSpeed(Double... value) {
         addEquals(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
 
-    public RefuelSelection averageSpeedNot(Float... value) {
+    public RefuelSelection averageSpeedNot(Double... value) {
         addNotEquals(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
 
-    public RefuelSelection averageSpeedGt(float value) {
+    public RefuelSelection averageSpeedGt(double value) {
         addGreaterThan(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
 
-    public RefuelSelection averageSpeedGtEq(float value) {
+    public RefuelSelection averageSpeedGtEq(double value) {
         addGreaterThanOrEquals(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
 
-    public RefuelSelection averageSpeedLt(float value) {
+    public RefuelSelection averageSpeedLt(double value) {
         addLessThan(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
 
-    public RefuelSelection averageSpeedLtEq(float value) {
+    public RefuelSelection averageSpeedLtEq(double value) {
         addLessThanOrEquals(RefuelColumns.AVERAGE_SPEED, value);
         return this;
     }
@@ -1096,32 +1096,32 @@ public class RefuelSelection extends AbstractSelection<RefuelSelection> {
         return this;
     }
 
-    public RefuelSelection averageConsumption(float... value) {
+    public RefuelSelection averageConsumption(double... value) {
         addEquals(RefuelColumns.AVERAGE_CONSUMPTION, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection averageConsumptionNot(float... value) {
+    public RefuelSelection averageConsumptionNot(double... value) {
         addNotEquals(RefuelColumns.AVERAGE_CONSUMPTION, toObjectArray(value));
         return this;
     }
 
-    public RefuelSelection averageConsumptionGt(float value) {
+    public RefuelSelection averageConsumptionGt(double value) {
         addGreaterThan(RefuelColumns.AVERAGE_CONSUMPTION, value);
         return this;
     }
 
-    public RefuelSelection averageConsumptionGtEq(float value) {
+    public RefuelSelection averageConsumptionGtEq(double value) {
         addGreaterThanOrEquals(RefuelColumns.AVERAGE_CONSUMPTION, value);
         return this;
     }
 
-    public RefuelSelection averageConsumptionLt(float value) {
+    public RefuelSelection averageConsumptionLt(double value) {
         addLessThan(RefuelColumns.AVERAGE_CONSUMPTION, value);
         return this;
     }
 
-    public RefuelSelection averageConsumptionLtEq(float value) {
+    public RefuelSelection averageConsumptionLtEq(double value) {
         addLessThanOrEquals(RefuelColumns.AVERAGE_CONSUMPTION, value);
         return this;
     }
