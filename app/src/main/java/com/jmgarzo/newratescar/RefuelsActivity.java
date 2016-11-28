@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
+
 public class RefuelsActivity extends AppCompatActivity implements RefuelsFragment.Callback {
 
     @Override
@@ -25,15 +27,17 @@ public class RefuelsActivity extends AppCompatActivity implements RefuelsFragmen
 
             }
         });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
     }
 
     @Override
-    public void onItemSelected(Long vehicleId) {
-//        Intent intent = new Intent(this, VehicleDetailActivity.class);
-//        intent.putExtra(VehicleColumns._ID,vehicleId);
-//        startActivity(intent);
+    public void onItemSelected(Long refuelIdId) {
+        Intent intent = new Intent(this, RefuelDetailActivity.class);
+        intent.putExtra(RefuelColumns._ID,refuelIdId);
+        startActivity(intent);
     }
 
 }

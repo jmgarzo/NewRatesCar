@@ -2,30 +2,39 @@ package com.jmgarzo.newratescar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSeekBar;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jmgarzo.newratescar.Task.SaveRefuel;
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
+import com.jmgarzo.newratescar.Utility.Utility;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelContentValues;
 import com.jmgarzo.newratescar.provider.refuel.RefuelSelection;
-import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import static com.jmgarzo.newratescar.R.id.action_delete;
 
 public class RefuelDetailActivity extends AppCompatActivity implements RefuelDetailFragment.Callback {
 
-    private Long refuelId=null;
+    private final String LOG_TAG = RefuelDetailActivity.class.getSimpleName();
+
+
+    private Long mRefuelId = null;
     private boolean isNew;
     private boolean isDataChanged;
 
@@ -33,8 +42,30 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
 
 
     MaterialBetterSpinner mSpinnerVehicleName;
-    EditText mRefuelDate;
-
+    private TextInputLayout mRefuelLayoutDate;
+    private EditText mRefuelDate;
+    private SwitchCompat mRefuelFullTank;
+    private TextInputLayout mRefuelLayoutFuelType;
+    private AutoCompleteTextView mRefuelFuelType;
+    private TextInputLayout mRefuelLayoutFuelSubtype;
+    private AutoCompleteTextView mRefuelFuelSubtype;
+    private TextInputLayout mLayoutMileage;
+    private EditText mMileage;
+    private TextInputLayout mLayoutLitres;
+    private EditText mLitres;
+    private TextInputLayout mLayoutGasPrice;
+    private EditText mGasPrice;
+    private TextInputLayout mLayoutTotalPrice;
+    private EditText mTotalPrice;
+    private SwitchCompat mIsRoofRack;
+    private SwitchCompat mIsTrailer;
+    private AppCompatSeekBar mSeekBarRouteType;
+    private AppCompatSeekBar mSeekBarDrivingStyle;
+    private EditText mAverageSpeed;
+    private EditText mAverageConsumption;
+    private EditText mPaymentType;
+    private EditText mGasStation;
+    private EditText mAdditionalInf;
 
 
     @Override
@@ -62,16 +93,16 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
 
             RefuelDetailFragment fragment = new RefuelDetailFragment();
 
-            refuelId = getIntent().getLongExtra(RefuelColumns._ID, -1);
-            arguments.putLong(VehicleColumns._ID, refuelId);
+            mRefuelId = getIntent().getLongExtra(RefuelColumns._ID, -1);
+            arguments.putLong(RefuelColumns._ID, mRefuelId);
 
-            if (refuelId == -1) {
+            if (mRefuelId == -1) {
                 isNew = true;
             } else {
                 isNew = false;
             }
 
-            //fragment.setArguments(arguments);
+            fragment.setArguments(arguments);
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.refuel_detail_container, fragment)
@@ -128,72 +159,145 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
         //mInputLayoutVehicleName = (TextInputLayout) findViewById(input_layout_vehicle_name);
 
         mSpinnerVehicleName = (MaterialBetterSpinner) findViewById(R.id.better_spinner_vehicle_name);
+        mRefuelLayoutDate = (TextInputLayout) findViewById(R.id.input_layout_refuel_date);
         mRefuelDate = (EditText) findViewById(R.id.input_refuel_date);
-
-
+        mRefuelFullTank = (SwitchCompat) findViewById(R.id.switch_is_full);
+        mRefuelLayoutFuelType = (TextInputLayout) findViewById(R.id.input_layout_refuel_fuel_type);
+        mRefuelFuelType = (AutoCompleteTextView) findViewById(R.id.autocomplete_refuel_fuel_type);
+        mRefuelLayoutFuelSubtype = (TextInputLayout) findViewById(R.id.input_layout_refuel_fuel_subtype);
+        mRefuelFuelSubtype = (AutoCompleteTextView) findViewById(R.id.autocomplete_refuel_fuel_subtype);
+        mLayoutMileage = (TextInputLayout) findViewById(R.id.input_layout_refuel_mileage);
+        mMileage = (EditText) findViewById(R.id.input_refuel_mileage);
+        mLayoutLitres = (TextInputLayout) findViewById(R.id.input_layout_refuel_litres);
+        mLitres = (EditText) findViewById(R.id.input_refuel_litres);
+        mLayoutGasPrice = (TextInputLayout) findViewById(R.id.input_layout_refuel_gas_price);
+        mGasPrice = (EditText) findViewById(R.id.input_refuel_gas_price);
+        mLayoutTotalPrice = (TextInputLayout) findViewById(R.id.input_layout_refuel_total_price);
+        mTotalPrice = (EditText) findViewById(R.id.input_refuel_total_price);
+        mIsRoofRack = (SwitchCompat) findViewById(R.id.switch_is_roof_rack);
+        mIsTrailer = (SwitchCompat) findViewById(R.id.switch_is_trailer);
+        mSeekBarRouteType = (AppCompatSeekBar) findViewById(R.id.seekbar_route_type);
+        mSeekBarDrivingStyle = (AppCompatSeekBar) findViewById(R.id.seekbar_driving_style);
+        mAverageSpeed = (EditText) findViewById(R.id.input_refuel_average_speed);
+        mAverageConsumption = (EditText) findViewById(R.id.input_refuel_average_consumption);
+        mPaymentType = (EditText) findViewById(R.id.input_refuel_payment_type);
+        mGasStation = (EditText) findViewById(R.id.input_refuel_gas_station);
+        mAdditionalInf = (EditText) findViewById(R.id.input_refuel_additional_information);
         boolean isCorrect = true;
-
-//        String vehicleName = mInputVehicleName.getText().toString();
-//        if (vehicleName.equalsIgnoreCase("")) {
-//            mInputLayoutVehicleName.setErrorEnabled(true);
-//            mInputLayoutVehicleName.setError(getString(R.string.vehicle_name_error));
-//            isCorrect = false;
-//        }
 
 
         String vehicleName = mSpinnerVehicleName.getText().toString();
 
-
-        String sfecha = mRefuelDate.getText().toString();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         GregorianCalendar cal = new GregorianCalendar();
+        String sFecha = mRefuelDate.getText().toString();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
         try {
-            cal.setTime(format.parse(sfecha));
+            cal.setTime(format.parse(sFecha));
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            isCorrect = false;
+            Log.e(LOG_TAG, e.toString());
         }
 
-        Date refuelDate =cal.getGregorianChange();
-        // calendarFecha.getTimeInMillis();
 
-
-        if (isCorrect) {
+        if (isValidateEmptyFields()) {
             RefuelContentValues values = new RefuelContentValues();
-            values.putVehicleId(ProviderUtilities.getVehicleId(this,vehicleName))
-                    .putRefuelDate(refuelDate)
-                    .putRefuelFuelSubtype(ProviderUtilities.getVehicleFuelSubtypeId(this,"carisimo"))
-                    .putRefuelMileage(12)
-                    .putRefuelTripOdometer(14)
-                    .putRefuelLitres(20f)
-                    .putRefuelGasPrice(1f)
-                    .putRefuelTotalPrice(26f)
-                    .putIsFull(false)
-                    .putIsTrailer(false)
-                    .putIsRoofRack(false)
-                    .putRouteType(50)
-                    .putDrivingStyle(50)
-                    .putAverageConsumption(5.5f);
+            values.putVehicleId(ProviderUtilities.getVehicleId(this, vehicleName))
+                    .putRefuelDate(cal.getTimeInMillis())
+                    .putRefuelFuelType(ProviderUtilities.getVehicleFuelTypeId(this, mRefuelFuelType.getText().toString()))
+                    .putRefuelFuelSubtype(ProviderUtilities.getVehicleFuelSubtypeId(this, mRefuelFuelSubtype.getText().toString()))
+                    .putRefuelMileage(Utility.getIntegerNoNull(mMileage.getText().toString()))
+                    //Todo: Calculate trip odometer
+                    .putRefuelTripOdometer(0)
+                    .putRefuelLitres(Utility.getFloatNoNull(mLitres.getText().toString()))
+                    .putRefuelGasPrice(Utility.getFloatNoNull(mGasPrice.getText().toString()))
+                    .putRefuelTotalPrice(Utility.getFloatNoNull(mTotalPrice.getText().toString()))
+                    .putIsFull(mRefuelFullTank.isChecked())
+                    .putIsTrailer(mIsTrailer.isChecked())
+                    .putIsRoofRack(mIsRoofRack.isChecked())
+                    .putRouteType(mSeekBarRouteType.getProgress())
+                    .putDrivingStyle(mSeekBarDrivingStyle.getProgress())
+                    //Todo: Calculate averageConsumption
+                    .putAverageConsumption(0);
 
 
-
-            if (isNew) {
-                getContentResolver().insert(values.uri(), values.values());
-            } else {
-                getContentResolver().update(values.uri(),
-                        values.values(),
-                        RefuelColumns._ID + "= ?",
-                        new String[]{refuelId.toString()});
-            }
+            SaveRefuel saveRefuel = new SaveRefuel(this, mRefuelId);
+            saveRefuel.execute(values);
 
             Intent intent = new Intent(this, RefuelsActivity.class);
             startActivity(intent);
-        }else{
-//            mInputVehicleName.requestFocus();
+        } else {
+            isCorrect = false;
+            mSpinnerVehicleName.requestFocus();
         }
+
         return isCorrect;
     }
 
+    private boolean isValidateEmptyFields() {
+        boolean result = true;
+        ArrayList<String> errors = new ArrayList<>();
+        mRefuelLayoutFuelType.setErrorEnabled(false);
+        mLayoutMileage.setErrorEnabled(false);
+        mLayoutLitres.setErrorEnabled(false);
+        mLayoutGasPrice.setErrorEnabled(false);
+        mLayoutTotalPrice.setErrorEnabled(false);
+
+
+        if (Utility.isEmptyOrNull(mSpinnerVehicleName.getText().toString())) {
+            mSpinnerVehicleName.setError(getString(R.string.refuel_vehicle_name_error));
+            errors.add(getString(R.string.refuel_vehicle_name_error));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mRefuelDate.getText().toString())) {
+            mRefuelLayoutDate.setErrorEnabled(true);
+            mRefuelLayoutDate.setError(getString(R.string.refuel_error_date));
+            errors.add(getString(R.string.refuel_error_date));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mRefuelFuelType.getText().toString())) {
+            mRefuelLayoutFuelType.setErrorEnabled(true);
+            mRefuelLayoutFuelType.setError(getString(R.string.refuel_error_fuel_type));
+            errors.add((getString(R.string.refuel_error_fuel_type)));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mMileage.getText().toString())) {
+            mLayoutMileage.setErrorEnabled(true);
+            mLayoutMileage.setError(getString(R.string.refuel_error_mileage));
+            errors.add((getString(R.string.refuel_error_mileage)));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mLitres.getText().toString())) {
+            mLayoutLitres.setErrorEnabled(true);
+            mLayoutLitres.setError(getString(R.string.refuel_error_litres));
+            errors.add(getString(R.string.refuel_error_litres));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mLitres.getText().toString())) {
+            mLayoutLitres.setErrorEnabled(true);
+            mLayoutLitres.setError(getString(R.string.refuel_error_litres));
+            errors.add(getString(R.string.refuel_error_litres));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mGasPrice.getText().toString())) {
+            mLayoutGasPrice.setErrorEnabled(true);
+            mLayoutGasPrice.setError(getString(R.string.refuel_error_gas_price));
+            errors.add(getString(R.string.refuel_error_gas_price));
+            result = false;
+        }
+        if (Utility.isEmptyOrNull(mTotalPrice.getText().toString())) {
+            mLayoutTotalPrice.setErrorEnabled(true);
+            mLayoutTotalPrice.setError(getString(R.string.refuel_error_total_price));
+            errors.add(getString(R.string.refuel_error_total_price));
+            result = false;
+        }
+
+//        for(String error:errors){
+//            showToast(error);
+//
+//        }
+        return result;
+    }
 
 
     private void showToast(int resId) {
@@ -209,15 +313,15 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
         mToast.show();
     }
 
-    void delete(){
+    void delete() {
         RefuelSelection where = new RefuelSelection();
-        where.id(refuelId);
+        where.id(mRefuelId);
         where.delete(this);
     }
 
 
     @Override
     public void onDataChanged() {
-        isDataChanged=true;
+        isDataChanged = true;
     }
 }

@@ -30,7 +30,7 @@ public class FuelTypeColumns implements BaseColumns {
     /**
      * Fuel Type Name
      */
-    public static final String FUEL_TYPE_NAME = "fuel_type_name";
+    public static final String FUEL_TYPE_NAME = "fuel_type__fuel_type_name";
 
 
     public static final String DEFAULT_ORDER = null;

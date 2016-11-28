@@ -124,6 +124,42 @@
     <!--refuel Detail-->
     <string name="vehicle_name_hint">Select a vehicle</string>
     <string name="vehicle_date">Refuel Date</string>
+    <string name="refuel_fuel_type">Fuel type</string>
+    <string name="refuel_fuel_subtype">Fuel sort</string>
+    <string name="refuel_mileage">Odometer</string>
+    <string name="refuel_litres">Quantity</string>
+    <string name="refuel_gas_price">Fuel Price</string>
+    <string name="refuel_total_price">Total Price</string>
+    <string name="refuel_is_full">Fully charged fuel tank</string>
+    <string name="refuel_is_roof_rack">Roof rack </string>
+    <string name="refuel_is_trailer">Trailer </string>
+    <string name="refuel_motorway">Motorway</string>
+    <string name="refuel_city">City</string>
+    <string name="refuel_economy">Economy</string>
+    <string name="refuel_sport">Sport</string>
+    <string name="refuel_average_speed">Average speed</string>
+    <string name="refuel_average_consumption">Average consumption</string>
+    <string name="refuel_payment_type">Payment type</string>
+    <string name="refuel_gas_station">Gas Station</string>
+    <string name="refuel_additional_information">Additional information</string>
+
+    <string name="refuel_vehicle_name_error">Select a vehicle is required</string>
+    <string name="refuel_error_date">Date is required</string>
+    <string name="refuel_error_fuel_type">Fuel Type is required</string>
+    <string name="refuel_error_mileage">Odometer is required</string>
+    <string name="refuel_error_litres">Quantity is required</string>
+    <string name="refuel_error_gas_price">Gas price is required</string>
+    <string name="refuel_error_total_price">Total price is required</string>
+
+
+
+
+
+
+
+
+
+
 
 
     <!--Dialog strings-->

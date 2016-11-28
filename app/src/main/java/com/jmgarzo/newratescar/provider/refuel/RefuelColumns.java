@@ -31,6 +31,8 @@ public class RefuelColumns implements BaseColumns {
 
     public static final String REFUEL_DATE = "refuel_date";
 
+    public static final String REFUEL_FUEL_TYPE = "refuel_fuel_type";
+
     public static final String REFUEL_FUEL_SUBTYPE = "refuel_fuel_subtype";
 
     public static final String REFUEL_MILEAGE = "refuel_mileage";
@@ -70,6 +72,7 @@ public class RefuelColumns implements BaseColumns {
             _ID,
             VEHICLE_ID,
             REFUEL_DATE,
+            REFUEL_FUEL_TYPE,
             REFUEL_FUEL_SUBTYPE,
             REFUEL_MILEAGE,
             REFUEL_TRIP_ODOMETER,
@@ -93,6 +96,7 @@ public class RefuelColumns implements BaseColumns {
         for (String c : projection) {
             if (c.equals(VEHICLE_ID) || c.contains("." + VEHICLE_ID)) return true;
             if (c.equals(REFUEL_DATE) || c.contains("." + REFUEL_DATE)) return true;
+            if (c.equals(REFUEL_FUEL_TYPE) || c.contains("." + REFUEL_FUEL_TYPE)) return true;
             if (c.equals(REFUEL_FUEL_SUBTYPE) || c.contains("." + REFUEL_FUEL_SUBTYPE)) return true;
             if (c.equals(REFUEL_MILEAGE) || c.contains("." + REFUEL_MILEAGE)) return true;
             if (c.equals(REFUEL_TRIP_ODOMETER) || c.contains("." + REFUEL_TRIP_ODOMETER)) return true;
@@ -114,5 +118,6 @@ public class RefuelColumns implements BaseColumns {
     }
 
     public static final String PREFIX_VEHICLE = TABLE_NAME + "__" + VehicleColumns.TABLE_NAME;
+    public static final String PREFIX_FUEL_TYPE = TABLE_NAME + "__" + FuelTypeColumns.TABLE_NAME;
     public static final String PREFIX_FUEL_SUBTYPE = TABLE_NAME + "__" + FuelSubtypeColumns.TABLE_NAME;
 }

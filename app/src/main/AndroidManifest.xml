@@ -54,7 +54,12 @@
         <activity
             android:name=".RefuelsActivity"
             android:label="@string/title_activity_refuels"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.MainActivity" />
+        </activity>
         <activity
             android:name=".RefuelDetailActivity"
             android:label="@string/title_activity_refuel_detail"

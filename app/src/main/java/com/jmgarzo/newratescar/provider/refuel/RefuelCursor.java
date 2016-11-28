@@ -12,6 +12,7 @@ import com.jmgarzo.newratescar.provider.vehicle.*;
 import com.jmgarzo.newratescar.provider.vehicleclass.*;
 import com.jmgarzo.newratescar.provider.fueltype.*;
 import com.jmgarzo.newratescar.provider.make.*;
+import com.jmgarzo.newratescar.provider.fueltype.*;
 import com.jmgarzo.newratescar.provider.fuelsubtype.*;
 
 /**
@@ -155,6 +156,27 @@ public class RefuelCursor extends AbstractCursor implements RefuelModel {
         Date res = getDateOrNull(RefuelColumns.REFUEL_DATE);
         if (res == null)
             throw new NullPointerException("The value of 'refuel_date' in the database was null, which is not allowed according to the model definition");
+        return res;
+    }
+
+    /**
+     * Get the {@code refuel_fuel_type} value.
+     */
+    @Override
+    public long getRefuelFuelType() {
+        Long res = getLongOrNull(RefuelColumns.REFUEL_FUEL_TYPE);
+        if (res == null)
+            throw new NullPointerException("The value of 'refuel_fuel_type' in the database was null, which is not allowed according to the model definition");
+        return res;
+    }
+
+    /**
+     * Fuel Type Name
+     * Can be {@code null}.
+     */
+    @Nullable
+    public String getFuelTypeFuelTypeName() {
+        String res = getStringOrNull(FuelTypeColumns.FUEL_TYPE_NAME);
         return res;
     }
 

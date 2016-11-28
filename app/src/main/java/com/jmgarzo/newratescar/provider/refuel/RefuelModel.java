@@ -32,6 +32,11 @@ public interface RefuelModel extends BaseModel {
     Date getRefuelDate();
 
     /**
+     * Get the {@code refuel_fuel_type} value.
+     */
+    long getRefuelFuelType();
+
+    /**
      * Get the {@code refuel_fuel_subtype} value.
      */
     long getRefuelFuelSubtype();

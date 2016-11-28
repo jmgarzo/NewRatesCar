@@ -24,7 +24,7 @@
             />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_refuel_name"
+            android:id="@+id/input_layout_refuel_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -32,8 +32,280 @@
                 android:id="@+id/input_refuel_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/vehicle_name"
+                android:hint="@string/vehicle_date"
                 android:inputType="date"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_is_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/refuel_is_full" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_fuel_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/autocomplete_refuel_fuel_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:hint="@string/refuel_fuel_type"
+                android:inputType="text"
+                android:maxLength="20"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_fuel_subtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete_refuel_fuel_subtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"
+            android:hint="@string/refuel_fuel_subtype"
+            android:inputType="text"
+            android:maxLength="20"
+            android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_mileage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_mileage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_mileage"
+                android:inputType="number"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_litres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_litres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_litres"
+                android:inputType="numberDecimal"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_gas_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_gas_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_gas_price"
+                android:inputType="numberDecimal"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_total_price"
+                android:inputType="date"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_is_roof_rack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/refuel_is_roof_rack" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_is_trailer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/refuel_is_trailer" />
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/seekbar_route_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="26dp"
+                android:max="10" />
+
+
+            <TextView
+                android:id="@+id/text_motorway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/seekbar_route_type"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/refuel_motorway" />
+
+            <TextView
+                android:id="@+id/text_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/seekbar_route_type"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/refuel_city" />
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/seekbar_driving_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="26dp"
+                android:max="10" />
+
+
+            <TextView
+                android:id="@+id/text_eco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/seekbar_driving_style"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/refuel_economy" />
+
+            <TextView
+                android:id="@+id/text_sport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/seekbar_driving_style"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/refuel_sport" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_average_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_average_speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_average_speed"
+                android:inputType="numberDecimal"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_average_consumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_average_consumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_average_consumption"
+                android:inputType="numberDecimal"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_payment_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_payment_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_payment_type"
+                android:inputType="numberDecimal"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_gas_station"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_gas_station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_gas_station"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_refuel_additional_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_refuel_additional_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/refuel_additional_information"
+                android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>

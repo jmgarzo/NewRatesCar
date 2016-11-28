@@ -44,7 +44,7 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
-            //mClickHandler.onClick(mCursor.getLong(ProviderUtilities.COL_VEHICLE_ID), this);
+            mClickHandler.onClick(mCursor.getLong(ProviderUtilities.COL_REFUEL_ID), this);
 
         }
     }

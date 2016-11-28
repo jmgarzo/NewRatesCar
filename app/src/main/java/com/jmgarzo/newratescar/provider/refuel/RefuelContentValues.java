@@ -59,6 +59,12 @@ public class RefuelContentValues extends AbstractContentValues {
         return this;
     }
 
+    public RefuelContentValues putRefuelFuelType(long value) {
+        mContentValues.put(RefuelColumns.REFUEL_FUEL_TYPE, value);
+        return this;
+    }
+
+
     public RefuelContentValues putRefuelFuelSubtype(long value) {
         mContentValues.put(RefuelColumns.REFUEL_FUEL_SUBTYPE, value);
         return this;

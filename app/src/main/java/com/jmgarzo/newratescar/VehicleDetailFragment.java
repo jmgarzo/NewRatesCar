@@ -73,7 +73,6 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
         mVehicleId = null;
 
-
         Bundle argument = getArguments();
         if (argument != null) {
             mVehicleId = argument.getLong(VehicleColumns._ID);

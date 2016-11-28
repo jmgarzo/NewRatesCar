@@ -214,6 +214,9 @@ public class AppProvider extends BaseContentProvider {
                 if (MakeColumns.hasColumns(projection)) {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + RefuelColumns.PREFIX_VEHICLE + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;
                 }
+                if (FuelTypeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + RefuelColumns.PREFIX_FUEL_TYPE + " ON " + RefuelColumns.TABLE_NAME + "." + RefuelColumns.REFUEL_FUEL_TYPE + "=" + RefuelColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
+                }
                 if (FuelSubtypeColumns.hasColumns(projection)) {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + FuelSubtypeColumns.TABLE_NAME + " AS " + RefuelColumns.PREFIX_FUEL_SUBTYPE + " ON " + RefuelColumns.TABLE_NAME + "." + RefuelColumns.REFUEL_FUEL_SUBTYPE + "=" + RefuelColumns.PREFIX_FUEL_SUBTYPE + "." + FuelSubtypeColumns._ID;
                 }

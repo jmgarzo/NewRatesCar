@@ -39,7 +39,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + FuelTypeColumns.TABLE_NAME + " ( "
             + FuelTypeColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + FuelTypeColumns.FUEL_TYPE_NAME + " TEXT "
-            + ", CONSTRAINT unique_fuel_type_name UNIQUE (fuel_type_name) ON CONFLICT REPLACE"
+            + ", CONSTRAINT unique_fuel_type_name UNIQUE (fuel_type__fuel_type_name) ON CONFLICT REPLACE"
             + " );";
 
     public static final String SQL_CREATE_TABLE_MAKE = "CREATE TABLE IF NOT EXISTS "
@@ -62,6 +62,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + RefuelColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + RefuelColumns.VEHICLE_ID + " INTEGER NOT NULL, "
             + RefuelColumns.REFUEL_DATE + " INTEGER NOT NULL, "
+            + RefuelColumns.REFUEL_FUEL_TYPE + " INTEGER NOT NULL, "
             + RefuelColumns.REFUEL_FUEL_SUBTYPE + " INTEGER NOT NULL, "
             + RefuelColumns.REFUEL_MILEAGE + " INTEGER NOT NULL, "
             + RefuelColumns.REFUEL_TRIP_ODOMETER + " INTEGER NOT NULL, "
@@ -79,6 +80,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + RefuelColumns.GAS_STATION + " TEXT, "
             + RefuelColumns.REFUEL_ADDITIONAL_INFORMATION + " TEXT "
             + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + RefuelColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
+            + ", CONSTRAINT fk_refuel_fuel_type FOREIGN KEY (" + RefuelColumns.REFUEL_FUEL_TYPE + ") REFERENCES fuel_type (_id) ON DELETE CASCADE"
             + ", CONSTRAINT fk_refuel_fuel_subtype FOREIGN KEY (" + RefuelColumns.REFUEL_FUEL_SUBTYPE + ") REFERENCES fuel_subtype (_id) ON DELETE CASCADE"
             + " );";
 

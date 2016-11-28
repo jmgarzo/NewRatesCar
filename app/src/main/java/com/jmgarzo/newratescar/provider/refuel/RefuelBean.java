@@ -16,6 +16,7 @@ public class RefuelBean implements RefuelModel {
     private long mId;
     private long mVehicleId;
     private Date mRefuelDate;
+    private long mRefuelFuelType;
     private long mRefuelFuelSubtype;
     private int mRefuelMileage;
     private int mRefuelTripOdometer;
@@ -80,6 +81,21 @@ public class RefuelBean implements RefuelModel {
     public void setRefuelDate(@NonNull Date refuelDate) {
         if (refuelDate == null) throw new IllegalArgumentException("refuelDate must not be null");
         mRefuelDate = refuelDate;
+    }
+
+    /**
+     * Get the {@code refuel_fuel_type} value.
+     */
+    @Override
+    public long getRefuelFuelType() {
+        return mRefuelFuelType;
+    }
+
+    /**
+     * Set the {@code refuel_fuel_type} value.
+     */
+    public void setRefuelFuelType(long refuelFuelType) {
+        mRefuelFuelType = refuelFuelType;
     }
 
     /**
@@ -351,12 +367,13 @@ public class RefuelBean implements RefuelModel {
      * Instantiate a new RefuelBean with specified values.
      */
     @NonNull
-    public static RefuelBean newInstance(long id, long vehicleId, @NonNull Date refuelDate, long refuelFuelSubtype, int refuelMileage, int refuelTripOdometer, float refuelLitres, float refuelGasPrice, float refuelTotalPrice, boolean isFull, boolean isTrailer, boolean isRoofRack, int routeType, int drivingStyle, @Nullable Float averageSpeed, float averageConsumption, @Nullable String paymentType, @Nullable String gasStation, @Nullable String refuelAdditionalInformation) {
+    public static RefuelBean newInstance(long id, long vehicleId, @NonNull Date refuelDate, long refuelFuelType, long refuelFuelSubtype, int refuelMileage, int refuelTripOdometer, float refuelLitres, float refuelGasPrice, float refuelTotalPrice, boolean isFull, boolean isTrailer, boolean isRoofRack, int routeType, int drivingStyle, @Nullable Float averageSpeed, float averageConsumption, @Nullable String paymentType, @Nullable String gasStation, @Nullable String refuelAdditionalInformation) {
         if (refuelDate == null) throw new IllegalArgumentException("refuelDate must not be null");
         RefuelBean res = new RefuelBean();
         res.mId = id;
         res.mVehicleId = vehicleId;
         res.mRefuelDate = refuelDate;
+        res.mRefuelFuelType = refuelFuelType;
         res.mRefuelFuelSubtype = refuelFuelSubtype;
         res.mRefuelMileage = refuelMileage;
         res.mRefuelTripOdometer = refuelTripOdometer;
@@ -385,6 +402,7 @@ public class RefuelBean implements RefuelModel {
         res.mId = from.getId();
         res.mVehicleId = from.getVehicleId();
         res.mRefuelDate = from.getRefuelDate();
+        res.mRefuelFuelType = from.getRefuelFuelType();
         res.mRefuelFuelSubtype = from.getRefuelFuelSubtype();
         res.mRefuelMileage = from.getRefuelMileage();
         res.mRefuelTripOdometer = from.getRefuelTripOdometer();
@@ -430,6 +448,14 @@ public class RefuelBean implements RefuelModel {
         public Builder refuelDate(@NonNull Date refuelDate) {
             if (refuelDate == null) throw new IllegalArgumentException("refuelDate must not be null");
             mRes.mRefuelDate = refuelDate;
+            return this;
+        }
+
+        /**
+         * Set the {@code refuel_fuel_type} value.
+         */
+        public Builder refuelFuelType(long refuelFuelType) {
+            mRes.mRefuelFuelType = refuelFuelType;
             return this;
         }
 

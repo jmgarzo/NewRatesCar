@@ -45,7 +45,7 @@ public class ProviderUtilities {
     public static final String[] REFUEL_ALL_COLUMNS = RefuelColumns.ALL_COLUMNS;
     public static final int COL_REFUEL_ID = 0;
     public static final int COL_REFUEL_VEHICLE_ID = 1;
-    public static final int COL_DATE = 2;
+    public static final int COL_REFUEL_DATE = 2;
     public static final int COL_REFUEL_FUEL_TYPE = 3;
     public static final int COL_REFUEL_FUEL_SUBTYPE = 4;
     public static final int COL_REFUEL_MILEAGE = 5;
@@ -105,7 +105,7 @@ public class ProviderUtilities {
     public static Long getVehicleFuelTypeId(Context context, String vehicleFuelType) {
         Long id = null;
 
-        if (vehicleFuelType != null && !vehicleFuelType.equalsIgnoreCase("")) {
+        if (vehicleFuelType != null) {
             FuelTypeSelection fuelTypeSelection = new FuelTypeSelection();
             fuelTypeSelection.fuelTypeName(vehicleFuelType);
             FuelTypeCursor cursor = fuelTypeSelection.query(context);
@@ -114,9 +114,13 @@ public class ProviderUtilities {
             } else {
                 id = addNewFuelType(context, vehicleFuelType);
             }
+
+
         }
         return id;
     }
+
+
 
     public static Long addNewFuelType(Context context, String fuelType) {
         FuelTypeContentValues contentValues = new FuelTypeContentValues();
@@ -127,10 +131,21 @@ public class ProviderUtilities {
 
     }
 
+    public static String getVehicleFuelSubtypeName(Context context, long id) {
+        String result = "";
+        FuelSubtypeSelection fuelSubtypeSelection = new FuelSubtypeSelection();
+        fuelSubtypeSelection.id(id);
+        FuelSubtypeCursor cursor = fuelSubtypeSelection.query(context);
+        if (cursor.moveToNext()) {
+            result = cursor.getFuelSubtypeName();
+        }
+        return result;
+    }
+
     public static Long getVehicleFuelSubtypeId(Context context, String vehicleFuelSubtype) {
         Long id = null;
 
-        if (vehicleFuelSubtype != null && !vehicleFuelSubtype.equalsIgnoreCase("")) {
+        if (vehicleFuelSubtype != null) {
             FuelSubtypeSelection fuelSubtypeSelection = new FuelSubtypeSelection();
             fuelSubtypeSelection.fuelSubtypeName(vehicleFuelSubtype);
             FuelSubtypeCursor cursor = fuelSubtypeSelection.query(context);
@@ -260,6 +275,16 @@ public class ProviderUtilities {
         return id;
     }
 
+    public static String getVehicleFuelTypeByVehicleName(Context context,String vehicleName){
+        String result = "";
+        VehicleSelection vehicleSelection = new VehicleSelection();
+        vehicleSelection.vehicleName(vehicleName);
+        VehicleCursor cursor = vehicleSelection.query(context);
+        if (cursor.moveToNext()) {
+            result = cursor.getFuelTypeFuelTypeName();
+        }
+        return result;
+    }
 
 
 }
