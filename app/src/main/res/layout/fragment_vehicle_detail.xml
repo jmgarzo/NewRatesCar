@@ -126,6 +126,7 @@
                 android:layout_weight="2">
 
                 <EditText
+                    android:id="@+id/input_vehicle_mileage_unit"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"

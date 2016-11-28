@@ -1,6 +1,8 @@
 package com.jmgarzo.newratescar.Utility;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.jmgarzo.newratescar.R;
 
@@ -55,5 +57,19 @@ public class Utility {
         return true;
         }
         return false;
+    }
+
+
+    public static String getPreferredMileageUnit(Context context){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String defaultValue = context.getResources().getString(R.string.pref_distance_default_value);
+        String selectedKey = sharedPref.getString(context.getString(R.string.pref_distance_key), defaultValue);
+        if(selectedKey.equalsIgnoreCase(context.getString(R.string.pref_distance_value_kilometre))){
+            return context.getString(R.string.pref_distance_label_kilometre);
+        }else if(selectedKey.equalsIgnoreCase(context.getString(R.string.pref_distance_value_mile))){
+            return context.getString(R.string.pref_distance_label_mile);
+        }
+        return defaultValue;
+
     }
 }

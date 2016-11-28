@@ -18,6 +18,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
+import com.jmgarzo.newratescar.Utility.Utility;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
@@ -55,6 +56,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     private AutoCompleteTextView mVehicleMake;
     private EditText mVehicleModel;
     private EditText mVehicleMileage;
+    private EditText mVehicleMileageUnit;
     private EditText mVehicleAddInformation;
 
     ArrayList<String> mVehicleClassList;
@@ -86,9 +88,11 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleMake = (AutoCompleteTextView) view.findViewById(R.id.autocompleteView_vehicle_make);
         mVehicleModel = (EditText) view.findViewById(R.id.input_vehicle_model);
         mVehicleMileage = (EditText) view.findViewById(R.id.input_vehicle_mileage);
+        mVehicleMileageUnit = (EditText) view.findViewById(R.id.input_vehicle_mileage_unit);
         mVehicleAddInformation = (EditText) view.findViewById(R.id.input_vehicle_add_information);
 
 
+        mVehicleMileageUnit.setText(Utility.getPreferredMileageUnit(getContext()));
 
         //TODO: Get that values by a Loader
         initialValuesVehicleClass();
@@ -230,8 +234,12 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
                     fillVehicleMake(data);
 
+
+
                     mVehicleModel.setText(data.getString(ProviderUtilities.COL_VEHICLE_MODEL));
                     mVehicleMileage.setText(data.getString(ProviderUtilities.COL_VEHICLE_MILEAGE));
+
+                    mVehicleMileageUnit.setText(Utility.getPreferredMileageUnit(getContext()));
                     mVehicleAddInformation.setText(data.getString(ProviderUtilities.COL_VEHICLE_ADDITIONAL_INFORMATION));
 
                     mVehicleName.addTextChangedListener(textWatcher);
@@ -334,6 +342,8 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
         }
     };
+
+
 
 
 }

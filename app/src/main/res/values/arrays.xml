@@ -9,8 +9,8 @@
     </string-array>
 
     <string-array name="list_distance_entry_values">
-        <item>km</item>
-        <item>mile</item>
+        <item>@string/pref_distance_value_kilometre</item>
+        <item>@string/pref_distance_value_mile</item>
     </string-array>
 
 
@@ -22,9 +22,9 @@
     </string-array>
 
     <string-array name="list_amount_entry_values">
-        <item>litres</item>
-        <item>gallon_imperial</item>
-        <item>gallon_us</item>
+        <item>@string/pref_amount_value_litres</item>
+        <item>@string/pref_amount_value_gallon_imp</item>
+        <item>@string/pref_amount_value_gallon_us</item>
         </string-array>
 
 
