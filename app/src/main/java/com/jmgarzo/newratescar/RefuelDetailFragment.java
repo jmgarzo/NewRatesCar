@@ -477,4 +477,28 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
 
         }
     };
+
+    private TextWatcher textWatcherForReecalculate = new TextWatcher() {
+
+        public void afterTextChanged(Editable s) {
+            if (isNew) {
+                String vehicleName = mVehicleName.getText().toString();
+                if (!Utility.isEmptyOrNull(vehicleName)) {
+                    mMileage.setText(ProviderUtilities.getVehicleMileage(getContext(), vehicleName).toString());
+                    mRefuelFuelType.setText(ProviderUtilities.getVehicleFuelTypeByVehicleName(getContext(), vehicleName));
+                }
+
+
+            }
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+
+
+        }
+    };
 }

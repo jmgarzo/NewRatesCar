@@ -27,7 +27,8 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
         public Long refuelId;
         public ImageView imageHeader;
         public TextView textVehicleName;
-//        public TextView textDate;
+        public TextView textTripOdometer;
+        public TextView textAverageConsumption;
 //
 
 
@@ -35,6 +36,9 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
             super(view);
             imageHeader = (ImageView) view.findViewById(R.id.image_header_cardview);
             textVehicleName = (TextView) view.findViewById(R.id.refuel_vehicle_name);
+            textTripOdometer = (TextView) view.findViewById(R.id.refuel_trip_odometer);
+            textAverageConsumption = (TextView) view.findViewById(R.id.refuel_trip_average_consumption);
+
 //            textDate = (TextView) view.findViewById(R.id.refuel_date);
 
             view.setOnClickListener(this);
@@ -95,6 +99,9 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
 
         Long idVehicle = Long.parseLong(mCursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
         holder.textVehicleName.setText(ProviderUtilities.getVehicleName(mContext,idVehicle));
+
+        holder.textTripOdometer.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_TRIP_ODOMETER));
+        holder.textAverageConsumption.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION));
 
 //        holder.textDate.setText(ProviderUtilities.getMakeName(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_MAKE)));
 

@@ -46,12 +46,18 @@
             android:textAppearance="@style/MyCardViewTitle" />
 
 
-        <!--<TextView-->
-            <!--android:id="@+id/refuel_date"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:fontFamily="sans-serif"-->
-            <!--android:textAppearance="@style/MyCardViewTitle" />-->
+        <TextView
+            android:id="@+id/refuel_trip_odometer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:textAppearance="@style/MyCardViewTitle" />
+        <TextView
+            android:id="@+id/refuel_trip_average_consumption"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:textAppearance="@style/MyCardViewTitle" />
 
         </LinearLayout>
 

@@ -1,8 +1,10 @@
 package com.jmgarzo.newratescar.Task;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.jmgarzo.newratescar.Utility.ProviderUtilities;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelContentValues;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
@@ -39,10 +41,12 @@ public class SaveRefuel extends AsyncTask<RefuelContentValues, Void, Void> {
 
         RefuelContentValues values = params[0];
 
-
+        String newRefuelId;
         if (null == mRefuelId || mRefuelId == -1) {
-            mContext.getContentResolver().insert(values.uri(), values.values());
+            Uri insertUri = mContext.getContentResolver().insert(values.uri(), values.values());
+            newRefuelId = insertUri.getLastPathSegment();
         } else {
+            newRefuelId=mRefuelId.toString();
             mContext.getContentResolver().update(values.uri(),
                     values.values(),
                     RefuelColumns._ID + "= ?",
@@ -67,6 +71,8 @@ public class SaveRefuel extends AsyncTask<RefuelContentValues, Void, Void> {
                     VehicleColumns.VEHICLE_NAME.concat("= ?"),
                     new String[]{mVehicleName});
         }
+
+        ProviderUtilities.calculateAverageConsumption(mContext,Long.parseLong(newRefuelId));
 
 
         return null;

@@ -15,12 +15,16 @@ import com.jmgarzo.newratescar.provider.make.MakeContentValues;
 import com.jmgarzo.newratescar.provider.make.MakeCursor;
 import com.jmgarzo.newratescar.provider.make.MakeSelection;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
+import com.jmgarzo.newratescar.provider.refuel.RefuelContentValues;
+import com.jmgarzo.newratescar.provider.refuel.RefuelCursor;
+import com.jmgarzo.newratescar.provider.refuel.RefuelSelection;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleCursor;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassCursor;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassSelection;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,7 +123,6 @@ public class ProviderUtilities {
         }
         return id;
     }
-
 
 
     public static Long addNewFuelType(Context context, String fuelType) {
@@ -275,7 +278,7 @@ public class ProviderUtilities {
         return id;
     }
 
-    public static String getVehicleFuelTypeByVehicleName(Context context,String vehicleName){
+    public static String getVehicleFuelTypeByVehicleName(Context context, String vehicleName) {
         String result = "";
         VehicleSelection vehicleSelection = new VehicleSelection();
         vehicleSelection.vehicleName(vehicleName);
@@ -286,26 +289,128 @@ public class ProviderUtilities {
         return result;
     }
 
-    public static Integer getVehicleMileage(Context context, String vehicleName){
+    public static Integer getVehicleMileage(Context context, String vehicleName) {
         Integer result = 0;
         VehicleSelection vehicleSelection = new VehicleSelection();
         vehicleSelection.vehicleName(vehicleName);
         VehicleCursor cursor = vehicleSelection.query(context);
-        if(cursor.moveToNext()){
+        if (cursor.moveToNext()) {
             result = cursor.getMileage();
         }
         return result;
     }
 
-    public static Integer getVehicleM(Context context, String vehicleName){
+    public static Integer getVehicleM(Context context, String vehicleName) {
         Integer result = 0;
         VehicleSelection vehicleSelection = new VehicleSelection();
         vehicleSelection.vehicleName(vehicleName);
         VehicleCursor cursor = vehicleSelection.query(context);
-        if(cursor.moveToNext()){
+        if (cursor.moveToNext()) {
             result = cursor.getMileage();
         }
         return result;
+    }
+
+
+    public static void calculateAverageConsumption(Context context, Long refuelId) {
+
+        Integer sumaKmRecorridos = 0;
+        BigDecimal sumaLitros = new BigDecimal(0);
+        Integer currentRefuelTripOdometer = 0;
+        BigDecimal currentAverageConsumption = new BigDecimal(0);
+
+
+        if (null != refuelId && refuelId != -1) {
+
+            RefuelSelection currentRefuelSelection = new RefuelSelection();
+            currentRefuelSelection.id(refuelId);
+            RefuelCursor currentRefuelCursor = currentRefuelSelection.query(context);
+            if (currentRefuelCursor.moveToNext()) {
+
+                BigDecimal cien = BigDecimal.valueOf(100);
+                sumaLitros = sumaLitros.add(new BigDecimal(currentRefuelCursor.getRefuelLitres()));
+
+                //Repostaje repostajeAnterior = bbddRepostajes.getRepostajeAnteriorPorCoche(repostaje);
+
+                RefuelSelection lastRefuelSelection = new RefuelSelection();
+                lastRefuelSelection.vehicleVehicleName(currentRefuelCursor.getVehicleVehicleName()).orderByRefuelMileage(true);
+                RefuelCursor lastRefuelCursor = lastRefuelSelection.query(context);
+                if(lastRefuelCursor.moveToNext()){
+                    //current refuel
+                }
+
+
+                //boolean hayUnCompletoAnterior = bbddRepostajes.hayUnCompletoAnterior(repostaje.getIdCoche(), repostaje.getKmRepostaje());
+                boolean hayUnCompletoAnterior = areFullRefuel(context, currentRefuelCursor.getVehicleVehicleName(), currentRefuelCursor.getRefuelMileage());
+
+
+                if (currentRefuelCursor.getIsFull() && hayUnCompletoAnterior) {
+
+
+//                    if (null != repostajeAnterior) {
+                    if (lastRefuelCursor.moveToNext()) {
+
+                        //repostaje.setKmRecorridos(BigDecimal.valueOf((repostaje.getKmRepostaje().doubleValue() - repostajeAnterior.getKmRepostaje().doubleValue())));
+                        //TODO: save this value
+                        currentRefuelTripOdometer = (currentRefuelCursor.getRefuelMileage() - lastRefuelCursor.getRefuelMileage());
+                        sumaKmRecorridos = currentRefuelTripOdometer;
+
+
+                        while (lastRefuelCursor.moveToNext() && lastRefuelCursor.getIsFull()) {
+                            sumaKmRecorridos = sumaKmRecorridos + (lastRefuelCursor.getRefuelMileage());
+                            sumaLitros = sumaLitros.add(BigDecimal.valueOf(lastRefuelCursor.getRefuelLitres()));
+                        }
+                        if (sumaKmRecorridos > 0)
+//                            repostaje.setMediaConsumo((sumaLitros.multiply(cien)).divide(sumaKmRecorridos, 2,
+//                                    BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP));
+                            currentAverageConsumption = (sumaLitros.multiply(cien)).divide(new BigDecimal(sumaKmRecorridos.doubleValue()), 2,
+                                    BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+
+                    } else {
+//                        repostaje.setMediaConsumo(BigDecimal.ZERO);
+//                        repostaje.setKmRecorridos(BigDecimal.ZERO);
+                        currentAverageConsumption = BigDecimal.ZERO;
+                        currentRefuelTripOdometer = 0;
+                    }
+
+                } else {
+                    currentAverageConsumption = BigDecimal.ZERO;
+                    if (lastRefuelCursor.moveToNext()) {
+                        //repostaje.setKmRecorridos(BigDecimal.valueOf((repostaje.getKmRepostaje().doubleValue() - repostajeAnterior.getKmRepostaje().doubleValue())));
+                        currentRefuelTripOdometer = currentRefuelCursor.getRefuelMileage() - lastRefuelCursor.getRefuelMileage();
+                    } else {
+
+                        //repostaje.setKmRecorridos(BigDecimal.ZERO);
+                        currentRefuelTripOdometer = 0;
+                    }
+
+                }
+                RefuelContentValues refuelValues = new RefuelContentValues();
+                refuelValues.putRefuelTripOdometer(currentRefuelTripOdometer).putAverageConsumption(currentAverageConsumption.doubleValue());
+                context.getContentResolver().update(refuelValues.uri(),
+                        refuelValues.values(),
+                        RefuelColumns._ID.concat("= ?"),
+                        new String[]{refuelId.toString()});
+            }
+
+        }
+
+    }
+
+    public static boolean areFullRefuel(Context context, String vehicleName, Integer refuelMileage) {
+        RefuelSelection refuelSelection = new RefuelSelection();
+        getVehicleId(context,vehicleName);
+        refuelSelection.vehicleId(getVehicleId(context,vehicleName));
+        RefuelCursor cursor = refuelSelection.query(context);
+        while (cursor.moveToNext()) {
+            if(cursor.getIsFull()) {
+                if (cursor.getRefuelMileage() < refuelMileage) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
