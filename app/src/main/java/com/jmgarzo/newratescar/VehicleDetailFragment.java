@@ -329,8 +329,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
 
     private TextWatcher textWatcher = new TextWatcher() {
 
-        public void afterTextChanged(Editable s) {
-        }
+        public void afterTextChanged(Editable s) {}
 
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }

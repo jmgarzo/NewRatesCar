@@ -97,7 +97,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 //        }
 
         Glide.with(mContext)
-                .load(Utility.getImagefromIdClass(mContext,mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS)))
+                .load(Utility.getVehicleImagefromIdClass(mContext,mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS)))
                 .crossFade()
                 .into(holder.imageHeader);
 

@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
 import com.jmgarzo.newratescar.Utility.Utility;
@@ -36,7 +37,6 @@ import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,13 +68,16 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     private AutoCompleteTextView mRefuelFuelType;
     private AutoCompleteTextView mRefuelFuelSubtype;
     private EditText mMileage;
-    private EditText mMileageUnits;
+    private TextView mMileageUnits;
     private EditText mLitres;
-    private EditText mLitresUnits;
+    private TextView mLitresUnits;
     private EditText mGasPrice;
-    private EditText mGasPriceUnits;
+    private TextView mGasPriceUnits;
+
     private EditText mTotalPrice;
-    private EditText mTotalPriceUnits;
+
+    private TextView mTotalPriceUnits;
+
     private SwitchCompat mIsRoofRack;
     private SwitchCompat mIsTrailer;
     private AppCompatSeekBar mSeekBarRouteType;
@@ -136,13 +139,15 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mRefuelFuelType = (AutoCompleteTextView) view.findViewById(R.id.autocomplete_refuel_fuel_type);
         mRefuelFuelSubtype = (AutoCompleteTextView) view.findViewById(R.id.autocomplete_refuel_fuel_subtype);
         mMileage = (EditText) view.findViewById(R.id.input_refuel_mileage);
-        mMileageUnits = (EditText) view.findViewById(R.id.input_refuel_mileage_unit);
+        mMileageUnits = (TextView) view.findViewById(R.id.input_refuel_mileage_unit);
         mLitres = (EditText) view.findViewById(R.id.input_refuel_litres);
-        mLitresUnits = (EditText) view.findViewById(R.id.input_refuel_quantity_unit);
+        mLitresUnits = (TextView) view.findViewById(R.id.input_refuel_quantity_unit);
         mGasPrice = (EditText) view.findViewById(R.id.input_refuel_gas_price);
-        mGasPriceUnits = (EditText) view.findViewById(R.id.input_refuel_currency_per_quantity_unit);
+        mGasPriceUnits = (TextView) view.findViewById(R.id.input_refuel_currency_per_quantity_unit);
         mTotalPrice = (EditText) view.findViewById(R.id.input_refuel_total_price);
-        mTotalPriceUnits = (EditText) view.findViewById(R.id.input_refuel_currency_unit);
+
+        mTotalPriceUnits = (TextView) view.findViewById(R.id.input_refuel_currency_unit);
+
         mIsRoofRack = (SwitchCompat) view.findViewById(R.id.switch_is_roof_rack);
         mIsTrailer = (SwitchCompat) view.findViewById(R.id.switch_is_trailer);
         mSeekBarRouteType = (AppCompatSeekBar) view.findViewById(R.id.seekbar_route_type);
@@ -303,13 +308,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                         mVehicleName.setText(name);
 
 
-                        Calendar cal = new GregorianCalendar();
-                        java.util.Date refuelDate = new Date(
-                                data.getLong(ProviderUtilities.COL_REFUEL_DATE));
-                        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-                        String formatDate = df.format(refuelDate);
-                        mRefuelDate.setText(formatDate);
-
+                        mRefuelDate.setText(Utility.getFormatedDate(data.getLong(ProviderUtilities.COL_REFUEL_DATE)));
 
                         boolean isFull = false;
                         if (data.getInt(ProviderUtilities.COL_REFUEL_IS_FULL) == 1) {
@@ -339,7 +338,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                         mAverageSpeed.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_AVERAGE_SPEED)));
                         mAverageConsumption.setText(Double.toString(data.getDouble(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION)));
                         mPaymentType.setText(data.getString(ProviderUtilities.COL_REFUEL_PAYMENT_TYPE));
-                        mGasStation.setText(data.getString(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION));
+                        mGasStation.setText(data.getString(ProviderUtilities.COL_REFUEL_GAS_STATION));
                         mAdditionalInf.setText(data.getString(ProviderUtilities.COL_REFUEL_ADDITIONAL_INFORMATION));
 
                     }

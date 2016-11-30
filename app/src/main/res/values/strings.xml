@@ -142,6 +142,7 @@
     <string name="refuel_payment_type">Payment type</string>
     <string name="refuel_gas_station">Gas Station</string>
     <string name="refuel_additional_information">Additional information</string>
+    <string name="refuel_partial_fill_ups">Partial fill ups</string>
 
     <string name="refuel_vehicle_name_error">Select a vehicle is required</string>
     <string name="refuel_error_date">Date is required</string>

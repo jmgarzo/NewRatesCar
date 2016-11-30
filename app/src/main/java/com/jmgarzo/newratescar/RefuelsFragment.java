@@ -75,6 +75,14 @@ public class RefuelsFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     @Override
+    public void onResume() {
+        getLoaderManager().initLoader(REFUEL_LOADER_ID, null, this);
+
+        super.onResume();
+
+    }
+
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
                 RefuelColumns.CONTENT_URI,

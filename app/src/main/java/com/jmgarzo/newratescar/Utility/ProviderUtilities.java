@@ -240,8 +240,10 @@ public class ProviderUtilities {
         if (cursor.moveToNext()) {
             result = cursor.getVehicleName();
         }
+        cursor.close();
         return result;
     }
+
 
 //    public static Long getVehicleId(Context context, String name) {
 //        Long id = null;
@@ -356,7 +358,7 @@ public class ProviderUtilities {
                         sumaKmRecorridos = currentRefuelTripOdometer;
 
 
-                        while (lastRefuelCursor.moveToNext() && lastRefuelCursor.getIsFull()) {
+                        while (lastRefuelCursor.moveToNext() && !lastRefuelCursor.getIsFull()) {
                             sumaKmRecorridos = sumaKmRecorridos + (lastRefuelCursor.getRefuelMileage());
                             sumaLitros = sumaLitros.add(BigDecimal.valueOf(lastRefuelCursor.getRefuelLitres()));
                         }

@@ -9,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jmgarzo.newratescar.R;
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
+import com.jmgarzo.newratescar.Utility.Utility;
+
+import static android.view.View.GONE;
 
 /**
  * Created by jmgarzo on 31/10/16.
@@ -27,6 +31,8 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
         public Long refuelId;
         public ImageView imageHeader;
         public TextView textVehicleName;
+        public TextView textTotalPrice;
+        public TextView textDate;
         public TextView textTripOdometer;
         public TextView textAverageConsumption;
 //
@@ -35,11 +41,11 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
         public RefuelViewHolder(View view) {
             super(view);
             imageHeader = (ImageView) view.findViewById(R.id.image_header_cardview);
-            textVehicleName = (TextView) view.findViewById(R.id.refuel_vehicle_name);
-            textTripOdometer = (TextView) view.findViewById(R.id.refuel_trip_odometer);
-            textAverageConsumption = (TextView) view.findViewById(R.id.refuel_trip_average_consumption);
-
-//            textDate = (TextView) view.findViewById(R.id.refuel_date);
+            textVehicleName = (TextView) view.findViewById(R.id.refuel_vehicle_name_cardview);
+            textTotalPrice = (TextView) view.findViewById(R.id.refuel_total_price_cardview);
+            textDate =(TextView) view.findViewById(R.id.refuel_date_cardview);
+            textTripOdometer = (TextView) view.findViewById(R.id.refuel_trip_odometer_cardview);
+            textAverageConsumption = (TextView) view.findViewById(R.id.refuel_trip_average_consumption_cardview);
 
             view.setOnClickListener(this);
         }
@@ -96,12 +102,33 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
 //                .load(Utility.getImagefromIdClass(mContext,mCursor.getLong(ProviderUtilities.COL_VEHICLE_CLASS)))
 //                .crossFade()
 //                .into(holder.imageHeader);
-
         Long idVehicle = Long.parseLong(mCursor.getString(ProviderUtilities.COL_VEHICLE_NAME));
-        holder.textVehicleName.setText(ProviderUtilities.getVehicleName(mContext,idVehicle));
 
-        holder.textTripOdometer.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_TRIP_ODOMETER));
-        holder.textAverageConsumption.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION));
+
+        String refuelClass = ProviderUtilities.getVehicleClassName(mContext,idVehicle);
+        Glide.with(mContext)
+                .load(Utility.getRefuelImagefromIdClass(mContext,ProviderUtilities.getVehicleClassId(mContext,refuelClass)))
+                .crossFade()
+                .into(holder.imageHeader);
+        holder.textVehicleName.setText(ProviderUtilities.getVehicleName(mContext,idVehicle));
+        String currency = Utility.getPreferredCurrencyUnit(mContext);
+        holder.textTotalPrice.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_TOTAL_PRICE).concat(" ").concat(currency));
+        holder.textDate.setText(Utility.getFormatedDate(mCursor.getLong(ProviderUtilities.COL_REFUEL_DATE)));
+        String distanceUnit = Utility.getPreferredMileageUnit(mContext);
+
+        if(mCursor.getString(ProviderUtilities.COL_REFUEL_TRIP_ODOMETER).equalsIgnoreCase("0")){
+            holder.textTripOdometer.setText(R.string.refuel_partial_fill_ups);
+        }else{
+            holder.textTripOdometer.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_TRIP_ODOMETER).concat(" ").concat(distanceUnit));
+        }
+        String quantityUnit = Utility.getPreferredQuantityUnit(mContext);
+        if(mCursor.getString(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION).equalsIgnoreCase("0")){
+            holder.textAverageConsumption.setVisibility(GONE);
+        }else {
+
+            holder.textAverageConsumption.setText(mCursor.getString(ProviderUtilities.COL_REFUEL_AVERAGE_CONSUMPTION).concat(" ").concat(quantityUnit)
+            .concat("/").concat(distanceUnit));
+        }
 
 //        holder.textDate.setText(ProviderUtilities.getMakeName(mContext, mCursor.getLong(ProviderUtilities.COL_VEHICLE_MAKE)));
 
@@ -118,7 +145,7 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
     public void swapCursor(Cursor newCursor) {
         mCursor = newCursor;
         notifyDataSetChanged();
-        mEmptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
+        mEmptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : GONE);
     }
 
     public Cursor getCursor() {

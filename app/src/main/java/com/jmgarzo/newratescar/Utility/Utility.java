@@ -7,6 +7,11 @@ import android.preference.PreferenceManager;
 import com.jmgarzo.newratescar.R;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 
 /**
@@ -19,7 +24,7 @@ public class Utility {
     private final static BigDecimal LITRES_PER_UK_GALLON =  new BigDecimal(4.5460902819948d);
     private final static BigDecimal LITRES_PER_US_GALLON = new BigDecimal(3.785411784d);
 
-    public static int getImagefromIdClass(Context context, Long idClass) {
+    public static int getVehicleImagefromIdClass(Context context, Long idClass) {
         String vehicleClassName = ProviderUtilities.getVehicleClassName(context, idClass);
         if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.car_class_db))) {
             return R.drawable.car01;
@@ -40,6 +45,30 @@ public class Utility {
             return R.drawable.bus01;
         }else{
             return R.drawable.car01;
+        }
+    }
+
+    public static int getRefuelImagefromIdClass(Context context, Long idClass) {
+        String vehicleClassName = ProviderUtilities.getVehicleClassName(context, idClass);
+        if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.car_class_db))) {
+            return R.drawable.refuel_car01;
+        } else  if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.van_class_db))) {
+            return R.drawable.refuel_van01;
+        }else if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.motorcycle_class_db))){
+            return  R.drawable.refuel_moto01;
+        }else if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.truck_class_db))){
+            return R.drawable.refuel_truck01;
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.tractor_class_db))){
+            return R.drawable.refuel_tractor01;
+
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.quad_class_db))){
+            return R.drawable.refuel_quad01;
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.bike_class_db))){
+            return R.drawable.refuel_bike01;
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.bus_class_db))){
+            return R.drawable.refuel_bus01;
+        }else{
+            return R.drawable.refuel_car01;
         }
     }
 
@@ -97,6 +126,15 @@ public class Utility {
         String selectedKey = sharedPref.getString(context.getString(R.string.pref_currency_key), defaultValue);
 
         return selectedKey;
+    }
+
+
+    public static String getFormatedDate(Long lDate) {
+        Calendar cal = new GregorianCalendar();
+        java.util.Date date = new Date(lDate);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        String formatDate = df.format(date);
+        return formatDate;
     }
 
     public static BigDecimal kmToMiles(BigDecimal km) {

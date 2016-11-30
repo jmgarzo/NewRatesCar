@@ -218,7 +218,7 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
                     .putRouteType(mSeekBarRouteType.getProgress())
                     .putDrivingStyle(mSeekBarDrivingStyle.getProgress())
                     //Todo: Calculate averageConsumption
-                    .putAverageConsumption(0);
+                    .putAverageConsumption(Utility.getDoubleNoNull(mAverageConsumption.getText().toString()));
 
 
             SaveRefuel saveRefuel = new SaveRefuel(this, mRefuelId,mSpinnerVehicleName.getText().toString(), Integer.parseInt(mMileage.getText().toString()));

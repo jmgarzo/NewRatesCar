@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
@@ -40,24 +40,27 @@
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/switch_is_full"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
+            android:checked="true"
             android:text="@string/refuel_is_full" />
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="16dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_refuel_mileage"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="4">
+                android:layout_alignEnd="@+id/input_refuel_mileage_unit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/input_refuel_mileage_unit">
 
                 <EditText
                     android:id="@+id/input_refuel_mileage"
@@ -69,78 +72,104 @@
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_vehicle_mileage_unit"
-                android:layout_width="0dp"
+
+            <TextView
+                android:id="@+id/input_refuel_mileage_unit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/input_refuel_mileage_unit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:gravity="bottom"
-                    android:inputType="" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="24dp"
+                android:textSize="16sp" />
 
 
-        <LinearLayout
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="16dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_refuel_total_price"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="4">
+                android:layout_alignEnd="@+id/input_refuel_currency_unit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/input_refuel_currency_unit">
 
                 <EditText
                     android:id="@+id/input_refuel_total_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/refuel_total_price"
-                    android:inputType="date"
-                    android:maxLength="25"
+                    android:inputType="numberDecimal"
+                    android:maxLength="15"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_vehicle_currency_unit"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/input_refuel_currency_unit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="24dp"
+                android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/input_refuel_currency_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:gravity="bottom"
-                    android:inputType=""
-                    />
-            </android.support.design.widget.TextInputLayout>
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_layout_vehicle_currency_unit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--&gt;-->
 
-        </LinearLayout>
+            <!--<EditText-->
+            <!--android:id="@+id/input_refuel_currency_unit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:clickable="false"-->
+            <!--android:cursorVisible="false"-->
+            <!--android:focusable="false"-->
+            <!--android:focusableInTouchMode="false"-->
+            <!--android:gravity="bottom"-->
+            <!--android:inputType=""-->
+            <!--/>-->
+            <!--</android.support.design.widget.TextInputLayout>-->
 
-        <LinearLayout
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="16dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_refuel_gas_price"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="4">
+                android:layout_alignEnd="@+id/input_refuel_currency_per_quantity_unit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/input_refuel_currency_per_quantity_unit">
 
                 <EditText
                     android:id="@+id/input_refuel_gas_price"
@@ -148,43 +177,43 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/refuel_gas_price"
                     android:inputType="numberDecimal"
-                    android:maxLength="25"
+                    android:maxLength="10"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_vehicle_currency_per_quantity_unit"
-                android:layout_width="0dp"
+
+            <TextView
+                android:id="@+id/input_refuel_currency_per_quantity_unit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/input_refuel_currency_per_quantity_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:gravity="bottom"
-                    android:inputType=""
-                    />
-
-            </android.support.design.widget.TextInputLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="24dp"
+                android:textSize="16sp" />
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="16dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_refuel_litres"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="4">
+                android:layout_alignEnd="@+id/input_refuel_quantity_unit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/input_refuel_quantity_unit">
 
                 <EditText
                     android:id="@+id/input_refuel_litres"
@@ -192,33 +221,28 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/refuel_litres"
                     android:inputType="numberDecimal"
-                    android:maxLength="25"
+                    android:maxLength="10"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_vehicle_quantity_unit"
-                android:layout_width="0dp"
+
+            <TextView
+                android:id="@+id/input_refuel_quantity_unit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/input_refuel_quantity_unit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:gravity="bottom"
-                    android:inputType="" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="24dp"
+                android:textSize="16sp" />
 
 
-
-
-
+        </RelativeLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_refuel_fuel_type"
@@ -255,35 +279,34 @@
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/switch_is_roof_rack"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/refuel_is_roof_rack" />
+            android:layout_marginTop="16dp"
+            android:text="@string/refuel_is_roof_rack"
+            android:textSize="16sp" />
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/switch_is_trailer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/refuel_is_trailer" />
+            android:layout_marginTop="16dp"
+            android:text="@string/refuel_is_trailer"
+            android:textSize="16sp" />
 
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/seekbar_route_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="26dp"
-                android:max="10" />
+                android:max="100" />
 
 
             <TextView
@@ -291,35 +314,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/seekbar_route_type"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/refuel_motorway" />
 
             <TextView
                 android:id="@+id/text_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/seekbar_route_type"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/refuel_city" />
 
         </RelativeLayout>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/seekbar_driving_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="26dp"
-                android:max="10" />
+                android:max="100" />
 
 
             <TextView
@@ -327,19 +351,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/seekbar_driving_style"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/refuel_economy" />
 
             <TextView
                 android:id="@+id/text_sport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/seekbar_driving_style"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/refuel_sport" />
 
         </RelativeLayout>
@@ -347,7 +371,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_refuel_average_speed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
             <EditText
                 android:id="@+id/input_refuel_average_speed"
@@ -362,7 +387,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_refuel_average_consumption"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
             <EditText
                 android:id="@+id/input_refuel_average_consumption"
@@ -425,8 +451,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:paddingTop="16dp"
             android:paddingBottom="24dp"
+            android:paddingTop="16dp"
             android:text="@string/asterisk_label"
             android:textSize="12sp" />
 
