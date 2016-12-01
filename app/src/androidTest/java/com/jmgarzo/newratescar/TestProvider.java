@@ -227,7 +227,7 @@ public class TestProvider extends AndroidTestCase {
 //        vehicleClassSelection.vehicleClassName(TEST_VEHICLE_CLASS_NAME);
 //        VehicleClassCursor cursor = vehicleClassSelection.query(getContext().getContentResolver());
 //        cursor.moveToNext();
-//        String vehicleClassName = cursor.getVehicleClassName();
+//        String vehicleClassName = cursor.getVehicleClassDbName();
 //
 //        assertEquals(TEST_VEHICLE_CLASS_NAME,vehicleClassName);
 //    }

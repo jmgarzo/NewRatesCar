@@ -1,15 +1,15 @@
 package com.jmgarzo.newratescar.provider.refuel;
 
 // @formatter:off
-import android.content.ContentResolver;
+import java.util.Date;
+
 import android.content.Context;
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.jmgarzo.newratescar.provider.base.AbstractContentValues;
-
-import java.util.Date;
 
 /**
  * Content values wrapper for the {@code refuel} table.

@@ -114,7 +114,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleClassList = new ArrayList<>();
         while (c.moveToNext()) {
             int index = c.getColumnIndex(VehicleClassColumns.VEHICLE_CLASS_NAME);
-            mVehicleClassList.add(c.getString(index));
+            mVehicleClassList.add(ProviderUtilities.convertVehicleClassNameDbToValue(getContext(),c.getString(index)));
 
         }
 
@@ -270,7 +270,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     }
 
     private void fillVehicleClass(Cursor data) {
-        String vehicleClass = ProviderUtilities.getVehicleClassName(getActivity(),
+        String vehicleClass = ProviderUtilities.getVehicleClassValueName(getActivity(),
                 data.getLong(ProviderUtilities.COL_VEHICLE_CLASS));
 
         Integer position = null;

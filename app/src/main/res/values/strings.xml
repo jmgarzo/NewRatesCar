@@ -14,23 +14,25 @@
 
     <!--Vehicle Class-->
 
-    <string name="car_class_db" translatable="false">Car</string>
-    <string name="van_class.db" translatable="false">Van</string>
-    <string name="truck_class.db" translatable="false">Truck</string>
-    <string name="motorcycle_class.db" translatable="false">MotorCycle</string>
-    <string name="quad_class.db" translatable="false">Quad</string>
-    <string name="tractor_class.db" translatable="false">Tractor</string>
-    <string name="bike_class.db" translatable="false">Bike</string>
-    <string name="bus_class.db" translatable="false">Bus</string>
+    <string name="empty_class_db" translatable="false">none</string>
+    <string name="car_class_db" translatable="false">var</string>
+    <string name="van_class_db" translatable="false">van</string>
+    <string name="truck_class_db" translatable="false">truck</string>
+    <string name="motorcycle_class.db" translatable="false">motorcycle</string>
+    <string name="quad_class_db" translatable="false">quad</string>
+    <string name="tractor_class_db" translatable="false">tractor</string>
+    <string name="bike_class_db" translatable="false">bike</string>
+    <string name="bus_class_db" translatable="false">bus</string>
 
-    <string name="car_class">Car</string>
-    <string name="van_class">Van</string>
-    <string name="truck_class">Truck</string>
-    <string name="motorcycle_class">MotorCycle</string>
+    <string name="empty_class_value" >None</string>
+    <string name="car_class_value">Car</string>
+    <string name="van_class_value">Van</string>
+    <string name="truck_class_value">Truck</string>
+    <string name="motorcycle_class_value">Motorcycle</string>
     <string name="quad_class">Quad</string>
-    <string name="tractor_class">Tractor</string>
-    <string name="bike_class">Bike</string>
-    <string name="bus_class">Bus</string>
+    <string name="tractor_class_value">Tractor</string>
+    <string name="bike_class_value">Bike</string>
+    <string name="bus_class_value">Bus</string>
 
     <!--Vehicle Make-->
     <string name="make_alfa_romeo"> ALFA ROMEO </string>

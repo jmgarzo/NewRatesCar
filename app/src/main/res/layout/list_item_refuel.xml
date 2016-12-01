@@ -19,13 +19,44 @@
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image_header_cardview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_header_cardview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:paddingStart="16dp"
+                android:paddingLeft="16dp"
+                android:paddingEnd="16dp"
+                android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/refuel_vehicle_name_cardview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif"
+                android:textAppearance="@style/MyCardViewTitleDark"
+                />
+            <TextView
+                android:id="@+id/refuel_date_cardview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="@style/MyCardViewSubtitleDark" />
+            </LinearLayout>
+        </FrameLayout>
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,23 +69,24 @@
             android:paddingTop="8dp">
 
 
-            <TextView
-                android:id="@+id/refuel_vehicle_name_cardview"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="sans-serif"
-                android:textAppearance="@style/MyCardViewTitle" />
+            <!--<TextView-->
+                <!--android:id="@+id/refuel_vehicle_name_cardview"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:fontFamily="sans-serif"-->
+                <!--android:textAppearance="@style/MyCardViewTitle" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/refuel_date_cardview"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:textAppearance="@style/MyCardViewSubtitle" />-->
 
             <TextView
                 android:id="@+id/refuel_total_price_cardview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAppearance="@style/MyCardViewText" />
-            <TextView
-                android:id="@+id/refuel_date_cardview"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAppearance="@style/MyCardViewText" />
+
 
             <TextView
                 android:id="@+id/refuel_trip_odometer_cardview"

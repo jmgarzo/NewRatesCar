@@ -179,12 +179,13 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
         String addInformation = mInputAddInformation.getText().toString();
 
 
+
         if (isCorrect) {
             VehicleContentValues values = new VehicleContentValues();
             values.putVehicleName(vehicleName)
                     .putVehicleClass(ProviderUtilities.getVehicleClassId(this, vehicleClass))
                     .putVehicleFuelType(ProviderUtilities.getVehicleFuelTypeId(this, vehicleFuelType))
-                    .putMake(ProviderUtilities.getMakeId(this, vehicleMake))
+                    .putMake(ProviderUtilities.getMakeIdAddIsNew(this,vehicleMake))
                     .putModel(vehicleModel)
                     .putMileage(vehicleMileage)
                     .putAdditionalInformation(addInformation);

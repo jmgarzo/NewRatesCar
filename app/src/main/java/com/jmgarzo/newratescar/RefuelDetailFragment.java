@@ -107,6 +107,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_refuel_detail, container, false);
 
+
         isNew = true;
         mRefuelId = null;
 

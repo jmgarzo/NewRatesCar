@@ -1,9 +1,10 @@
 package com.jmgarzo.newratescar.provider;
 
+// @formatter:off
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
 import android.util.Log;
 
 import com.jmgarzo.newratescar.BuildConfig;
@@ -159,7 +160,7 @@ public class AppSQLiteOpenHelperCallbacks {
 
     private void addVehicleClass(SQLiteDatabase db,Context context){
         ArrayList<String> vehicleClassList = new ArrayList<String>();
-
+        vehicleClassList.add(context.getString(R.string.empty_class_db));
         vehicleClassList.add(context.getString(R.string.car_class_db));
         vehicleClassList.add(context.getString(R.string.van_class_db));
         vehicleClassList.add(context.getString(R.string.truck_class_db));

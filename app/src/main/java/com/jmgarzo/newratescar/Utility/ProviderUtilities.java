@@ -70,7 +70,7 @@ public class ProviderUtilities {
 
 
     //Vehicle Class
-    public static String getVehicleClassName(Context context, long id) {
+    public static String getVehicleClassDbName(Context context, long id) {
         String result = "";
         VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
         vehicleClassSelection.id(id);
@@ -81,11 +81,56 @@ public class ProviderUtilities {
         return result;
     }
 
-    public static Long getVehicleClassId(Context context, String vehicleClass) {
+    public static String getVehicleClassValueName(Context context, long id) {
+        String result = "";
+        VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
+        vehicleClassSelection.id(id);
+        VehicleClassCursor cursor = vehicleClassSelection.query(context);
+        if (cursor.moveToNext()) {
+            result = convertVehicleClassNameDbToValue(context,cursor.getVehicleClassName());
+        }
+        return result;
+    }
+
+    public static String convertVehicleClassNameDbToValue(Context context, String vehicleClassNameDb) {
+
+        Map <String,String> vehicleClassMap = new HashMap();
+        vehicleClassMap.put(context.getString(R.string.empty_class_db),
+                context.getString(R.string.empty_class_value));
+        vehicleClassMap.put(context.getString(R.string.car_class_db),
+                context.getString(R.string.car_class_value));
+        vehicleClassMap.put(context.getString(R.string.van_class_db),
+                context.getString(R.string.van_class_value));
+        vehicleClassMap.put(context.getString(R.string.truck_class_db),
+                context.getString(R.string.truck_class_value));
+        vehicleClassMap.put(context.getString(R.string.motorcycle_class_db),
+                context.getString(R.string.motorcycle_class_value));
+        vehicleClassMap.put(context.getString(R.string.quad_class_db),
+                context.getString(R.string.quad_class));
+        vehicleClassMap.put(context.getString(R.string.tractor_class_db),
+                context.getString(R.string.tractor_class_value));
+        vehicleClassMap.put(context.getString(R.string.bike_class_db),
+                context.getString(R.string.bike_class_value));
+        vehicleClassMap.put(context.getString(R.string.bus_class_db),
+                context.getString(R.string.bus_class_value));
+
+        return vehicleClassMap.get(vehicleClassNameDb);
+    }
+
+    public static Long getVehicleClassId(Context context, String vehicleClassValue) {
         Long id = null;
-        if (null != vehicleClass && !vehicleClass.equalsIgnoreCase("")) {
+        if (null != vehicleClassValue && !vehicleClassValue.equalsIgnoreCase("")) {
             VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
-            vehicleClassSelection.vehicleClassName(vehicleClass);
+            vehicleClassSelection.vehicleClassName(convertVehicleClassNameDbToValue(context,vehicleClassValue));
+            VehicleClassCursor cursor = vehicleClassSelection.query(context);
+
+            if (cursor.moveToNext()) {
+                id = cursor.getId();
+            }
+        } else {
+
+            VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
+            vehicleClassSelection.vehicleClassName(context.getString(R.string.empty_class_db));
             VehicleClassCursor cursor = vehicleClassSelection.query(context);
 
             if (cursor.moveToNext()) {
@@ -182,9 +227,9 @@ public class ProviderUtilities {
         return result;
     }
 
-    public static Long getMakeId(Context context, String make) {
+    public static Long getMakeIdAddIsNew(Context context, String make) {
         Long id = null;
-        if (make != null && !make.equalsIgnoreCase("")) {
+        if (make != null) {
             MakeSelection makeSelection = new MakeSelection();
             makeSelection.makeName(make);
             MakeCursor cursor = makeSelection.query(context);
@@ -206,30 +251,30 @@ public class ProviderUtilities {
 
     }
 
-    public static Integer getIconClass(Context context, Long idClass) {
-
-        if (idClass != null) {
-            String className = getVehicleClassName(context, idClass);
-            if (null == className || className.equalsIgnoreCase("")) {
-                return R.drawable.ic_directions_car_black_48dp;
-            } else {
-                Map<String, Integer> vehicleClassMap = new HashMap<String, Integer>();
-                vehicleClassMap.put(context.getString(R.string.car_class), R.drawable.ic_directions_car_black_48dp);
-                vehicleClassMap.put(context.getString(R.string.bike_class), R.drawable.ic_directions_bike_black_48dp);
-                vehicleClassMap.put(context.getString(R.string.bus_class), R.drawable.ic_directions_bus_black_48dp);
-                vehicleClassMap.put(context.getString(R.string.quad_class), R.drawable.ic_quad_100);
-                vehicleClassMap.put(context.getString(R.string.motorcycle_class), R.drawable.ic_motorcycle_black_48dp);
-                vehicleClassMap.put(context.getString(R.string.tractor_class), R.drawable.ic_tractor_104);
-                vehicleClassMap.put(context.getString(R.string.truck_class), R.drawable.ic_truck_100);
-                vehicleClassMap.put(context.getString(R.string.van_class), R.drawable.ic_local_shipping_black_48dp);
-
-                return vehicleClassMap.get(className);
-            }
-        } else {
-            return R.drawable.ic_directions_car_black_48dp;
-        }
-
-    }
+//    public static Integer getIconClass(Context context, Long idClass) {
+//
+//        if (idClass != null) {
+//            String className = getVehicleClassDbName(context, idClass);
+//            if (null == className || className.equalsIgnoreCase("")) {
+//                return R.drawable.ic_directions_car_black_48dp;
+//            } else {
+//                Map<String, Integer> vehicleClassMap = new HashMap<String, Integer>();
+//                vehicleClassMap.put(context.getString(R.string.car_class), R.drawable.ic_directions_car_black_48dp);
+//                vehicleClassMap.put(context.getString(R.string.bike_class), R.drawable.ic_directions_bike_black_48dp);
+//                vehicleClassMap.put(context.getString(R.string.bus_class), R.drawable.ic_directions_bus_black_48dp);
+//                vehicleClassMap.put(context.getString(R.string.quad_class), R.drawable.ic_quad_100);
+//                vehicleClassMap.put(context.getString(R.string.motorcycle_class), R.drawable.ic_motorcycle_black_48dp);
+//                vehicleClassMap.put(context.getString(R.string.tractor_class), R.drawable.ic_tractor_104);
+//                vehicleClassMap.put(context.getString(R.string.truck_class), R.drawable.ic_truck_100);
+//                vehicleClassMap.put(context.getString(R.string.van_class), R.drawable.ic_local_shipping_black_48dp);
+//
+//                return vehicleClassMap.get(className);
+//            }
+//        } else {
+//            return R.drawable.ic_directions_car_black_48dp;
+//        }
+//
+//    }
 
 
     public static String getVehicleName(Context context, long id) {
@@ -337,7 +382,7 @@ public class ProviderUtilities {
                 RefuelSelection lastRefuelSelection = new RefuelSelection();
                 lastRefuelSelection.vehicleVehicleName(currentRefuelCursor.getVehicleVehicleName()).orderByRefuelMileage(true);
                 RefuelCursor lastRefuelCursor = lastRefuelSelection.query(context);
-                if(lastRefuelCursor.moveToNext()){
+                if (lastRefuelCursor.moveToNext()) {
                     //current refuel
                 }
 
@@ -402,11 +447,11 @@ public class ProviderUtilities {
 
     public static boolean areFullRefuel(Context context, String vehicleName, Integer refuelMileage) {
         RefuelSelection refuelSelection = new RefuelSelection();
-        getVehicleId(context,vehicleName);
-        refuelSelection.vehicleId(getVehicleId(context,vehicleName));
+        getVehicleId(context, vehicleName);
+        refuelSelection.vehicleId(getVehicleId(context, vehicleName));
         RefuelCursor cursor = refuelSelection.query(context);
         while (cursor.moveToNext()) {
-            if(cursor.getIsFull()) {
+            if (cursor.getIsFull()) {
                 if (cursor.getRefuelMileage() < refuelMileage) {
                     return true;
                 }
