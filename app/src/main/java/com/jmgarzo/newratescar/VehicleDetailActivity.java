@@ -181,7 +181,7 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
         if (isCorrect) {
             VehicleContentValues values = new VehicleContentValues();
             values.putVehicleName(vehicleName)
-                    .putVehicleClass(ProviderUtilities.getVehicleClassId(this, vehicleClass))
+                    .putVehicleClass(ProviderUtilities.getVehicleClassIdFromVehicleClassDb(this, vehicleClass))
                     .putVehicleFuelType(ProviderUtilities.getVehicleFuelTypeId(this, vehicleFuelType))
                     .putMake(ProviderUtilities.getMakeIdAddIsNew(this,vehicleMake))
                     .putModel(vehicleModel)

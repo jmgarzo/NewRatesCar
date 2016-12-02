@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
 import com.jmgarzo.newratescar.Utility.Utility;
@@ -56,7 +57,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
     private AutoCompleteTextView mVehicleMake;
     private EditText mVehicleModel;
     private EditText mVehicleMileage;
-    private EditText mVehicleMileageUnit;
+    private TextView mVehicleMileageUnit;
     private EditText mVehicleAddInformation;
 
     ArrayList<String> mVehicleClassList;
@@ -88,7 +89,7 @@ public class VehicleDetailFragment extends Fragment implements LoaderManager.Loa
         mVehicleMake = (AutoCompleteTextView) view.findViewById(R.id.autocompleteView_vehicle_make);
         mVehicleModel = (EditText) view.findViewById(R.id.input_vehicle_model);
         mVehicleMileage = (EditText) view.findViewById(R.id.input_vehicle_mileage);
-        mVehicleMileageUnit = (EditText) view.findViewById(R.id.input_vehicle_mileage_unit);
+        mVehicleMileageUnit = (TextView) view.findViewById(R.id.input_vehicle_mileage_unit);
         mVehicleAddInformation = (EditText) view.findViewById(R.id.input_vehicle_add_information);
 
 

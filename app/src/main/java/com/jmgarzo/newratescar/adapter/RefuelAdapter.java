@@ -104,10 +104,9 @@ public class RefuelAdapter extends RecyclerView.Adapter<RefuelAdapter.RefuelView
 //                .into(holder.imageHeader);
         Long idVehicle = Long.parseLong(mCursor.getString(ProviderUtilities.COL_VEHICLE_ID));
 
-
-        String refuelVehicleClass = ProviderUtilities.getVehicleClassDbName(mContext,idVehicle);
+        Long idClass = ProviderUtilities.getVehicleClassIdFromVehicleId(mContext,mCursor.getLong(ProviderUtilities.COL_REFUEL_VEHICLE_ID));
         Glide.with(mContext)
-                .load(Utility.getRefuelImagefromIdClass(mContext,refuelVehicleClass))
+                .load(Utility.getRefuelImagefromVehicleId(mContext,idClass))
                 .crossFade()
                 .into(holder.imageHeader);
         holder.textVehicleName.setText(ProviderUtilities.getVehicleName(mContext,idVehicle));

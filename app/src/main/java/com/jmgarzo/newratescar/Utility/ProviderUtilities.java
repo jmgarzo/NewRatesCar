@@ -70,15 +70,20 @@ public class ProviderUtilities {
 
 
     //Vehicle Class
-    public static String getVehicleClassDbName(Context context, long id) {
+    public static String getVehicleClassDbName(Context context, long classId) {
         String result = "";
         VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
-        vehicleClassSelection.id(id);
+        vehicleClassSelection.id(classId);
         VehicleClassCursor cursor = vehicleClassSelection.query(context);
         if (cursor.moveToNext()) {
             result = cursor.getVehicleClassName();
         }
         return result;
+    }
+
+    public static Long getVehicleClassIdFromVehicleId(Context context, long vehicleId) {
+
+        return getVehicleClassId(context,vehicleId);
     }
 
     public static String getVehicleClassValueName(Context context, long id) {
@@ -142,7 +147,7 @@ public class ProviderUtilities {
         return vehicleClassMap.get(vehicleClassValue);
     }
 
-    public static Long getVehicleClassId(Context context, String vehicleClassDb) {
+    public static Long getVehicleClassIdFromVehicleClassDb(Context context, String vehicleClassDb) {
         Long id = null;
         if (null != vehicleClassDb && !vehicleClassDb.equalsIgnoreCase("")) {
             VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
@@ -309,6 +314,18 @@ public class ProviderUtilities {
         VehicleCursor cursor = vehicleSelection.query(context);
         if (cursor.moveToNext()) {
             result = cursor.getVehicleName();
+        }
+        cursor.close();
+        return result;
+    }
+
+    public static Long getVehicleClassId(Context context, long vehicleId) {
+         Long result = null;
+        VehicleSelection vehicleSelection = new VehicleSelection();
+        vehicleSelection.id(vehicleId);
+        VehicleCursor cursor = vehicleSelection.query(context);
+        if (cursor.moveToNext()) {
+            result = cursor.getVehicleClass();
         }
         cursor.close();
         return result;

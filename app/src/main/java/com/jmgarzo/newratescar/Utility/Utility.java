@@ -48,7 +48,34 @@ public class Utility {
         }
     }
 
-    public static int getRefuelImagefromIdClass(Context context, String vehicleClassName) {
+    public static int getRefuelImagefromIdClass(Context context, Long vehicleClassId) {
+        String vehicleClassName = ProviderUtilities.getVehicleClassDbName(context, vehicleClassId);
+
+        if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.car_class_db))) {
+            return R.drawable.refuel_car_layer01;
+        } else  if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.van_class_db))) {
+            return R.drawable.refuel_van_layer01;
+        }else if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.motorcycle_class_db))){
+            return  R.drawable.refuel_moto_layer_01;
+        }else if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.truck_class_db))){
+            return R.drawable.refuel_truck_layer01;
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.tractor_class_db))){
+            return R.drawable.refuel_tractor_layer01;
+
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.quad_class_db))){
+            return R.drawable.refuel_quad_layer01;
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.bike_class_db))){
+            return R.drawable.refuel_bike01;
+        }else if(vehicleClassName.equalsIgnoreCase(context.getString(R.string.bus_class_db))){
+            return R.drawable.refuel_bus_layer01;
+        }else{
+            return R.drawable.refuel_car_layer01;
+        }
+    }
+
+    public static int getRefuelImagefromVehicleId(Context context, Long vehicleId) {
+        String vehicleClassName = ProviderUtilities.getVehicleClassDbName(context,vehicleId);
+
         if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.car_class_db))) {
             return R.drawable.refuel_car_layer01;
         } else  if (vehicleClassName.equalsIgnoreCase(context.getString(R.string.van_class_db))) {
