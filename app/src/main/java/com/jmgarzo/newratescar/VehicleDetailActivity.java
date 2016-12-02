@@ -163,7 +163,7 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
         }
 
 
-        String vehicleClass = mSpinnerVehicleClass.getText().toString();
+        String vehicleClass = ProviderUtilities.convertVehicleClassValueToNameDb(this,mSpinnerVehicleClass.getText().toString());
         String vehicleFuelType = mFuelType.getText().toString();
         String vehicleMake = mMake.getText().toString();
         String vehicleModel = mInputModel.getText().toString();
@@ -177,8 +177,6 @@ public class VehicleDetailActivity extends AppCompatActivity implements VehicleD
         }
 
         String addInformation = mInputAddInformation.getText().toString();
-
-
 
         if (isCorrect) {
             VehicleContentValues values = new VehicleContentValues();

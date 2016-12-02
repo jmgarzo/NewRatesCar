@@ -94,7 +94,7 @@ public class ProviderUtilities {
 
     public static String convertVehicleClassNameDbToValue(Context context, String vehicleClassNameDb) {
 
-        Map <String,String> vehicleClassMap = new HashMap();
+        Map <String,String> vehicleClassMap = new HashMap<String,String>();
         vehicleClassMap.put(context.getString(R.string.empty_class_db),
                 context.getString(R.string.empty_class_value));
         vehicleClassMap.put(context.getString(R.string.car_class_db),
@@ -106,7 +106,7 @@ public class ProviderUtilities {
         vehicleClassMap.put(context.getString(R.string.motorcycle_class_db),
                 context.getString(R.string.motorcycle_class_value));
         vehicleClassMap.put(context.getString(R.string.quad_class_db),
-                context.getString(R.string.quad_class));
+                context.getString(R.string.quad_class_value));
         vehicleClassMap.put(context.getString(R.string.tractor_class_db),
                 context.getString(R.string.tractor_class_value));
         vehicleClassMap.put(context.getString(R.string.bike_class_db),
@@ -117,11 +117,36 @@ public class ProviderUtilities {
         return vehicleClassMap.get(vehicleClassNameDb);
     }
 
-    public static Long getVehicleClassId(Context context, String vehicleClassValue) {
+
+    public static String convertVehicleClassValueToNameDb(Context context, String vehicleClassValue) {
+
+        Map <String,String> vehicleClassMap = new HashMap<String,String>();
+        vehicleClassMap.put(context.getString(R.string.empty_class_value),
+                context.getString(R.string.empty_class_db));
+        vehicleClassMap.put(context.getString(R.string.car_class_value),
+                context.getString(R.string.car_class_db));
+        vehicleClassMap.put(context.getString(R.string.van_class_value),
+                context.getString(R.string.van_class_db));
+        vehicleClassMap.put(context.getString(R.string.truck_class_value),
+                context.getString(R.string.truck_class_db));
+        vehicleClassMap.put(context.getString(R.string.motorcycle_class_value),
+                context.getString(R.string.motorcycle_class_db));
+        vehicleClassMap.put(context.getString(R.string.quad_class_value),
+                context.getString(R.string.quad_class_db));
+        vehicleClassMap.put(context.getString(R.string.tractor_class_value),
+                context.getString(R.string.tractor_class_db));
+        vehicleClassMap.put(context.getString(R.string.bike_class_value),
+                context.getString(R.string.bike_class_db));
+        vehicleClassMap.put(context.getString(R.string.bus_class_value),
+                context.getString(R.string.bus_class_db));
+        return vehicleClassMap.get(vehicleClassValue);
+    }
+
+    public static Long getVehicleClassId(Context context, String vehicleClassDb) {
         Long id = null;
-        if (null != vehicleClassValue && !vehicleClassValue.equalsIgnoreCase("")) {
+        if (null != vehicleClassDb && !vehicleClassDb.equalsIgnoreCase("")) {
             VehicleClassSelection vehicleClassSelection = new VehicleClassSelection();
-            vehicleClassSelection.vehicleClassName(convertVehicleClassNameDbToValue(context,vehicleClassValue));
+            vehicleClassSelection.vehicleClassName(vehicleClassDb);
             VehicleClassCursor cursor = vehicleClassSelection.query(context);
 
             if (cursor.moveToNext()) {
