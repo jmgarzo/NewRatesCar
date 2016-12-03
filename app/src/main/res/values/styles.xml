@@ -40,10 +40,11 @@
         <item name="android:paddingTop">24dp</item>
         <item name="android:textSize">24sp</item>
     </style>
+
     <style name="MyCardViewTitleDark" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:paddingTop">24dp</item>
         <item name="android:textSize">24sp</item>
-        <item name ="android:textColor">#E3F2FD</item>
+        <item name ="android:textColor">#f5f7fb</item>
     </style>
 
     <style name="MyCardViewSubtitle" parent="Theme.AppCompat.Light.DarkActionBar">
