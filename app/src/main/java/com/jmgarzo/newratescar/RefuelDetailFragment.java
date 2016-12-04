@@ -377,6 +377,16 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mVehicleName.setAdapter(mVehicleNameAdapter);
 
 
+        if(isNew && mVehicleNameList.size()>0){
+            String lastCarName = ProviderUtilities.getLastRefuelCarName(getContext());
+            if(null!= lastCarName &&!lastCarName.equalsIgnoreCase("")) {
+                mVehicleName.setText(lastCarName);
+            }
+
+
+        }
+
+
     }
 
 

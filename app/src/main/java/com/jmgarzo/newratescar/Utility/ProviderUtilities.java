@@ -503,4 +503,14 @@ public class ProviderUtilities {
     }
 
 
+    public static String getLastRefuelCarName(Context context){
+        RefuelSelection refuelSelection = new RefuelSelection().orderByRefuelDate(true);
+        RefuelCursor refuelCursor = refuelSelection.query(context);
+        if (refuelCursor.moveToNext()) {
+            return refuelCursor.getVehicleVehicleName();
+        }
+        return "";
+    }
+
+
 }
