@@ -49,13 +49,21 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent;
 
-                if(position==0) {
-                    Intent intent = new Intent(getActivity(), VehiclesActivity.class);
-                    startActivity(intent);
-                }if(position==1){
-                    Intent intent = new Intent(getActivity(),RefuelsActivity.class);
-                    startActivity(intent);
+                switch (position){
+                    case 0:
+                        intent = new Intent(getActivity(), VehiclesActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(getActivity(),RefuelsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent = new Intent(getActivity(),RoadworthinessActivity.class);
+                        startActivity(intent);
+                        break;
                 }
             }
         });

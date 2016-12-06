@@ -16,6 +16,7 @@ import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
+import com.jmgarzo.newratescar.provider.roadworthiness.RoadworthinessColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -82,6 +83,19 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + RefuelColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
             + ", CONSTRAINT fk_refuel_fuel_type FOREIGN KEY (" + RefuelColumns.REFUEL_FUEL_TYPE + ") REFERENCES fuel_type (_id) ON DELETE CASCADE"
             + ", CONSTRAINT fk_refuel_fuel_subtype FOREIGN KEY (" + RefuelColumns.REFUEL_FUEL_SUBTYPE + ") REFERENCES fuel_subtype (_id) ON DELETE CASCADE"
+            + " );";
+
+    public static final String SQL_CREATE_TABLE_ROADWORTHINESS = "CREATE TABLE IF NOT EXISTS "
+            + RoadworthinessColumns.TABLE_NAME + " ( "
+            + RoadworthinessColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + RoadworthinessColumns.VEHICLE_ID + " INTEGER NOT NULL, "
+            + RoadworthinessColumns.ROADWORTHINESS_DATE + " INTEGER NOT NULL, "
+            + RoadworthinessColumns.ROADWORTHINESS_MILEAGE + " INTEGER NOT NULL, "
+            + RoadworthinessColumns.ROADWORTHINESS_PRICE + " REAL NOT NULL, "
+            + RoadworthinessColumns.ROADWORTHINESS_RESULT + " TEXT, "
+            + RoadworthinessColumns.ROADWORTHINESS_NEXT_DATE + " INTEGER NOT NULL, "
+            + RoadworthinessColumns.ROADWORTHINESS_ADDITIONAL_INFORMATION + " TEXT "
+            + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + RoadworthinessColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
             + " );";
 
     public static final String SQL_CREATE_TABLE_VEHICLE = "CREATE TABLE IF NOT EXISTS "
@@ -165,6 +179,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_MAKE);
         db.execSQL(SQL_CREATE_TABLE_MENU_ITEM);
         db.execSQL(SQL_CREATE_TABLE_REFUEL);
+        db.execSQL(SQL_CREATE_TABLE_ROADWORTHINESS);
         db.execSQL(SQL_CREATE_TABLE_VEHICLE);
         db.execSQL(SQL_CREATE_TABLE_VEHICLE_CLASS);
         mOpenHelperCallbacks.onPostCreate(mContext, db);

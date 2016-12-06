@@ -3,11 +3,13 @@ package com.jmgarzo.newratescar.Utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.jmgarzo.newratescar.R;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -18,7 +20,10 @@ import java.util.Locale;
  * Created by jmgarzo on 21/11/16.
  */
 
+
 public class Utility {
+
+    private final static String LOG_TAG = Utility.class.getSimpleName();
 
     private final static BigDecimal KM_PER_MILE = new BigDecimal(1.609344d);
     private final static BigDecimal LITRES_PER_UK_GALLON =  new BigDecimal(4.5460902819948d);
@@ -161,6 +166,27 @@ public class Utility {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         String formatDate = df.format(date);
         return formatDate;
+    }
+
+    public static String getCurrentDate() {
+        Calendar cal = new GregorianCalendar();
+        java.util.Date currentDate = cal.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        return df.format(currentDate);
+    }
+
+    public static Calendar parseDate(String date){
+        GregorianCalendar cal = new GregorianCalendar();
+        String sFecha = date;
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            cal.setTime(format.parse(sFecha));
+            return cal;
+        } catch (ParseException e) {
+            Log.e(LOG_TAG, e.toString());
+            return null;
+        }
     }
 
     public static BigDecimal kmToMiles(BigDecimal km) {

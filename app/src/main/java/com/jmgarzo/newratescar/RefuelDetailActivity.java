@@ -2,6 +2,7 @@ package com.jmgarzo.newratescar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSeekBar;
@@ -14,6 +15,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.jmgarzo.newratescar.Task.SaveRefuel;
 import com.jmgarzo.newratescar.Utility.ProviderUtilities;
 import com.jmgarzo.newratescar.Utility.Utility;
@@ -67,6 +70,9 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
     private EditText mGasStation;
     private EditText mAdditionalInf;
 
+    MaterialDialog md;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +116,25 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
 
 
         }
+
+        md = new MaterialDialog.Builder(this)
+                .content(R.string.dialog_discard_changes)
+                .positiveText(R.string.dialog_agree)
+                .negativeText(R.string.dialog_disagree).build();
+        md.getBuilder()
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        showToast("Discarded changes");
+                        RefuelDetailActivity.super.onBackPressed();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.closeOptionsMenu();
+                    }
+                });
 
 
     }
@@ -232,6 +257,18 @@ public class RefuelDetailActivity extends AppCompatActivity implements RefuelDet
         }
 
         return isCorrect;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(isDataChanged) {
+            md.show();
+        }else{
+            super.onBackPressed();
+        }
+
+
     }
 
     private boolean isValidateEmptyFields() {

@@ -69,6 +69,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmgarzo.newratescar.RefuelsActivity" />
         </activity>
+        <activity
+            android:name=".RoadworthinessActivity"
+            android:label="@string/title_activity_roadworthiness"
+            android:parentActivityName=".RoadworthinessActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.RoadworthinessActivity" />
+            </activity>
+        <activity
+            android:name=".RoadworthinesDetail"
+            android:label="@string/title_activity_roadworthines_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

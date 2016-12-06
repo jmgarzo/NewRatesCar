@@ -166,6 +166,27 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mGasPriceUnits.setText(currency.concat("/").concat(quantity));
         mTotalPriceUnits.setText(currency);
 
+
+        mVehicleName.addTextChangedListener(textWatcher);
+        mRefuelDate.addTextChangedListener(textWatcher);
+        mRefuelFullTank.addTextChangedListener(textWatcher);
+        mRefuelFuelType.addTextChangedListener(textWatcher);
+        mRefuelFuelSubtype.addTextChangedListener(textWatcher);
+        mMileage.addTextChangedListener(textWatcher);
+        mLitres.addTextChangedListener(textWatcher);
+        mGasPrice.addTextChangedListener(textWatcher);
+        mTotalPrice.addTextChangedListener(textWatcher);
+        mRefuelDate.addTextChangedListener(textWatcher);
+        mIsRoofRack.addTextChangedListener(textWatcher);
+        mIsTrailer.addTextChangedListener(textWatcher);
+        //TODO The seekbar don't have addTextChangedListener(textWatcher);
+        mAverageSpeed.addTextChangedListener(textWatcher);
+        mAverageConsumption.addTextChangedListener(textWatcher);
+        mPaymentType.addTextChangedListener(textWatcher);
+        mGasStation.addTextChangedListener(textWatcher);
+        mAdditionalInf.addTextChangedListener(textWatcher);
+
+
         initialValuesVehicleName();
         initialValuesFuelType();
         initialValuesFuelSubtype();
@@ -332,7 +353,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                         if (data.getInt(ProviderUtilities.COL_REFUEL_IS_TRAILER) == 1) {
                             isTrailer = true;
                         }
-                        mIsTrailer.setChecked(isRoofRack);
+                        mIsTrailer.setChecked(isTrailer);
 
                         mSeekBarRouteType.setProgress(data.getInt(ProviderUtilities.COL_REFUEL_ROUTE_TYPE));
                         mSeekBarDrivingStyle.setProgress(data.getInt(ProviderUtilities.COL_REFUEL_DRIVING_STYLE));
@@ -341,6 +362,8 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
                         mPaymentType.setText(data.getString(ProviderUtilities.COL_REFUEL_PAYMENT_TYPE));
                         mGasStation.setText(data.getString(ProviderUtilities.COL_REFUEL_GAS_STATION));
                         mAdditionalInf.setText(data.getString(ProviderUtilities.COL_REFUEL_ADDITIONAL_INFORMATION));
+
+
 
                     }
                 }
@@ -363,7 +386,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     }
 
     void initialValuesVehicleName() {
-        mVehicleName.addTextChangedListener(textWatcher);
+
         VehicleSelection vehicleSelection = new VehicleSelection();
         Cursor c = getActivity().getContentResolver().query(vehicleSelection.uri(), null, null, null, null);
         mVehicleNameList = new ArrayList<>();
@@ -467,15 +490,15 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     private TextWatcher textWatcher = new TextWatcher() {
 
         public void afterTextChanged(Editable s) {
-            if (isNew) {
-                String vehicleName = mVehicleName.getText().toString();
-                if (!Utility.isEmptyOrNull(vehicleName)) {
-                    mMileage.setText(ProviderUtilities.getVehicleMileage(getContext(), vehicleName).toString());
-                    mRefuelFuelType.setText(ProviderUtilities.getVehicleFuelTypeByVehicleName(getContext(), vehicleName));
-                }
+//            if (isNew) {
+//                String vehicleName = mVehicleName.getText().toString();
+//                if (!Utility.isEmptyOrNull(vehicleName)) {
+//                    mMileage.setText(ProviderUtilities.getVehicleMileage(getContext(), vehicleName).toString());
+//                    mRefuelFuelType.setText(ProviderUtilities.getVehicleFuelTypeByVehicleName(getContext(), vehicleName));
+//                }
 
 
-            }
+//            }
         }
 
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -483,7 +506,8 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
 
         public void onTextChanged(CharSequence s, int start, int before,
                                   int count) {
-
+            ((Callback) getActivity())
+                    .onDataChanged();
 
         }
     };

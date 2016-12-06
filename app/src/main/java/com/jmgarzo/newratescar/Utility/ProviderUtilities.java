@@ -18,6 +18,7 @@ import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelContentValues;
 import com.jmgarzo.newratescar.provider.refuel.RefuelCursor;
 import com.jmgarzo.newratescar.provider.refuel.RefuelSelection;
+import com.jmgarzo.newratescar.provider.roadworthiness.RoadworthinessColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleCursor;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
@@ -67,6 +68,17 @@ public class ProviderUtilities {
     public static final int COL_REFUEL_PAYMENT_TYPE = 17;
     public static final int COL_REFUEL_GAS_STATION = 18;
     public static final int COL_REFUEL_ADDITIONAL_INFORMATION = 19;
+
+    public static final String[] ROAD_ALL_COLUMNS = RoadworthinessColumns.ALL_COLUMNS;
+
+    public static final int COL_ROADWORTHINESS_ID=0;
+    public static final int COL_ROADWORTHINESS_VEHICLE_ID = 1;
+    public static final int COL_ROADWORTHINESS_DATE=2;
+    public static final int COL_ROADWORTHINESS_MILEAGE=3;
+    public static final int COL_ROADWORTHINESS_PRICE=4;
+    public static final int COL_ROADWORTHINESS_RESULT=5;
+    public static final int COL_ROADWORTHINESS_NEXT_DATE=6;
+    public static final int COL_ROADWORTHINESS_ADDITIONAL_INFORMATION=7;
 
 
     //Vehicle Class

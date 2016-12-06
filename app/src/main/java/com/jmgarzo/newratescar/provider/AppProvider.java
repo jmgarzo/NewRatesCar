@@ -18,6 +18,7 @@ import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
+import com.jmgarzo.newratescar.provider.roadworthiness.RoadworthinessColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -47,11 +48,14 @@ public class AppProvider extends BaseContentProvider {
     private static final int URI_TYPE_REFUEL = 8;
     private static final int URI_TYPE_REFUEL_ID = 9;
 
-    private static final int URI_TYPE_VEHICLE = 10;
-    private static final int URI_TYPE_VEHICLE_ID = 11;
+    private static final int URI_TYPE_ROADWORTHINESS = 10;
+    private static final int URI_TYPE_ROADWORTHINESS_ID = 11;
 
-    private static final int URI_TYPE_VEHICLE_CLASS = 12;
-    private static final int URI_TYPE_VEHICLE_CLASS_ID = 13;
+    private static final int URI_TYPE_VEHICLE = 12;
+    private static final int URI_TYPE_VEHICLE_ID = 13;
+
+    private static final int URI_TYPE_VEHICLE_CLASS = 14;
+    private static final int URI_TYPE_VEHICLE_CLASS_ID = 15;
 
 
 
@@ -68,6 +72,8 @@ public class AppProvider extends BaseContentProvider {
         URI_MATCHER.addURI(AUTHORITY, MenuItemColumns.TABLE_NAME + "/#", URI_TYPE_MENU_ITEM_ID);
         URI_MATCHER.addURI(AUTHORITY, RefuelColumns.TABLE_NAME, URI_TYPE_REFUEL);
         URI_MATCHER.addURI(AUTHORITY, RefuelColumns.TABLE_NAME + "/#", URI_TYPE_REFUEL_ID);
+        URI_MATCHER.addURI(AUTHORITY, RoadworthinessColumns.TABLE_NAME, URI_TYPE_ROADWORTHINESS);
+        URI_MATCHER.addURI(AUTHORITY, RoadworthinessColumns.TABLE_NAME + "/#", URI_TYPE_ROADWORTHINESS_ID);
         URI_MATCHER.addURI(AUTHORITY, VehicleColumns.TABLE_NAME, URI_TYPE_VEHICLE);
         URI_MATCHER.addURI(AUTHORITY, VehicleColumns.TABLE_NAME + "/#", URI_TYPE_VEHICLE_ID);
         URI_MATCHER.addURI(AUTHORITY, VehicleClassColumns.TABLE_NAME, URI_TYPE_VEHICLE_CLASS);
@@ -112,6 +118,11 @@ public class AppProvider extends BaseContentProvider {
                 return TYPE_CURSOR_DIR + RefuelColumns.TABLE_NAME;
             case URI_TYPE_REFUEL_ID:
                 return TYPE_CURSOR_ITEM + RefuelColumns.TABLE_NAME;
+
+            case URI_TYPE_ROADWORTHINESS:
+                return TYPE_CURSOR_DIR + RoadworthinessColumns.TABLE_NAME;
+            case URI_TYPE_ROADWORTHINESS_ID:
+                return TYPE_CURSOR_ITEM + RoadworthinessColumns.TABLE_NAME;
 
             case URI_TYPE_VEHICLE:
                 return TYPE_CURSOR_DIR + VehicleColumns.TABLE_NAME;
@@ -223,6 +234,26 @@ public class AppProvider extends BaseContentProvider {
                 res.orderBy = RefuelColumns.DEFAULT_ORDER;
                 break;
 
+            case URI_TYPE_ROADWORTHINESS:
+            case URI_TYPE_ROADWORTHINESS_ID:
+                res.table = RoadworthinessColumns.TABLE_NAME;
+                res.idColumn = RoadworthinessColumns._ID;
+                res.tablesWithJoins = RoadworthinessColumns.TABLE_NAME;
+                if (VehicleColumns.hasColumns(projection) || VehicleClassColumns.hasColumns(projection) || FuelTypeColumns.hasColumns(projection) || MakeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleColumns.TABLE_NAME + " AS " + RoadworthinessColumns.PREFIX_VEHICLE + " ON " + RoadworthinessColumns.TABLE_NAME + "." + RoadworthinessColumns.VEHICLE_ID + "=" + RoadworthinessColumns.PREFIX_VEHICLE + "." + VehicleColumns._ID;
+                }
+                if (VehicleClassColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleClassColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_VEHICLE_CLASS + " ON " + RoadworthinessColumns.PREFIX_VEHICLE + "." + VehicleColumns.VEHICLE_CLASS + "=" + VehicleColumns.PREFIX_VEHICLE_CLASS + "." + VehicleClassColumns._ID;
+                }
+                if (FuelTypeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_FUEL_TYPE + " ON " + RoadworthinessColumns.PREFIX_VEHICLE + "." + VehicleColumns.VEHICLE_FUEL_TYPE + "=" + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
+                }
+                if (MakeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + RoadworthinessColumns.PREFIX_VEHICLE + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;
+                }
+                res.orderBy = RoadworthinessColumns.DEFAULT_ORDER;
+                break;
+
             case URI_TYPE_VEHICLE:
             case URI_TYPE_VEHICLE_ID:
                 res.table = VehicleColumns.TABLE_NAME;
@@ -258,6 +289,7 @@ public class AppProvider extends BaseContentProvider {
             case URI_TYPE_MAKE_ID:
             case URI_TYPE_MENU_ITEM_ID:
             case URI_TYPE_REFUEL_ID:
+            case URI_TYPE_ROADWORTHINESS_ID:
             case URI_TYPE_VEHICLE_ID:
             case URI_TYPE_VEHICLE_CLASS_ID:
                 id = uri.getLastPathSegment();

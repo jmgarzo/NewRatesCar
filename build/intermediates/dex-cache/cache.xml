@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="ad752e78099faa545c9987e9a0c2516c298b6855">
+        sha1="e2f4b831e08e87efa03c936fe96f74f17165433f">
         <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_d54b2c425fdb4cfe5079d6e6ff9071540cd48171/classes.dex" />
     </item>
     <item
@@ -228,15 +228,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_627e8d9251376c546d04bc901a9ddc007e359fcc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -246,11 +237,20 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_627e8d9251376c546d04bc901a9ddc007e359fcc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="c273365dbbb376d2b921b5fe60dd3562318960d9">
+        sha1="6498b4874b804af13a77ecebc6780c19cceadb51">
         <dex dex="/home/jmgarzo/Android/Projects/NewRatesCar/AndroidProject/newratescar/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_bf9279a3bf1deebb20fb3c97805f84e1b39ca712/classes.dex" />
     </item>
 

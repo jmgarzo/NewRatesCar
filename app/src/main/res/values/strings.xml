@@ -11,6 +11,7 @@
     <string name="vehicle_item_name">Vehicles</string>
     <string name="refuel_item_name">Refuel</string>
     <string name="service_item_name">Services</string>
+    <string name="roadworthiness_item_name">Roadworthiness</string>
 
     <!--Vehicle Class-->
 
@@ -24,7 +25,7 @@
     <string name="bike_class_db" translatable="false">bike</string>
     <string name="bus_class_db" translatable="false">bus</string>
 
-    <string name="empty_class_value" >None</string>
+    <string name="empty_class_value">None</string>
     <string name="car_class_value">Car</string>
     <string name="van_class_value">Van</string>
     <string name="truck_class_value">Truck</string>
@@ -155,12 +156,16 @@
     <string name="refuel_error_total_price">Total price is required</string>
 
 
-
-
-
-
-
-
+    <!--Roadworthiness String-->
+    <string name="empty_roadworthiness_list">No Roadworthiness Information Available</string>
+    <string name="road_date">Roadworthiness date*</string>
+    <string name="road_next_date">Roadworthiness next date</string>
+    <string name="road_mileage">Odometer</string>
+    <string name="road_result">Result</string>
+    <string name="road_additional_information">Additional information</string>
+    <string name="road_vehicle_name_error">Vehicle is required</string>
+    <string name="road_error_date">Date is required</string>
+    <string name="road_next">Next: </string>
 
 
 
@@ -172,6 +177,7 @@
 
     <!--toast strings-->
     <string name="toast_vehicle_saved">Vehicle saved</string>
+    <string name="toast_road_saved">Data saved</string>
 
     <!--Activity titles-->
     <string name="vehicles_activity_title">My vehicles </string>
@@ -266,21 +272,23 @@
     <string name="pref_amount_label_litres">Litres</string>
     <string name="pref_amount_label_gallon_imp">Gallon Imp</string>
     <string name="pref_amount_label_gallon_us">Gallon US</string>
-    <string name="pref_amount_value_litres">litres</string>
-    <string name="pref_amount_value_gallon_imp">gallon_imperial</string>
-    <string name="pref_amount_value_gallon_us">gallon_us</string>
+    <string name="pref_amount_value_litres" translatable="false">litres</string>
+    <string name="pref_amount_value_gallon_imp" translatable="false">gallon_imperial</string>
+    <string name="pref_amount_value_gallon_us" translatable="false">gallon_us</string>
     <string name="pref_amount_title">Amount of fuel</string>
 
     <!--Setting distance-->
     <string name="pref_distance_key" translatable="false">Distance</string>
     <string name="pref_distance_default_value" translatable="false">km</string>
-    <string name="pref_distance_label_kilometre">Km</string>
+    <string name="pref_distance_label_kilometre">km</string>
     <string name="pref_distance_label_mile">Miles</string>
-    <string name="pref_distance_value_kilometre">km</string>
-    <string name="pref_distance_value_mile">mile</string>
+    <string name="pref_distance_value_kilometre" translatable="false">km</string>
+    <string name="pref_distance_value_mile" translatable="false">mile</string>
     <string name="pref_distance_title">Distance</string>
     <string name="title_activity_refuels">Refuels</string>
     <string name="title_activity_refuel_detail">Refuel</string>
+    <string name="title_activity_roadworthiness">RoadworthinessActivity</string>
+    <string name="title_activity_roadworthines_detail">RoadworthinesDetail</string>
 
 
 </resources>
