@@ -216,7 +216,7 @@ public class RoadworthinesDetail extends AppCompatActivity implements Roadworthi
                     .putRoadworthinessAdditionalInformation(mAdditionalInf.getText().toString());
 
 
-            SaveRoad saveRoad = new SaveRoad(this, mRoadId,mVehicleName.getText().toString(), Integer.parseInt(mMileage.getText().toString()));
+            SaveRoad saveRoad = new SaveRoad(this, mRoadId,mVehicleName.getText().toString(), Utility.getIntegerNoNull(mMileage.getText().toString()));
             saveRoad.execute(values);
 
             Intent intent = new Intent(this, RoadworthinessActivity.class);

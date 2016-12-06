@@ -12,6 +12,7 @@
     <string name="refuel_item_name">Refuel</string>
     <string name="service_item_name">Services</string>
     <string name="roadworthiness_item_name">Roadworthiness</string>
+    <string name ="toll_item_name">Toll</string>
 
     <!--Vehicle Class-->
 
@@ -167,6 +168,18 @@
     <string name="road_error_date">Date is required</string>
     <string name="road_next">Next: </string>
 
+    <!--Toll String-->
+    <string name="toll_date">Toll date*</string>
+    <string name="toll_price">Toll price</string>
+    <string name="toll_name">Toll name</string>
+    <string name="toll_road">Road</string>
+    <string name="toll_direction">Direction</string>
+    <string name="toll_location">Location</string>
+    <string name="empty_toll_list">No Toll Information Available</string>
+    <string name="toll_additional_information">Additional information</string>
+    <string name="toll_vehicle_name_error">Select a vehicle is required</string>
+    <string name="toll_error_date">Date is required</string>
+
 
 
 
@@ -289,6 +302,8 @@
     <string name="title_activity_refuel_detail">Refuel</string>
     <string name="title_activity_roadworthiness">RoadworthinessActivity</string>
     <string name="title_activity_roadworthines_detail">RoadworthinesDetail</string>
+    <string name="title_activity_tolls">Tolls</string>
+    <string name="title_activity_toll_detail">TollDetail</string>
 
 
 </resources>

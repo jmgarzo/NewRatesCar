@@ -19,6 +19,7 @@ import com.jmgarzo.newratescar.provider.refuel.RefuelContentValues;
 import com.jmgarzo.newratescar.provider.refuel.RefuelCursor;
 import com.jmgarzo.newratescar.provider.refuel.RefuelSelection;
 import com.jmgarzo.newratescar.provider.roadworthiness.RoadworthinessColumns;
+import com.jmgarzo.newratescar.provider.toll.TollColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleCursor;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleSelection;
@@ -79,6 +80,18 @@ public class ProviderUtilities {
     public static final int COL_ROADWORTHINESS_RESULT=5;
     public static final int COL_ROADWORTHINESS_NEXT_DATE=6;
     public static final int COL_ROADWORTHINESS_ADDITIONAL_INFORMATION=7;
+
+
+    public static final String[] TOLL_ALL_COLUMNS = TollColumns.ALL_COLUMNS;
+    public static final int COL_TOLL_ID=0;
+    public static final int COL_TOLL_VEHICLE_ID=1;
+    public static final int COL_TOLL_DATE=2;
+    public static final int COL_TOLL_PRICE=3;
+    public static final int COL_TOLL_NAME=4;
+    public static final int COL_TOLL_ROAD=5;
+    public static final int COL_TOLL_DIRECTION=6;
+    public static final int COL_TOLL_LOCATION=7;
+    public static final int COL_TOLL_ADDITIONAL_INFORMATION=8;
 
 
     //Vehicle Class

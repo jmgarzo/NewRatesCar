@@ -72,16 +72,32 @@
         <activity
             android:name=".RoadworthinessActivity"
             android:label="@string/title_activity_roadworthiness"
-            android:parentActivityName=".RoadworthinessActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.RoadworthinessActivity" />
+        </activity>
+        <activity
+            android:name=".RoadworthinesDetail"
+            android:label="@string/title_activity_roadworthines_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Tolls"
+            android:label="@string/title_activity_tolls"
+            android:parentActivityName=".MainActivity"
+
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmgarzo.newratescar.RoadworthinessActivity" />
             </activity>
         <activity
-            android:name=".RoadworthinesDetail"
-            android:label="@string/title_activity_roadworthines_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".TollDetail"
+            android:label="@string/title_activity_toll_detail"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

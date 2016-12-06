@@ -17,6 +17,7 @@ import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
 import com.jmgarzo.newratescar.provider.roadworthiness.RoadworthinessColumns;
+import com.jmgarzo.newratescar.provider.toll.TollColumns;
 import com.jmgarzo.newratescar.provider.vehicle.VehicleColumns;
 import com.jmgarzo.newratescar.provider.vehicleclass.VehicleClassColumns;
 
@@ -96,6 +97,20 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + RoadworthinessColumns.ROADWORTHINESS_NEXT_DATE + " INTEGER NOT NULL, "
             + RoadworthinessColumns.ROADWORTHINESS_ADDITIONAL_INFORMATION + " TEXT "
             + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + RoadworthinessColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
+            + " );";
+
+    public static final String SQL_CREATE_TABLE_TOLL = "CREATE TABLE IF NOT EXISTS "
+            + TollColumns.TABLE_NAME + " ( "
+            + TollColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + TollColumns.VEHICLE_ID + " INTEGER NOT NULL, "
+            + TollColumns.TOLL_DATE + " INTEGER NOT NULL, "
+            + TollColumns.TOLL_PRICE + " REAL NOT NULL, "
+            + TollColumns.TOLL_NAME + " TEXT, "
+            + TollColumns.TOLL_ROAD + " TEXT, "
+            + TollColumns.TOLL_DIRECTION + " TEXT, "
+            + TollColumns.TOLL_LOCATION + " TEXT, "
+            + TollColumns.TOLL_ADDITIONAL_INFORMATION + " TEXT "
+            + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + TollColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
             + " );";
 
     public static final String SQL_CREATE_TABLE_VEHICLE = "CREATE TABLE IF NOT EXISTS "
@@ -180,6 +195,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_MENU_ITEM);
         db.execSQL(SQL_CREATE_TABLE_REFUEL);
         db.execSQL(SQL_CREATE_TABLE_ROADWORTHINESS);
+        db.execSQL(SQL_CREATE_TABLE_TOLL);
         db.execSQL(SQL_CREATE_TABLE_VEHICLE);
         db.execSQL(SQL_CREATE_TABLE_VEHICLE_CLASS);
         mOpenHelperCallbacks.onPostCreate(mContext, db);

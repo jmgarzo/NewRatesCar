@@ -466,7 +466,6 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         }
 
         @Override
-
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current date as the default date in the picker
             final Calendar c = Calendar.getInstance();
