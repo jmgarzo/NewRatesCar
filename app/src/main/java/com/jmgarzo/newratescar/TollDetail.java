@@ -24,7 +24,6 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import static com.jmgarzo.newratescar.R.id.action_delete;
@@ -39,7 +38,6 @@ public class TollDetail extends AppCompatActivity implements TollDetailFragment.
 
     private Toast mToast;
 
-
     MaterialBetterSpinner mSpinnerVehicleName;
     private TextInputLayout mTollLayoutDate;
     private EditText mTollDate;
@@ -51,8 +49,6 @@ public class TollDetail extends AppCompatActivity implements TollDetailFragment.
     private EditText mTollAdditionalInformation;
 
     MaterialDialog md;
-
-
 
 
 
@@ -226,17 +222,14 @@ public class TollDetail extends AppCompatActivity implements TollDetailFragment.
 
     private boolean isValidateEmptyFields() {
         boolean result = true;
-        ArrayList<String> errors = new ArrayList<>();
         if(Utility.isEmptyOrNull(mSpinnerVehicleName.getText().toString())){
             mSpinnerVehicleName.setError(getString(R.string.refuel_vehicle_name_error));
-            errors.add(getString(R.string.refuel_vehicle_name_error));
             result = false;
         }
 
         if (Utility.isEmptyOrNull(mTollDate.getText().toString())) {
             mTollLayoutDate.setErrorEnabled(true);
             mTollLayoutDate.setError(getString(R.string.refuel_error_date));
-            errors.add(getString(R.string.refuel_error_date));
             result = false;
         }
         return result;

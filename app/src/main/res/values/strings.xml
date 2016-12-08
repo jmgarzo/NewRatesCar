@@ -12,7 +12,9 @@
     <string name="refuel_item_name">Refuel</string>
     <string name="service_item_name">Services</string>
     <string name="roadworthiness_item_name">Roadworthiness</string>
-    <string name ="toll_item_name">Toll</string>
+    <string name="toll_item_name">Toll</string>
+    <string name="insurance_item_name">Insurance</string>
+
 
     <!--Vehicle Class-->
 
@@ -180,7 +182,16 @@
     <string name="toll_vehicle_name_error">Select a vehicle is required</string>
     <string name="toll_error_date">Date is required</string>
 
-
+    <!--Insurance String-->
+    <string name="insurance_from">From: </string>
+    <string name="insurance_to">to: </string>
+    <string name="empty_insurance_list">No Insurance Information Available</string>
+    <string name="insurance_start_date">Start Date</string>
+    <string name="insurance_end_date">End Date</string>
+    <string name="insurance_price">Price</string>
+    <string name="insurance_company">Company</string>
+    <string name="insurance_policy">Policy</string>
+    <string name="insurance_additional_information">Additional Information</string>
 
 
     <!--Dialog strings-->
@@ -304,6 +315,8 @@
     <string name="title_activity_roadworthines_detail">RoadworthinesDetail</string>
     <string name="title_activity_tolls">Tolls</string>
     <string name="title_activity_toll_detail">TollDetail</string>
+    <string name="title_activity_insurance">Insurance</string>
+    <string name="title_activity_insurance_detail">InsuranceDetail</string>
 
 
 </resources>

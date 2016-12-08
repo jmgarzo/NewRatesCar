@@ -5,6 +5,7 @@ package com.jmgarzo.newratescar.provider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
 import android.util.Log;
 
 import com.jmgarzo.newratescar.BuildConfig;
@@ -44,7 +45,6 @@ public class AppSQLiteOpenHelperCallbacks {
         addMakes(db,context);
         addFuelType(db,context);
         addFuelSubType(db,context);
-
 
     }
 
@@ -190,6 +190,8 @@ public class AppSQLiteOpenHelperCallbacks {
         menuItemList.add(new MenuItem(context.getString(R.string.refuel_item_name),R.drawable.refuel01));
         menuItemList.add(new MenuItem(context.getString(R.string.roadworthiness_item_name),R.drawable.refuel01));
         menuItemList.add(new MenuItem(context.getString(R.string.toll_item_name),R.drawable.refuel01));
+        menuItemList.add(new MenuItem(context.getString(R.string.insurance_item_name),R.drawable.refuel01));
+
 
 
         for (MenuItem menu : menuItemList){

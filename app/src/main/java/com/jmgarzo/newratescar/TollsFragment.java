@@ -29,7 +29,6 @@ public class TollsFragment extends Fragment implements LoaderManager.LoaderCallb
     private int mPosition = mRecyclerView.NO_POSITION;
 
     public interface Callback {
-
         public void onItemSelected(Long vehicleId);
     }
 
@@ -53,7 +52,6 @@ public class TollsFragment extends Fragment implements LoaderManager.LoaderCallb
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_tolls);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         mRecyclerView.setAdapter(mTollAdapter);
 
         return rootView;
@@ -68,9 +66,7 @@ public class TollsFragment extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public void onResume() {
         getLoaderManager().initLoader(TOLL_LOADER_ID, null, this);
-
         super.onResume();
-
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.jmgarzo.newratescar.provider.AppProvider;
 import com.jmgarzo.newratescar.provider.base.AbstractSelection;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
+import com.jmgarzo.newratescar.provider.insurance.InsuranceColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;

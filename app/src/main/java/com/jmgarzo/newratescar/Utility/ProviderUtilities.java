@@ -11,6 +11,7 @@ import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeSelection;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeContentValues;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
+import com.jmgarzo.newratescar.provider.insurance.InsuranceColumns;
 import com.jmgarzo.newratescar.provider.make.MakeContentValues;
 import com.jmgarzo.newratescar.provider.make.MakeCursor;
 import com.jmgarzo.newratescar.provider.make.MakeSelection;
@@ -92,6 +93,19 @@ public class ProviderUtilities {
     public static final int COL_TOLL_DIRECTION=6;
     public static final int COL_TOLL_LOCATION=7;
     public static final int COL_TOLL_ADDITIONAL_INFORMATION=8;
+
+
+    public static final String[] INSURANCE_ALL_COLUMNS = InsuranceColumns.ALL_COLUMNS;
+
+    public static final int COL_INSURANCE_ID = 0 ;
+    public static final int COL_INSURANCE_VEHICLE_ID= 1;
+    public static final int COL_INSURANCE_COMPANY=2;
+    public static final int COL_INSURANCE_PRICE=3;
+    public static final int COL_INSURANCE_POLICY_NUMBER=4;
+    public static final int COL_INSURANCE_START_DATE=5;
+    public static final int COL_INSURANCE_END_DATE=6;
+    public static final int COL_INSURANCE_ADDITIONAL_INFORMATION=7;
+
 
 
     //Vehicle Class

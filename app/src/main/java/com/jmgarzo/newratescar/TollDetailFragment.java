@@ -38,7 +38,6 @@ import java.util.Calendar;
 public class TollDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public interface Callback {
-
         public void onDataChanged();
     }
 
@@ -124,10 +123,6 @@ public class TollDetailFragment extends Fragment implements LoaderManager.Loader
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         getLoaderManager().initLoader(TOLL_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
-
-
-
-
     }
 
 

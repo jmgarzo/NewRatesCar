@@ -86,17 +86,32 @@
             android:name=".Tolls"
             android:label="@string/title_activity_tolls"
             android:parentActivityName=".MainActivity"
-
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmgarzo.newratescar.RoadworthinessActivity" />
-            </activity>
+        </activity>
         <activity
             android:name=".TollDetail"
             android:label="@string/title_activity_toll_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Insurance"
+            android:label="@string/title_activity_insurance"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.MainActivity" />
+        </activity>
+        <activity
+            android:name=".InsuranceDetail"
+            android:label="@string/title_activity_insurance_detail"
+            android:parentActivityName=".Insurance"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.Insurance" />
         </activity>
     </application>
 

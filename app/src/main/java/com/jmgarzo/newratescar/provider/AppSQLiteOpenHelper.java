@@ -13,6 +13,7 @@ import android.util.Log;
 import com.jmgarzo.newratescar.BuildConfig;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
+import com.jmgarzo.newratescar.provider.insurance.InsuranceColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
@@ -42,6 +43,19 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + FuelTypeColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + FuelTypeColumns.FUEL_TYPE_NAME + " TEXT "
             + ", CONSTRAINT unique_fuel_type_name UNIQUE (fuel_type__fuel_type_name) ON CONFLICT REPLACE"
+            + " );";
+
+    public static final String SQL_CREATE_TABLE_INSURANCE = "CREATE TABLE IF NOT EXISTS "
+            + InsuranceColumns.TABLE_NAME + " ( "
+            + InsuranceColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + InsuranceColumns.VEHICLE_ID + " INTEGER NOT NULL, "
+            + InsuranceColumns.INSURANCE_COMPANY + " TEXT, "
+            + InsuranceColumns.INSURANCE_PRICE + " REAL NOT NULL, "
+            + InsuranceColumns.POLICY_NUMBER + " TEXT, "
+            + InsuranceColumns.START_DATE + " INTEGER, "
+            + InsuranceColumns.END_DATE + " INTEGER, "
+            + InsuranceColumns.INSURANCE_ADDITIONAL_INFORMATION + " TEXT "
+            + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + InsuranceColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
             + " );";
 
     public static final String SQL_CREATE_TABLE_MAKE = "CREATE TABLE IF NOT EXISTS "
@@ -191,6 +205,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
         mOpenHelperCallbacks.onPreCreate(mContext, db);
         db.execSQL(SQL_CREATE_TABLE_FUEL_SUBTYPE);
         db.execSQL(SQL_CREATE_TABLE_FUEL_TYPE);
+        db.execSQL(SQL_CREATE_TABLE_INSURANCE);
         db.execSQL(SQL_CREATE_TABLE_MAKE);
         db.execSQL(SQL_CREATE_TABLE_MENU_ITEM);
         db.execSQL(SQL_CREATE_TABLE_REFUEL);
