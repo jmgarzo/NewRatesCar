@@ -14,6 +14,7 @@
     <string name="roadworthiness_item_name">Roadworthiness</string>
     <string name="toll_item_name">Toll</string>
     <string name="insurance_item_name">Insurance</string>
+    <string name="maintenance_item_name">Maintenance</string>
 
 
     <!--Vehicle Class-->
@@ -193,6 +194,22 @@
     <string name="insurance_policy">Policy</string>
     <string name="insurance_additional_information">Additional Information</string>
 
+    <!--Maintenance String-->
+    <string name="maintenance_date">Date</string>
+    <string name="maintenance_mileage">Odometer</string>
+    <string name="maintenance_price">Price</string>
+    <string name="maintenance_name">Name</string>
+    <string name="maintenance_operation_name">Operation Name</string>
+    <string name="maintenance_operation_description">Operation Description</string>
+
+    <string name="operation_frequency">Frequency</string>
+    <string name="part_name">Part name</string>
+    <string name="part_make">Make</string>
+    <string name="part_price">Price</string>
+    <string name="operation_title">Operations</string>
+
+
+
 
     <!--Dialog strings-->
     <string name="dialog_discard_changes">Discard your changes?</string>
@@ -317,6 +334,7 @@
     <string name="title_activity_toll_detail">TollDetail</string>
     <string name="title_activity_insurance">Insurance</string>
     <string name="title_activity_insurance_detail">InsuranceDetail</string>
+    <string name="title_activity_maintenance_detail">MaintenanceDetail</string>
 
 
 </resources>

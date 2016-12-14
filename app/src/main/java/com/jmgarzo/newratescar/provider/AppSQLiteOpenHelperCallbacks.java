@@ -191,6 +191,8 @@ public class AppSQLiteOpenHelperCallbacks {
         menuItemList.add(new MenuItem(context.getString(R.string.roadworthiness_item_name),R.drawable.refuel01));
         menuItemList.add(new MenuItem(context.getString(R.string.toll_item_name),R.drawable.refuel01));
         menuItemList.add(new MenuItem(context.getString(R.string.insurance_item_name),R.drawable.refuel01));
+        menuItemList.add(new MenuItem(context.getString(R.string.maintenance_item_name),R.drawable.refuel01));
+
 
 
 

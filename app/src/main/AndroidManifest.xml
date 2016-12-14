@@ -113,6 +113,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmgarzo.newratescar.Insurance" />
         </activity>
+        <activity
+            android:name=".MaintenanceDetail"
+            android:label="@string/title_activity_maintenance_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
