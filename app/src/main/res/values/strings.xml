@@ -11,7 +11,7 @@
     <string name="vehicle_item_name">Vehicles</string>
     <string name="refuel_item_name">Refuel</string>
     <string name="service_item_name">Services</string>
-    <string name="roadworthiness_item_name">Roadworthiness</string>
+    <string name="roadworthiness_item_name">Inspection</string>
     <string name="toll_item_name">Toll</string>
     <string name="insurance_item_name">Insurance</string>
 

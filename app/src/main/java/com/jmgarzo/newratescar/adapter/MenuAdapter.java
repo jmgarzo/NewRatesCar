@@ -9,6 +9,7 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jmgarzo.newratescar.R;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 
@@ -47,7 +48,12 @@ public class MenuAdapter extends CursorAdapter {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
 
         int index = cursor.getColumnIndex(MenuItemColumns.MENU_ITEM_IMAGE);
-        viewHolder.imageView.setImageResource(cursor.getInt(index));
+        //viewHolder.imageView.setImageResource(cursor.getInt(index));
+
+        Glide.with(context)
+                .load(cursor.getInt(index))
+                .fitCenter()
+                .into(viewHolder.imageView);
 
         index = cursor.getColumnIndex(MenuItemColumns.MENU_ITEM_NAME);
         viewHolder.textView.setText(cursor.getString(index));
