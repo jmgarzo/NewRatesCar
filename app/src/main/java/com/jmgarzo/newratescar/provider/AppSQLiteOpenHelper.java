@@ -14,6 +14,7 @@ import com.jmgarzo.newratescar.BuildConfig;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.insurance.InsuranceColumns;
+import com.jmgarzo.newratescar.provider.maintenance.MaintenanceColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
@@ -56,6 +57,23 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
             + InsuranceColumns.END_DATE + " INTEGER, "
             + InsuranceColumns.INSURANCE_ADDITIONAL_INFORMATION + " TEXT "
             + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + InsuranceColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
+            + " );";
+
+    public static final String SQL_CREATE_TABLE_MAINTENANCE = "CREATE TABLE IF NOT EXISTS "
+            + MaintenanceColumns.TABLE_NAME + " ( "
+            + MaintenanceColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + MaintenanceColumns.VEHICLE_ID + " INTEGER NOT NULL, "
+            + MaintenanceColumns.MAINTENANCE_TITLE + " TEXT, "
+            + MaintenanceColumns.MAINTENANCE_DATE + " INTEGER NOT NULL, "
+            + MaintenanceColumns.MAINTENANCE_MILEAGE + " INTEGER NOT NULL, "
+            + MaintenanceColumns.MAINTENANCE_TYPE + " INTEGER NOT NULL, "
+            + MaintenanceColumns.MAINTENANCE_PRICE + " REAL NOT NULL, "
+            + MaintenanceColumns.MAINTENANCE_DESCRIPTION + " TEXT, "
+            + MaintenanceColumns.IS_REGULAR + " INTEGER NOT NULL, "
+            + MaintenanceColumns.MAINTENANCE_PERIODICITY + " INTEGER, "
+            + MaintenanceColumns.MAINTENANCE_GARAGE + " TEXT, "
+            + MaintenanceColumns.MAINTENANCE_ADDITIONAL_INFORMATION + " TEXT "
+            + ", CONSTRAINT fk_vehicle_id FOREIGN KEY (" + MaintenanceColumns.VEHICLE_ID + ") REFERENCES vehicle (_id) ON DELETE CASCADE"
             + " );";
 
     public static final String SQL_CREATE_TABLE_MAKE = "CREATE TABLE IF NOT EXISTS "
@@ -206,6 +224,7 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_FUEL_SUBTYPE);
         db.execSQL(SQL_CREATE_TABLE_FUEL_TYPE);
         db.execSQL(SQL_CREATE_TABLE_INSURANCE);
+        db.execSQL(SQL_CREATE_TABLE_MAINTENANCE);
         db.execSQL(SQL_CREATE_TABLE_MAKE);
         db.execSQL(SQL_CREATE_TABLE_MENU_ITEM);
         db.execSQL(SQL_CREATE_TABLE_REFUEL);

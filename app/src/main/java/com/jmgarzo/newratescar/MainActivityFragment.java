@@ -72,6 +72,10 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                         intent = new Intent(getActivity(),Insurance.class);
                         startActivity(intent);
                         break;
+                    case 5:
+                        intent = new Intent(getActivity(),Maintenances.class);
+                        startActivity(intent);
+                        break;
                 }
             }
         });

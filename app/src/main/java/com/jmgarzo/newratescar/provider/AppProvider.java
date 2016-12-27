@@ -16,6 +16,7 @@ import com.jmgarzo.newratescar.provider.base.BaseContentProvider;
 import com.jmgarzo.newratescar.provider.fuelsubtype.FuelSubtypeColumns;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeColumns;
 import com.jmgarzo.newratescar.provider.insurance.InsuranceColumns;
+import com.jmgarzo.newratescar.provider.maintenance.MaintenanceColumns;
 import com.jmgarzo.newratescar.provider.make.MakeColumns;
 import com.jmgarzo.newratescar.provider.menuitem.MenuItemColumns;
 import com.jmgarzo.newratescar.provider.refuel.RefuelColumns;
@@ -44,26 +45,29 @@ public class AppProvider extends BaseContentProvider {
     private static final int URI_TYPE_INSURANCE = 4;
     private static final int URI_TYPE_INSURANCE_ID = 5;
 
-    private static final int URI_TYPE_MAKE = 6;
-    private static final int URI_TYPE_MAKE_ID = 7;
+    private static final int URI_TYPE_MAINTENANCE = 6;
+    private static final int URI_TYPE_MAINTENANCE_ID = 7;
 
-    private static final int URI_TYPE_MENU_ITEM = 8;
-    private static final int URI_TYPE_MENU_ITEM_ID = 9;
+    private static final int URI_TYPE_MAKE = 8;
+    private static final int URI_TYPE_MAKE_ID = 9;
 
-    private static final int URI_TYPE_REFUEL = 10;
-    private static final int URI_TYPE_REFUEL_ID = 11;
+    private static final int URI_TYPE_MENU_ITEM = 10;
+    private static final int URI_TYPE_MENU_ITEM_ID = 11;
 
-    private static final int URI_TYPE_ROADWORTHINESS = 12;
-    private static final int URI_TYPE_ROADWORTHINESS_ID = 13;
+    private static final int URI_TYPE_REFUEL = 12;
+    private static final int URI_TYPE_REFUEL_ID = 13;
 
-    private static final int URI_TYPE_TOLL = 14;
-    private static final int URI_TYPE_TOLL_ID = 15;
+    private static final int URI_TYPE_ROADWORTHINESS = 14;
+    private static final int URI_TYPE_ROADWORTHINESS_ID = 15;
 
-    private static final int URI_TYPE_VEHICLE = 16;
-    private static final int URI_TYPE_VEHICLE_ID = 17;
+    private static final int URI_TYPE_TOLL = 16;
+    private static final int URI_TYPE_TOLL_ID = 17;
 
-    private static final int URI_TYPE_VEHICLE_CLASS = 18;
-    private static final int URI_TYPE_VEHICLE_CLASS_ID = 19;
+    private static final int URI_TYPE_VEHICLE = 18;
+    private static final int URI_TYPE_VEHICLE_ID = 19;
+
+    private static final int URI_TYPE_VEHICLE_CLASS = 20;
+    private static final int URI_TYPE_VEHICLE_CLASS_ID = 21;
 
 
 
@@ -76,6 +80,8 @@ public class AppProvider extends BaseContentProvider {
         URI_MATCHER.addURI(AUTHORITY, FuelTypeColumns.TABLE_NAME + "/#", URI_TYPE_FUEL_TYPE_ID);
         URI_MATCHER.addURI(AUTHORITY, InsuranceColumns.TABLE_NAME, URI_TYPE_INSURANCE);
         URI_MATCHER.addURI(AUTHORITY, InsuranceColumns.TABLE_NAME + "/#", URI_TYPE_INSURANCE_ID);
+        URI_MATCHER.addURI(AUTHORITY, MaintenanceColumns.TABLE_NAME, URI_TYPE_MAINTENANCE);
+        URI_MATCHER.addURI(AUTHORITY, MaintenanceColumns.TABLE_NAME + "/#", URI_TYPE_MAINTENANCE_ID);
         URI_MATCHER.addURI(AUTHORITY, MakeColumns.TABLE_NAME, URI_TYPE_MAKE);
         URI_MATCHER.addURI(AUTHORITY, MakeColumns.TABLE_NAME + "/#", URI_TYPE_MAKE_ID);
         URI_MATCHER.addURI(AUTHORITY, MenuItemColumns.TABLE_NAME, URI_TYPE_MENU_ITEM);
@@ -120,6 +126,11 @@ public class AppProvider extends BaseContentProvider {
                 return TYPE_CURSOR_DIR + InsuranceColumns.TABLE_NAME;
             case URI_TYPE_INSURANCE_ID:
                 return TYPE_CURSOR_ITEM + InsuranceColumns.TABLE_NAME;
+
+            case URI_TYPE_MAINTENANCE:
+                return TYPE_CURSOR_DIR + MaintenanceColumns.TABLE_NAME;
+            case URI_TYPE_MAINTENANCE_ID:
+                return TYPE_CURSOR_ITEM + MaintenanceColumns.TABLE_NAME;
 
             case URI_TYPE_MAKE:
                 return TYPE_CURSOR_DIR + MakeColumns.TABLE_NAME;
@@ -232,6 +243,26 @@ public class AppProvider extends BaseContentProvider {
                     res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + InsuranceColumns.PREFIX_VEHICLE + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;
                 }
                 res.orderBy = InsuranceColumns.DEFAULT_ORDER;
+                break;
+
+            case URI_TYPE_MAINTENANCE:
+            case URI_TYPE_MAINTENANCE_ID:
+                res.table = MaintenanceColumns.TABLE_NAME;
+                res.idColumn = MaintenanceColumns._ID;
+                res.tablesWithJoins = MaintenanceColumns.TABLE_NAME;
+                if (VehicleColumns.hasColumns(projection) || VehicleClassColumns.hasColumns(projection) || FuelTypeColumns.hasColumns(projection) || MakeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleColumns.TABLE_NAME + " AS " + MaintenanceColumns.PREFIX_VEHICLE + " ON " + MaintenanceColumns.TABLE_NAME + "." + MaintenanceColumns.VEHICLE_ID + "=" + MaintenanceColumns.PREFIX_VEHICLE + "." + VehicleColumns._ID;
+                }
+                if (VehicleClassColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + VehicleClassColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_VEHICLE_CLASS + " ON " + MaintenanceColumns.PREFIX_VEHICLE + "." + VehicleColumns.VEHICLE_CLASS + "=" + VehicleColumns.PREFIX_VEHICLE_CLASS + "." + VehicleClassColumns._ID;
+                }
+                if (FuelTypeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + FuelTypeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_FUEL_TYPE + " ON " + MaintenanceColumns.PREFIX_VEHICLE + "." + VehicleColumns.VEHICLE_FUEL_TYPE + "=" + VehicleColumns.PREFIX_FUEL_TYPE + "." + FuelTypeColumns._ID;
+                }
+                if (MakeColumns.hasColumns(projection)) {
+                    res.tablesWithJoins += " LEFT OUTER JOIN " + MakeColumns.TABLE_NAME + " AS " + VehicleColumns.PREFIX_MAKE + " ON " + MaintenanceColumns.PREFIX_VEHICLE + "." + VehicleColumns.MAKE + "=" + VehicleColumns.PREFIX_MAKE + "." + MakeColumns._ID;
+                }
+                res.orderBy = MaintenanceColumns.DEFAULT_ORDER;
                 break;
 
             case URI_TYPE_MAKE:
@@ -349,6 +380,7 @@ public class AppProvider extends BaseContentProvider {
             case URI_TYPE_FUEL_SUBTYPE_ID:
             case URI_TYPE_FUEL_TYPE_ID:
             case URI_TYPE_INSURANCE_ID:
+            case URI_TYPE_MAINTENANCE_ID:
             case URI_TYPE_MAKE_ID:
             case URI_TYPE_MENU_ITEM_ID:
             case URI_TYPE_REFUEL_ID:

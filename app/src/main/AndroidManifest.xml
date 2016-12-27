@@ -113,6 +113,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmgarzo.newratescar.Insurance" />
         </activity>
+        <activity
+            android:name=".Maintenances"
+            android:label="@string/title_activity_maintenances"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MaintenanceDetail"
+            android:label="@string/title_activity_maintenance_detail"
+            android:parentActivityName=".Maintenances"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmgarzo.newratescar.Maintenances" />
+        </activity>
     </application>
 
 </manifest>

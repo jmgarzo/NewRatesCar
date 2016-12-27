@@ -111,10 +111,6 @@ public class TollDetailFragment extends Fragment implements LoaderManager.Loader
         mTollAditionalInf.addTextChangedListener(textWatcher);
 
         initialValuesVehicleName();
-
-
-
-
         return view;
     }
 

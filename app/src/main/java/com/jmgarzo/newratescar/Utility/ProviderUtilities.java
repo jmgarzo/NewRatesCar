@@ -12,6 +12,7 @@ import com.jmgarzo.newratescar.provider.fueltype.FuelTypeContentValues;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeCursor;
 import com.jmgarzo.newratescar.provider.fueltype.FuelTypeSelection;
 import com.jmgarzo.newratescar.provider.insurance.InsuranceColumns;
+import com.jmgarzo.newratescar.provider.maintenance.MaintenanceColumns;
 import com.jmgarzo.newratescar.provider.make.MakeContentValues;
 import com.jmgarzo.newratescar.provider.make.MakeCursor;
 import com.jmgarzo.newratescar.provider.make.MakeSelection;
@@ -105,6 +106,20 @@ public class ProviderUtilities {
     public static final int COL_INSURANCE_START_DATE=5;
     public static final int COL_INSURANCE_END_DATE=6;
     public static final int COL_INSURANCE_ADDITIONAL_INFORMATION=7;
+
+    public static final String[] MAINTENANCE_ALL_COLUMNS = MaintenanceColumns.ALL_COLUMNS;
+    public static final int COL_MAINTENANCE_ID = 0;
+    public static final int COL_MAINTENANCE_VEHICLE_ID= 1;
+    public static final int COL_MAINTENANCE_TITLE = 2;
+    public static final int COL_MAINTENANCE_DATE = 3;
+    public static final int COL_MAINTENANCE_MILEAGE = 4;
+    public static final int COL_MAINTENANCE_TYPE = 5;
+    public static final int COL_MAINTENANCE_PRICE = 6;
+    public static final int COL_MAINTENANCE_DESCRIPTION= 7;
+    public static final int COL_MAINTENANCE_IS_REGULAR = 8;
+    public static final int COL_MAINTENANCE_PERIODICITY = 9;
+    public static final int COL_MAINTENANCE_GARAGE = 10;
+    public static final int COL_MAINTENANCE_ADDITIONAL_INFORMATION = 11;
 
 
 

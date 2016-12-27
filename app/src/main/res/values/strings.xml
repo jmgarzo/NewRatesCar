@@ -14,6 +14,8 @@
     <string name="roadworthiness_item_name">Inspection</string>
     <string name="toll_item_name">Toll</string>
     <string name="insurance_item_name">Insurance</string>
+    <string name="maintenance_item_name">Garage</string>
+
 
 
     <!--Vehicle Class-->
@@ -193,6 +195,32 @@
     <string name="insurance_policy">Policy</string>
     <string name="insurance_additional_information">Additional Information</string>
 
+    <!--Maintenance String-->
+    <string name="empty_maintenance_list">No Maintenance Information Available</string>
+    <string name="maintenance_date">Maintenance date*</string>
+    <string name="maintenance_title">Maintenance title*</string>
+    <string name="maintenance_description">Description</string>
+    <string name="maintenance_mileage">Odometer</string>
+    <string name="maintenance_type">Maintenance Type</string>
+    <string name="maintenance_type_breakdown">Breakdown</string>
+    <string name="maintenance_type_maintenance">Regular maintenance</string>
+
+    <string name="maintenance_price">Price</string>
+    <string name="maintenance_garage">Garage</string>
+    <string name="maintenance_additional_information">Additional Information</string>
+    <string name="maintenance_is_regular">Regular</string>
+    <string name="maintenance_regularity">Regularity</string>
+    <string name="maintenance_regularity_hint">e.g. 15000 </string>
+
+    <string name="maintenance_vehicle_name_error">Select a vehicle is required</string>
+    <string name="maintenance_error_date">Date is required</string>
+    <string name="maintenance_error_title">Title is required</string>
+
+
+
+
+
+
 
     <!--Dialog strings-->
     <string name="dialog_discard_changes">Discard your changes?</string>
@@ -317,6 +345,8 @@
     <string name="title_activity_toll_detail">TollDetail</string>
     <string name="title_activity_insurance">Insurance</string>
     <string name="title_activity_insurance_detail">InsuranceDetail</string>
+    <string name="title_activity_maintenances">Maintenances</string>
+    <string name="title_activity_maintenance_detail">MaintenanceDetail</string>
 
 
 </resources>

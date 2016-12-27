@@ -38,7 +38,7 @@ public class TollDetail extends AppCompatActivity implements TollDetailFragment.
 
     private Toast mToast;
 
-    MaterialBetterSpinner mSpinnerVehicleName;
+    private MaterialBetterSpinner mSpinnerVehicleName;
     private TextInputLayout mTollLayoutDate;
     private EditText mTollDate;
     private EditText mTollPrice;
