@@ -16,6 +16,7 @@ import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -175,6 +176,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         mMileage.addTextChangedListener(textWatcher);
         mLitres.addTextChangedListener(textWatcher);
         mGasPrice.addTextChangedListener(textWatcher);
+        mGasPrice.addTextChangedListener(textWatcherGasPrice);
         mTotalPrice.addTextChangedListener(textWatcher);
         mRefuelDate.addTextChangedListener(textWatcher);
         mIsRoofRack.addTextChangedListener(textWatcher);
@@ -198,26 +200,26 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
-                if (!mGasPrice.getText().toString().isEmpty()) {
-                    if (!mTotalPrice.getText().toString().isEmpty()) {
-                        BigDecimal dPrecio, dCoste, resultado;
-                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
-                        dCoste = new BigDecimal(mTotalPrice.getText().toString());
-                        if (dPrecio.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
-                            resultado = dCoste.divide(dPrecio, 5, BigDecimal.ROUND_HALF_UP);
-                        } else {
-                            resultado = BigDecimal.ZERO;
-                        }
-                        mLitres.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-                    } else if (!mLitres.getText().toString().isEmpty()) {
-                        BigDecimal dPrecio, dLitros, resultado;
-                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
-                        dLitros = new BigDecimal(mLitres.getText().toString());
-                        resultado = dLitros.multiply(dPrecio);
-                        mTotalPrice.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-
-                    }
-                }
+//                if (!mGasPrice.getText().toString().isEmpty()) {
+//                    if (!mTotalPrice.getText().toString().isEmpty()) {
+//                        BigDecimal dPrecio, dCoste, resultado;
+//                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
+//                        dCoste = new BigDecimal(mTotalPrice.getText().toString());
+//                        if (dPrecio.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
+//                            resultado = dCoste.divide(dPrecio, 5, BigDecimal.ROUND_HALF_UP);
+//                        } else {
+//                            resultado = BigDecimal.ZERO;
+//                        }
+//                        mLitres.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+//                    } else if (!mLitres.getText().toString().isEmpty()) {
+//                        BigDecimal dPrecio, dLitros, resultado;
+//                        dPrecio = new BigDecimal(mGasPrice.getText().toString());
+//                        dLitros = new BigDecimal(mLitres.getText().toString());
+//                        resultado = dLitros.multiply(dPrecio);
+//                        mTotalPrice.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+//
+//                    }
+//                }
 
             }
         });
@@ -514,6 +516,7 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
     private TextWatcher textWatcherForReecalculate = new TextWatcher() {
 
         public void afterTextChanged(Editable s) {
+            Log.v(LOG_TAG,"afterTextChanged");
             if (isNew) {
                 String vehicleName = mVehicleName.getText().toString();
                 if (!Utility.isEmptyOrNull(vehicleName)) {
@@ -526,10 +529,65 @@ public class RefuelDetailFragment extends Fragment implements LoaderManager.Load
         }
 
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            Log.v(LOG_TAG,"beforeTextChanged");
+
         }
 
         public void onTextChanged(CharSequence s, int start, int before,
                                   int count) {
+            Log.v(LOG_TAG,"onTextChanged");
+
+
+        }
+    };
+
+
+    private TextWatcher textWatcherGasPrice = new TextWatcher() {
+
+        public void afterTextChanged(Editable s) {
+            Log.v(LOG_TAG,"afterTextChanged");
+            if (isNew) {
+                String vehicleName = mVehicleName.getText().toString();
+                if (!Utility.isEmptyOrNull(vehicleName)) {
+                    mMileage.setText(ProviderUtilities.getVehicleMileage(getContext(), vehicleName).toString());
+                    mRefuelFuelType.setText(ProviderUtilities.getVehicleFuelTypeByVehicleName(getContext(), vehicleName));
+                }
+
+
+            }
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            Log.v(LOG_TAG,"beforeTextChanged");
+
+            if (!mGasPrice.getText().toString().isEmpty()) {
+                if (!mTotalPrice.getText().toString().isEmpty()) {
+                    BigDecimal dPrecio, dCoste, resultado;
+                    dPrecio = new BigDecimal(mGasPrice.getText().toString());
+                    dCoste = new BigDecimal(mTotalPrice.getText().toString());
+                    if (dPrecio.compareTo(BigDecimal.ZERO) != 0 && dCoste.compareTo(BigDecimal.ZERO) != 0) {
+                        resultado = dCoste.divide(dPrecio, 5, BigDecimal.ROUND_HALF_UP);
+                    } else {
+                        resultado = BigDecimal.ZERO;
+                    }
+                    mLitres.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                } else if (!mLitres.getText().toString().isEmpty()) {
+                    BigDecimal dPrecio, dLitros, resultado;
+                    dPrecio = new BigDecimal(mGasPrice.getText().toString());
+                    dLitros = new BigDecimal(mLitres.getText().toString());
+                    resultado = dLitros.multiply(dPrecio);
+                    mTotalPrice.setText(resultado.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+                }
+            }
+
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            Log.v(LOG_TAG,"onTextChanged");
 
 
         }

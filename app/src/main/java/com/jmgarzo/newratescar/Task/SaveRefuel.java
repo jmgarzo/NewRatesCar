@@ -24,12 +24,17 @@ public class SaveRefuel extends AsyncTask<RefuelContentValues, Void, Void> {
     private final Long mRefuelId;
     private final String mVehicleName;
     private Integer mMileage;
+    private String mFuelType;
 
-    public SaveRefuel(Context mContext, Long refuelId, String vehicleName, Integer mileage) {
+
+
+    public SaveRefuel(Context mContext, Long refuelId, String vehicleName, Integer mileage,String fuelType) {
         this.mContext = mContext;
         this.mRefuelId = refuelId;
         this.mVehicleName = vehicleName;
         this.mMileage = mileage;
+        this.mFuelType = fuelType;
+
     }
 
     @Override
@@ -43,6 +48,7 @@ public class SaveRefuel extends AsyncTask<RefuelContentValues, Void, Void> {
 
         String newRefuelId;
         if (null == mRefuelId || mRefuelId == -1) {
+
             Uri insertUri = mContext.getContentResolver().insert(values.uri(), values.values());
             newRefuelId = insertUri.getLastPathSegment();
         } else {
@@ -56,16 +62,23 @@ public class SaveRefuel extends AsyncTask<RefuelContentValues, Void, Void> {
 
         VehicleSelection vehicleSelection = new VehicleSelection();
         vehicleSelection.vehicleName(mVehicleName);
-        VehicleCursor vehicleCursor = vehicleSelection.query(mContext,new String[]{VehicleColumns.MILEAGE,VehicleColumns._ID});
+        VehicleCursor vehicleCursor = vehicleSelection.query(mContext,new String[]{VehicleColumns.MILEAGE,VehicleColumns.VEHICLE_FUEL_TYPE,VehicleColumns._ID});
         Integer mileage=0;
+        boolean isFuelTypeEmpty=false;
         if (vehicleCursor.moveToNext()) {
             mileage = vehicleCursor.getMileage();
+            String vehicleFuelType = ProviderUtilities.getVehicleFuelTypeName(mContext,vehicleCursor.getVehicleFuelType());
+            if(vehicleFuelType != null && vehicleFuelType != ""){
+                isFuelTypeEmpty = true;
+
+            }
         }
         vehicleCursor.close();
 
         if (mMileage > mileage) {
             VehicleContentValues vehicleValues = new VehicleContentValues();
             vehicleValues.putMileage(mMileage);
+
             mContext.getContentResolver().update(vehicleValues.uri(),
                     vehicleValues.values(),
                     VehicleColumns.VEHICLE_NAME.concat("= ?"),
@@ -73,6 +86,16 @@ public class SaveRefuel extends AsyncTask<RefuelContentValues, Void, Void> {
         }
 
         ProviderUtilities.calculateAverageConsumption(mContext,Long.parseLong(newRefuelId));
+
+        if(isFuelTypeEmpty){
+            VehicleContentValues vehicleValues = new VehicleContentValues();
+            vehicleValues.putVehicleFuelType(ProviderUtilities.getVehicleFuelTypeId(mContext,mFuelType));
+
+            mContext.getContentResolver().update(vehicleValues.uri(),
+                    vehicleValues.values(),
+                    VehicleColumns.VEHICLE_NAME.concat("= ?"),
+                    new String[]{mVehicleName});
+        }
 
 
         return null;
