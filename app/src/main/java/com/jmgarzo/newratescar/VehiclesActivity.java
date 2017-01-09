@@ -19,7 +19,7 @@ public class VehiclesActivity extends AppCompatActivity implements VehiclesFragm
         setSupportActionBar(toolbar);
 
         setTitle(R.string.vehicles_activity_title);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_vehicles);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
